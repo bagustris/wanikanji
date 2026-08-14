@@ -6,6 +6,7 @@
     showItemInfo: true,   // show example words + sentence after answering
     autoAdvance: false,   // advance automatically after a correct answer
     romajiInput: true,    // convert romaji -> hiragana in reading fields
+    strictReadings: false, // grade readings only against the primary reading
     batchSize: 5,         // items introduced per lesson batch
   };
 

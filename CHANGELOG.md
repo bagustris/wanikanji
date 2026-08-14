@@ -1,5 +1,27 @@
 # Changelog
 
+## v0.2.0 — 2026-08-14
+
+Scaled to all 60 WaniKani levels and refined radical/reading handling.
+
+### Added
+- **All 60 WaniKani levels** (2,026 kanji, 223 radicals). Dashboard renders only
+  unlocked levels plus the next one, so the level list stays usable.
+- **Strict readings** setting — grade readings against only the primary reading
+  instead of accepting any valid reading (default off).
+
+### Changed
+- Radical glyph resolution now uses only trustworthy sources: single-radical
+  kanji (192, trusted) + curated Kangxi shapes (31, flagged uncertain). The
+  meaning-match heuristic was removed after measurement showed only ~8% of its
+  glyphs were plausible radical shapes. 255 unresolvable custom-art radicals are
+  omitted from the curriculum rather than shown with faked glyphs; L1–3 kanji
+  are unaffected (0 lose their radical prerequisite).
+- `data/kanji.json` minified (~944 KB for all 60 levels).
+- Example sentences now attach to a kanji only when it is part of the sentence's
+  focus (target) word — no incidental matches.
+- Service worker cache bumped to `wanikanji-v2`.
+
 ## v0.1.0 — 2026-08-14
 
 Initial MVP: PC-first, typed-input WaniKani-style kanji trainer, Levels 1–3.

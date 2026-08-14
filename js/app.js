@@ -64,8 +64,12 @@
       `<div class="srs-cell srs-${c}"><span class="n">${cats[c]}</span><span class="k">${en[c]}</span></div>`
     ).join('');
 
-    // Level progress
-    $('level-progress').innerHTML = Data.levels().map(lvl => {
+    // Level progress — show only unlocked levels plus the first locked one
+    // (rendering all 60 would be an unusable wall of rows).
+    const allLevels = Data.levels();
+    const firstLocked = allLevels.find(l => !levelUnlocked(l));
+    const shownLevels = allLevels.filter(l => levelUnlocked(l) || l === firstLocked);
+    $('level-progress').innerHTML = shownLevels.map(lvl => {
       const rads = Data.radicalsInLevel(lvl), ks = Data.kanjiInLevel(lvl);
       const rGuru = rads.filter(r => stageOf(r.id) >= SRS.GURU).length;
       const kGuru = ks.filter(k => stageOf(k.id) >= SRS.GURU).length;
@@ -140,7 +144,7 @@
       return `<span class="type-badge badge-radical">Radical 部首</span>
         <div class="glyph badge-radical-glyph">${item.glyph}</div>
         <div class="primary-meaning">${item.name}</div>
-        ${item.uncertain ? '<div class="uncertain-flag">⚠ glyph needs review</div>' : ''}
+        ${item.uncertain ? '<div class="uncertain-flag">≈ shape approximated with a standard character</div>' : ''}
         <p class="composition">Learn this radical's name — you'll type it in reviews.</p>`;
     }
     const on = item.readingsOn.join('、') || '—';
@@ -206,7 +210,10 @@
   }
 
   function acceptedFor(item, qtype) {
-    if (qtype === 'reading') return item.acceptReadings;
+    if (qtype === 'reading') {
+      // Strict mode: only the primary reading (the WaniKani-taught one).
+      return Progress.settings().strictReadings ? item.primaryReadings : item.acceptReadings;
+    }
     return item.meanings;
   }
 
@@ -265,10 +272,9 @@
     const q = quiz.queue[0];
     const rec = quiz.perItem[q.id];
     const item = rec.item;
-    // Reveal what grading actually accepts (all readings), not just the
-    // "!"-marked one — the source's "!" flag is inconsistent with WK teaching.
+    // Reveal exactly what grading would accept (respects Strict-readings mode).
     const answer = q.qtype === 'reading'
-      ? item.acceptReadings.map(Grading.stripReading).join('、')
+      ? acceptedFor(item, 'reading').map(Grading.stripReading).join('、')
       : item.meanings.join(', ');
     const input = $('quiz-input');
     input.value = answer;
@@ -346,12 +352,14 @@
     const s = Progress.settings();
     $('setting-item-info').checked = s.showItemInfo;
     $('setting-romaji').checked = s.romajiInput;
+    $('setting-strict').checked = s.strictReadings;
     $('setting-auto-next').checked = s.autoAdvance;
     document.querySelectorAll('#setting-batch .segmented-btn').forEach(b =>
       b.classList.toggle('active', +b.dataset.value === s.batchSize));
 
     $('setting-item-info').addEventListener('change', e => Progress.setSetting('showItemInfo', e.target.checked));
     $('setting-romaji').addEventListener('change', e => Progress.setSetting('romajiInput', e.target.checked));
+    $('setting-strict').addEventListener('change', e => Progress.setSetting('strictReadings', e.target.checked));
     $('setting-auto-next').addEventListener('change', e => Progress.setSetting('autoAdvance', e.target.checked));
     document.querySelectorAll('#setting-batch .segmented-btn').forEach(b =>
       b.addEventListener('click', () => {

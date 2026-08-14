@@ -30,6 +30,9 @@
       .sort((a, b) => a.level - b.level || (a.type === b.type ? 0 : a.type === 'radical' ? -1 : 1));
   }
   function dueReviews(t) {
+    // Bypass mode: every learned, non-burned item counts as due (ignores SRS
+    // timing). Reviews still update the SRS, unlike Extra Study.
+    if (Progress.settings().bypassSchedule) return learnedActive();
     return Data.items.filter(i => { const s = stateOf(i.id); return s && SRS.isDue(s, t); });
   }
   function learnedActive() {
@@ -145,7 +148,8 @@
         <div class="glyph badge-radical-glyph">${item.glyph}</div>
         <div class="primary-meaning">${item.name}</div>
         ${item.uncertain ? '<div class="uncertain-flag">≈ shape approximated with a standard character</div>' : ''}
-        <p class="composition">Learn this radical's name — you'll type it in reviews.</p>`;
+        <p class="composition">Learn this radical's name — you'll type it in reviews.</p>
+        ${itemInfoHTML(item)}`;
     }
     const on = item.readingsOn.join('、') || '—';
     const kun = item.readingsKun.join('、') || '—';
@@ -245,11 +249,7 @@
       quiz.queue.shift();
       quiz.done++;
       if (rec.remaining.size === 0) resolveItem(rec);
-      // show item info if enabled
-      if (Progress.settings().showItemInfo && item.type === 'kanji') {
-        $('item-info').innerHTML = itemInfoHTML(item);
-        $('item-info').classList.remove('hidden');
-      }
+      maybeShowItemInfo(item);
       $('quiz-continue').classList.remove('hidden');
       quiz.awaitingContinue = true;
       if (Progress.settings().autoAdvance) setTimeout(() => { if (quiz && quiz.awaitingContinue) advance(); }, 700);
@@ -288,10 +288,7 @@
     quiz.queue.shift();
     quiz.done++;
     if (rec.remaining.size === 0) resolveItem(rec);
-    if (Progress.settings().showItemInfo && item.type === 'kanji') {
-      $('item-info').innerHTML = itemInfoHTML(item);
-      $('item-info').classList.remove('hidden');
-    }
+    maybeShowItemInfo(item);
     $('quiz-continue').classList.remove('hidden');
     quiz.awaitingContinue = true;
   }
@@ -328,7 +325,28 @@
   }
 
   // ============================ ITEM INFO ============================
+  function maybeShowItemInfo(item) {
+    if (!Progress.settings().showItemInfo) return;
+    const html = itemInfoHTML(item);
+    if (!html) return;
+    $('item-info').innerHTML = html;
+    $('item-info').classList.remove('hidden');
+  }
+
   function itemInfoHTML(item) {
+    if (item.type === 'radical') {
+      // Kanji that use this radical + their meanings (mirrors kanji examples).
+      const used = (item.kanji || []).map(ch => Data.byId['k:' + ch]).filter(Boolean);
+      if (!used.length) return '';
+      const CAP = 12;
+      let html = '<h4>この部首を使う漢字 · Kanji using this radical</h4><div class="word-list">';
+      html += used.slice(0, CAP).map(k =>
+        `<div class="word"><span class="jp">${k.char}</span><span class="gl">${k.meanings[0]}</span></div>`
+      ).join('');
+      html += '</div>';
+      if (used.length > CAP) html += `<p class="sentence-tr">+${used.length - CAP} more</p>`;
+      return html;
+    }
     if (item.type !== 'kanji') return '';
     let html = '';
     if (item.examples && item.examples.length) {
@@ -353,6 +371,7 @@
     $('setting-item-info').checked = s.showItemInfo;
     $('setting-romaji').checked = s.romajiInput;
     $('setting-strict').checked = s.strictReadings;
+    $('setting-bypass').checked = s.bypassSchedule;
     $('setting-auto-next').checked = s.autoAdvance;
     document.querySelectorAll('#setting-batch .segmented-btn').forEach(b =>
       b.classList.toggle('active', +b.dataset.value === s.batchSize));
@@ -360,6 +379,7 @@
     $('setting-item-info').addEventListener('change', e => Progress.setSetting('showItemInfo', e.target.checked));
     $('setting-romaji').addEventListener('change', e => Progress.setSetting('romajiInput', e.target.checked));
     $('setting-strict').addEventListener('change', e => Progress.setSetting('strictReadings', e.target.checked));
+    $('setting-bypass').addEventListener('change', e => { Progress.setSetting('bypassSchedule', e.target.checked); renderDashboard(); });
     $('setting-auto-next').addEventListener('change', e => Progress.setSetting('autoAdvance', e.target.checked));
     document.querySelectorAll('#setting-batch .segmented-btn').forEach(b =>
       b.addEventListener('click', () => {

@@ -2,6 +2,7 @@
  {
   "name": "Big",
   "glyph": "大",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "大",
@@ -40,6 +41,7 @@
  {
   "name": "Construction",
   "glyph": "工",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "工",
@@ -64,6 +66,7 @@
  {
   "name": "Cross",
   "glyph": "十",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "十",
@@ -118,6 +121,7 @@
  {
   "name": "Enter",
   "glyph": "入",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "入",
@@ -126,7 +130,8 @@
  },
  {
   "name": "Fins",
-  "glyph": "八",
+  "glyph": "ハ",
+  "source": "override",
   "level": 1,
   "kanji": [
    "八",
@@ -155,6 +160,7 @@
  {
   "name": "Ground",
   "glyph": "一",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "一",
@@ -233,6 +239,7 @@
  {
   "name": "Mountain",
   "glyph": "山",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "山",
@@ -269,6 +276,7 @@
  {
   "name": "Mouth",
   "glyph": "口",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "口",
@@ -396,6 +404,7 @@
  {
   "name": "Nine",
   "glyph": "九",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "九",
@@ -415,6 +424,7 @@
  {
   "name": "Person",
   "glyph": "人",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "人",
@@ -435,6 +445,7 @@
  {
   "name": "Power",
   "glyph": "力",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "力",
@@ -473,6 +484,7 @@
  {
   "name": "River",
   "glyph": "川",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "川",
@@ -488,6 +500,7 @@
  {
   "name": "Seven",
   "glyph": "七",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "七",
@@ -500,7 +513,8 @@
  },
  {
   "name": "Toe",
-  "glyph": "卜",
+  "glyph": "ト",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "上",
@@ -513,12 +527,12 @@
    "朴",
    "悼",
    "赴"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Two",
   "glyph": "二",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "二",
@@ -535,6 +549,7 @@
  {
   "name": "Woman",
   "glyph": "女",
+  "source": "wanikani",
   "level": 1,
   "kanji": [
    "女",
@@ -583,7 +598,8 @@
  },
  {
   "name": "Barb",
-  "glyph": "了",
+  "glyph": "亅",
+  "source": "override",
   "level": 2,
   "kanji": [
    "了",
@@ -594,6 +610,7 @@
  {
   "name": "Book",
   "glyph": "本",
+  "source": "single",
   "level": 2,
   "kanji": [
    "本",
@@ -604,6 +621,7 @@
  {
   "name": "Child",
   "glyph": "子",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "子",
@@ -627,6 +645,7 @@
  {
   "name": "Dirt",
   "glyph": "土",
+  "source": "single",
   "level": 2,
   "kanji": [
    "土",
@@ -700,6 +719,7 @@
  {
   "name": "Dog",
   "glyph": "犬",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "犬",
@@ -716,6 +736,7 @@
  {
   "name": "Drop",
   "glyph": "丶",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "丸",
@@ -754,12 +775,12 @@
    "卑",
    "蔑",
    "慕"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Evening",
   "glyph": "夕",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "夕",
@@ -774,6 +795,7 @@
  {
   "name": "Eye",
   "glyph": "目",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "目",
@@ -806,6 +828,7 @@
  {
   "name": "Fire",
   "glyph": "火",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "火",
@@ -832,6 +855,7 @@
  {
   "name": "Five",
   "glyph": "五",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "五",
@@ -843,6 +867,7 @@
  {
   "name": "Hand",
   "glyph": "手",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "手",
@@ -857,6 +882,7 @@
  {
   "name": "Head",
   "glyph": "冂",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "円",
@@ -869,12 +895,12 @@
    "策",
    "刺",
    "奥"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Heaven",
   "glyph": "天",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "天",
@@ -892,6 +918,7 @@
  {
   "name": "King",
   "glyph": "王",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "王",
@@ -935,6 +962,7 @@
  {
   "name": "Legs",
   "glyph": "儿",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "四",
@@ -951,12 +979,12 @@
    "喚",
    "亮",
    "粛"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Lid",
   "glyph": "亠",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "六",
@@ -982,12 +1010,12 @@
    "擁",
    "凛",
    "坑"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Middle",
   "glyph": "中",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "中",
@@ -1000,6 +1028,7 @@
  {
   "name": "Moon",
   "glyph": "月",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "月",
@@ -1069,6 +1098,7 @@
  {
   "name": "Narwhal",
   "glyph": "ナ",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "右",
@@ -1083,12 +1113,12 @@
    "怖",
    "佐",
    "惰"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Rice Paddy",
   "glyph": "田",
+  "source": "single",
   "level": 2,
   "kanji": [
    "田",
@@ -1136,7 +1166,8 @@
  },
  {
   "name": "Slide",
-  "glyph": "ノ",
+  "glyph": "丿",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "才",
@@ -1172,12 +1203,12 @@
    "鋳",
    "蔑",
    "升"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Small",
   "glyph": "小",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "小",
@@ -1200,6 +1231,7 @@
  {
   "name": "Stand",
   "glyph": "立",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "立",
@@ -1235,6 +1267,7 @@
  {
   "name": "Stool",
   "glyph": "又",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "又",
@@ -1281,6 +1314,7 @@
  {
   "name": "Stop",
   "glyph": "止",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "正",
@@ -1303,6 +1337,7 @@
  {
   "name": "Street",
   "glyph": "丁",
+  "source": "single",
   "level": 2,
   "kanji": [
    "丁",
@@ -1320,6 +1355,7 @@
  {
   "name": "Sun",
   "glyph": "日",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "日",
@@ -1412,6 +1448,7 @@
  {
   "name": "Sword",
   "glyph": "刀",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "刀",
@@ -1440,6 +1477,7 @@
  {
   "name": "Thousand",
   "glyph": "千",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "千",
@@ -1449,6 +1487,7 @@
  {
   "name": "Tree",
   "glyph": "木",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "木",
@@ -1568,6 +1607,7 @@
  {
   "name": "Water",
   "glyph": "水",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "水",
@@ -1593,6 +1633,7 @@
  {
   "name": "White",
   "glyph": "白",
+  "source": "wanikani",
   "level": 2,
   "kanji": [
    "白",
@@ -1617,6 +1658,7 @@
  {
   "name": "Writing",
   "glyph": "文",
+  "source": "single",
   "level": 2,
   "kanji": [
    "文",
@@ -1629,6 +1671,7 @@
  {
   "name": "Arrow",
   "glyph": "矢",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "矢",
@@ -1651,6 +1694,7 @@
  {
   "name": "Bow",
   "glyph": "弓",
+  "source": "single",
   "level": 3,
   "kanji": [
    "引",
@@ -1666,12 +1710,12 @@
    "窮",
    "弦",
    "弔"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Canopy",
   "glyph": "广",
+  "source": "curated",
   "level": 3,
   "kanji": [
    "広",
@@ -1708,6 +1752,7 @@
  {
   "name": "Cow",
   "glyph": "牛",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "牛",
@@ -1726,6 +1771,7 @@
  {
   "name": "Direction",
   "glyph": "方",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "方",
@@ -1754,6 +1800,7 @@
  {
   "name": "Door",
   "glyph": "戸",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "戸",
@@ -1772,6 +1819,7 @@
  {
   "name": "Dry",
   "glyph": "干",
+  "source": "single",
   "level": 3,
   "kanji": [
    "午",
@@ -1792,12 +1840,12 @@
    "栞",
    "奉",
    "俸"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Father",
   "glyph": "父",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "父",
@@ -1808,6 +1856,7 @@
  {
   "name": "Fur",
   "glyph": "毛",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "毛",
@@ -1817,6 +1866,7 @@
  {
   "name": "Heart",
   "glyph": "心",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "心",
@@ -1876,6 +1926,7 @@
  {
   "name": "Life",
   "glyph": "生",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "生",
@@ -1905,6 +1956,7 @@
  {
   "name": "Now",
   "glyph": "今",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "今",
@@ -1918,6 +1970,7 @@
  {
   "name": "Old",
   "glyph": "古",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "古",
@@ -1936,6 +1989,7 @@
  {
   "name": "Origin",
   "glyph": "元",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "元",
@@ -1948,6 +2002,7 @@
  {
   "name": "Private",
   "glyph": "厶",
+  "source": "curated",
   "level": 3,
   "kanji": [
    "公",
@@ -1974,7 +2029,8 @@
  },
  {
   "name": "Spoon",
-  "glyph": "匕",
+  "glyph": "ヒ",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "北",
@@ -1998,32 +2054,12 @@
    "柴",
    "喝",
    "雌"
-  ],
-  "uncertain": true
- },
- {
-  "name": "Stick",
-  "glyph": "丨",
-  "level": 3,
-  "kanji": [
-   "引",
-   "声",
-   "弟",
-   "存",
-   "在",
-   "候",
-   "児",
-   "修",
-   "旧",
-   "粛",
-   "悠",
-   "弔"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Task",
   "glyph": "用",
+  "source": "override",
   "level": 3,
   "kanji": [
    "用",
@@ -2040,6 +2076,7 @@
  {
   "name": "Towel",
   "glyph": "巾",
+  "source": "single",
   "level": 3,
   "kanji": [
    "市",
@@ -2068,12 +2105,12 @@
    "錦",
    "帥",
    "帆"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Winter",
   "glyph": "夂",
+  "source": "wanikani",
   "level": 3,
   "kanji": [
    "冬",
@@ -2130,12 +2167,12 @@
    "敢",
    "赦",
    "慶"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Alligator",
   "glyph": "也",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "他",
@@ -2148,6 +2185,7 @@
  {
   "name": "Bamboo",
   "glyph": "竹",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "竹",
@@ -2178,6 +2216,7 @@
  {
   "name": "Car",
   "glyph": "車",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "車",
@@ -2214,8 +2253,21 @@
   ]
  },
  {
+  "name": "Ceremony",
+  "glyph": "弋",
+  "source": "wanikani",
+  "level": 4,
+  "kanji": [
+   "代",
+   "試",
+   "式",
+   "武"
+  ]
+ },
+ {
   "name": "Ear",
   "glyph": "耳",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "耳",
@@ -2233,79 +2285,19 @@
   ]
  },
  {
-  "name": "Flowers",
-  "glyph": "艹",
+  "name": "Energy",
+  "glyph": "气",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
-   "花",
-   "草",
-   "茶",
-   "苦",
-   "落",
-   "葉",
-   "芸",
-   "英",
-   "猫",
-   "荷",
-   "薬",
-   "若",
-   "夢",
-   "藤",
-   "護",
-   "備",
-   "満",
-   "菓",
-   "華",
-   "菜",
-   "著",
-   "蒸",
-   "芋",
-   "薦",
-   "諾",
-   "葬",
-   "描",
-   "獲",
-   "茂",
-   "薄",
-   "芝",
-   "荒",
-   "芽",
-   "塔",
-   "菌",
-   "菊",
-   "芯",
-   "蓄",
-   "穫",
-   "墳",
-   "苗",
-   "蓮",
-   "茨",
-   "噴",
-   "芳",
-   "寛",
-   "搭",
-   "蒙",
-   "葵",
-   "莉",
-   "荘",
-   "茎",
-   "茜",
-   "瑛",
-   "蒼",
-   "萌",
-   "藩",
-   "憤",
-   "菅",
-   "蔑",
-   "匿",
-   "藍",
-   "藻"
-  ],
-  "uncertain": true
+   "気",
+   "汽"
+  ]
  },
  {
   "name": "Foot",
   "glyph": "足",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "足",
@@ -2322,46 +2314,48 @@
   ]
  },
  {
-  "name": "Horns",
-  "glyph": "丷",
+  "name": "Forehead",
+  "glyph": "冖",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
-   "平",
-   "弟",
-   "前",
-   "南",
-   "美",
-   "送",
-   "着",
-   "関",
-   "善",
-   "岡",
-   "狭",
-   "差",
-   "従",
-   "隊",
-   "益",
-   "並",
-   "尊",
-   "縦",
-   "磁",
-   "併",
-   "滋",
-   "塀",
-   "墜",
-   "咲",
-   "遂",
-   "挟",
-   "瓶",
-   "慈",
-   "猶",
-   "峡"
-  ],
-  "uncertain": true
+   "写",
+   "売",
+   "受",
+   "運",
+   "骨",
+   "帰",
+   "軍",
+   "冗",
+   "愛",
+   "確",
+   "夢",
+   "寝",
+   "優",
+   "婦",
+   "索",
+   "豪",
+   "掃",
+   "帯",
+   "揮",
+   "侵",
+   "瞬",
+   "畳",
+   "輝",
+   "浸",
+   "亮",
+   "塚",
+   "蒙",
+   "冠",
+   "憂",
+   "穀",
+   "殻"
+  ]
  },
  {
   "name": "Insect",
   "glyph": "虫",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "虫",
@@ -2385,8 +2379,110 @@
   ]
  },
  {
+  "name": "Leader",
+  "glyph": "ｲ",
+  "source": "wanikani",
+  "level": 4,
+  "kanji": [
+   "他",
+   "代",
+   "休",
+   "花",
+   "仕",
+   "何",
+   "体",
+   "作",
+   "化",
+   "夜",
+   "付",
+   "住",
+   "使",
+   "仮",
+   "保",
+   "仲",
+   "伝",
+   "位",
+   "低",
+   "便",
+   "働",
+   "倍",
+   "僕",
+   "宿",
+   "億",
+   "像",
+   "例",
+   "信",
+   "仏",
+   "係",
+   "荷",
+   "側",
+   "借",
+   "僧",
+   "閥",
+   "個",
+   "倒",
+   "件",
+   "任",
+   "価",
+   "値",
+   "停",
+   "備",
+   "優",
+   "俳",
+   "供",
+   "候",
+   "健",
+   "修",
+   "催",
+   "促",
+   "僚",
+   "似",
+   "偵",
+   "傷",
+   "賃",
+   "縮",
+   "伸",
+   "債",
+   "伎",
+   "依",
+   "償",
+   "伴",
+   "併",
+   "仙",
+   "俊",
+   "伺",
+   "儀",
+   "仁",
+   "侵",
+   "偽",
+   "侍",
+   "俺",
+   "俵",
+   "伊",
+   "佐",
+   "俗",
+   "仰",
+   "伯",
+   "偶",
+   "偉",
+   "倫",
+   "偏",
+   "傲",
+   "悠",
+   "伏",
+   "佳",
+   "傍",
+   "伐",
+   "俸",
+   "傑",
+   "侮",
+   "倹"
+  ]
+ },
+ {
   "name": "Master",
   "glyph": "主",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "主",
@@ -2400,6 +2496,7 @@
  {
   "name": "Measurement",
   "glyph": "寸",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "村",
@@ -2432,6 +2529,7 @@
  {
   "name": "Not",
   "glyph": "不",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "不",
@@ -2442,6 +2540,7 @@
  {
   "name": "Plate",
   "glyph": "皿",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "皿",
@@ -2460,6 +2559,7 @@
  {
   "name": "Red",
   "glyph": "赤",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "赤",
@@ -2474,6 +2574,7 @@
  {
   "name": "Samurai",
   "glyph": "士",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "仕",
@@ -2494,6 +2595,7 @@
  {
   "name": "See",
   "glyph": "見",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "見",
@@ -2512,6 +2614,7 @@
  {
   "name": "Shellfish",
   "glyph": "貝",
+  "source": "single",
   "level": 4,
   "kanji": [
    "貝",
@@ -2565,6 +2668,7 @@
  {
   "name": "Stone",
   "glyph": "石",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "石",
@@ -2589,6 +2693,7 @@
  {
   "name": "Thread",
   "glyph": "糸",
+  "source": "wanikani",
   "level": 4,
   "kanji": [
    "糸",
@@ -2658,8 +2763,26 @@
   ]
  },
  {
+  "name": "Treasure",
+  "glyph": "メ",
+  "source": "wanikani",
+  "level": 4,
+  "kanji": [
+   "気",
+   "図",
+   "便",
+   "殺",
+   "希",
+   "区",
+   "更",
+   "爽",
+   "刈"
+  ]
+ },
+ {
   "name": "World",
   "glyph": "世",
+  "source": "single",
   "level": 4,
   "kanji": [
    "世",
@@ -2670,6 +2793,7 @@
  {
   "name": "Axe",
   "glyph": "斤",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "近",
@@ -2692,12 +2816,12 @@
    "匠",
    "逝",
    "漸"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Blue",
   "glyph": "青",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "青",
@@ -2713,6 +2837,7 @@
  {
   "name": "Branch",
   "glyph": "支",
+  "source": "single",
   "level": 5,
   "kanji": [
    "皮",
@@ -2725,20 +2850,9 @@
   ]
  },
  {
-  "name": "Coffin",
-  "glyph": "匚",
-  "level": 5,
-  "kanji": [
-   "考",
-   "者",
-   "老",
-   "拷"
-  ],
-  "uncertain": true
- },
- {
   "name": "Color",
   "glyph": "色",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "色",
@@ -2748,6 +2862,7 @@
  {
   "name": "Feathers",
   "glyph": "羽",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "羽",
@@ -2760,8 +2875,43 @@
   ]
  },
  {
+  "name": "Flag",
+  "glyph": "尸",
+  "source": "wanikani",
+  "level": 5,
+  "kanji": [
+   "声",
+   "局",
+   "屋",
+   "履",
+   "尻",
+   "尾",
+   "届",
+   "層",
+   "展",
+   "属",
+   "居",
+   "屈",
+   "漏",
+   "泥",
+   "遅",
+   "堀",
+   "殿",
+   "掘",
+   "刷",
+   "慰",
+   "塀",
+   "尼",
+   "据",
+   "尿",
+   "尉",
+   "嘱"
+  ]
+ },
+ {
   "name": "Go",
   "glyph": "行",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "行",
@@ -2775,6 +2925,7 @@
  {
   "name": "Gold",
   "glyph": "金",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "金",
@@ -2811,8 +2962,53 @@
   ]
  },
  {
+  "name": "Hair",
+  "glyph": "彡",
+  "source": "wanikani",
+  "level": 5,
+  "kanji": [
+   "形",
+   "顔",
+   "参",
+   "影",
+   "修",
+   "衆",
+   "診",
+   "彫",
+   "杉",
+   "珍",
+   "髪",
+   "彩",
+   "彰",
+   "膨",
+   "須",
+   "惨"
+  ]
+ },
+ {
+  "name": "Ice",
+  "glyph": "冫",
+  "source": "wanikani",
+  "level": 5,
+  "kanji": [
+   "図",
+   "次",
+   "弱",
+   "楽",
+   "寒",
+   "冷",
+   "凍",
+   "尽",
+   "准",
+   "凝",
+   "凛",
+   "凌"
+  ]
+ },
+ {
   "name": "Lip Ring",
   "glyph": "可",
+  "source": "single",
   "level": 5,
   "kanji": [
    "何",
@@ -2827,6 +3023,7 @@
  {
   "name": "Meat",
   "glyph": "肉",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "肉",
@@ -2836,6 +3033,7 @@
  {
   "name": "Meet",
   "glyph": "会",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "会",
@@ -2845,6 +3043,7 @@
  {
   "name": "Rain",
   "glyph": "雨",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "雨",
@@ -2867,6 +3066,7 @@
  {
   "name": "Rice",
   "glyph": "米",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "米",
@@ -2897,6 +3097,7 @@
  {
   "name": "Run",
   "glyph": "走",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "走",
@@ -2911,6 +3112,7 @@
  {
   "name": "Say",
   "glyph": "言",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "言",
@@ -2982,6 +3184,7 @@
  {
   "name": "Self",
   "glyph": "自",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "自",
@@ -2995,6 +3198,7 @@
  {
   "name": "Village",
   "glyph": "里",
+  "source": "single",
   "level": 5,
   "kanji": [
    "里",
@@ -3015,6 +3219,7 @@
  {
   "name": "West",
   "glyph": "西",
+  "source": "wanikani",
   "level": 5,
   "kanji": [
    "西",
@@ -3022,8 +3227,65 @@
   ]
  },
  {
+  "name": "Window",
+  "glyph": "毋",
+  "source": "wanikani",
+  "level": 5,
+  "kanji": [
+   "毎",
+   "海",
+   "毒",
+   "梅",
+   "慣",
+   "貫"
+  ]
+ },
+ {
+  "name": "Wolverine",
+  "glyph": "ヨ",
+  "source": "wanikani",
+  "level": 5,
+  "kanji": [
+   "当",
+   "雪",
+   "君",
+   "争",
+   "緑",
+   "帰",
+   "曜",
+   "急",
+   "寝",
+   "隠",
+   "録",
+   "婦",
+   "尋",
+   "掃",
+   "躍",
+   "侵",
+   "縁",
+   "穏",
+   "伊",
+   "浸",
+   "濯",
+   "虐",
+   "粛"
+  ]
+ },
+ {
+  "name": "Angel",
+  "glyph": "ホ",
+  "source": "wanikani",
+  "level": 6,
+  "kanji": [
+   "茶",
+   "術",
+   "述"
+  ]
+ },
+ {
   "name": "Blood",
   "glyph": "血",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "血",
@@ -3031,8 +3293,29 @@
   ]
  },
  {
+  "name": "Box",
+  "glyph": "凵",
+  "source": "wanikani",
+  "level": 6,
+  "kanji": [
+   "画",
+   "歯"
+  ]
+ },
+ {
+  "name": "City",
+  "glyph": "市",
+  "source": "wanikani",
+  "level": 6,
+  "kanji": [
+   "姉",
+   "肺"
+  ]
+ },
+ {
   "name": "Death",
   "glyph": "亡",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "亡",
@@ -3047,6 +3330,7 @@
  {
   "name": "Eat",
   "glyph": "食",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "食",
@@ -3063,6 +3347,7 @@
  {
   "name": "Fortune",
   "glyph": "占",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "店",
@@ -3075,6 +3360,7 @@
  {
   "name": "Jet",
   "glyph": "未",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "妹",
@@ -3092,6 +3378,7 @@
  {
   "name": "Knife",
   "glyph": "刂",
+  "source": "curated",
   "level": 6,
   "kanji": [
    "前",
@@ -3137,6 +3424,7 @@
  {
   "name": "Lack",
   "glyph": "欠",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "次",
@@ -3156,6 +3444,7 @@
  {
   "name": "Ladle",
   "glyph": "斗",
+  "source": "single",
   "level": 6,
   "kanji": [
    "科",
@@ -3165,8 +3454,54 @@
   ]
  },
  {
+  "name": "Lion",
+  "glyph": "L",
+  "source": "wanikani",
+  "level": 6,
+  "kanji": [
+   "直",
+   "以",
+   "県",
+   "断",
+   "似",
+   "継"
+  ]
+ },
+ {
+  "name": "Loiter",
+  "glyph": "彳",
+  "source": "wanikani",
+  "level": 6,
+  "kanji": [
+   "後",
+   "役",
+   "待",
+   "履",
+   "徒",
+   "得",
+   "律",
+   "復",
+   "往",
+   "従",
+   "徴",
+   "微",
+   "径",
+   "徳",
+   "縦",
+   "彼",
+   "御",
+   "徹",
+   "懲",
+   "覆",
+   "征",
+   "徐",
+   "循"
+  ]
+ },
+ {
   "name": "Long",
   "glyph": "長",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "長",
@@ -3178,6 +3513,7 @@
  {
   "name": "Neck",
   "glyph": "首",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "首",
@@ -3185,8 +3521,30 @@
   ]
  },
  {
+  "name": "Poop",
+  "glyph": "幺",
+  "source": "wanikani",
+  "level": 6,
+  "kanji": [
+   "後",
+   "幻",
+   "機",
+   "率",
+   "響",
+   "幼",
+   "幾",
+   "磁",
+   "郷",
+   "滋",
+   "幽",
+   "慈",
+   "擁"
+  ]
+ },
+ {
   "name": "Sheep",
   "glyph": "羊",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "羊",
@@ -3206,6 +3564,7 @@
  {
   "name": "Tongue",
   "glyph": "舌",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "活",
@@ -3219,7 +3578,8 @@
  },
  {
   "name": "Twenty",
-  "glyph": "廿",
+  "glyph": "廾",
+  "source": "wanikani",
   "level": 6,
   "kanji": [
    "曲",
@@ -3233,12 +3593,12 @@
    "弊",
    "奔",
    "升"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Bird",
   "glyph": "鳥",
+  "source": "wanikani",
   "level": 7,
   "kanji": [
    "鳥",
@@ -3254,6 +3614,7 @@
  {
   "name": "Black",
   "glyph": "黒",
+  "source": "wanikani",
   "level": 7,
   "kanji": [
    "黒",
@@ -3263,6 +3624,7 @@
  {
   "name": "Boat",
   "glyph": "舟",
+  "source": "single",
   "level": 7,
   "kanji": [
    "船",
@@ -3280,6 +3642,7 @@
  {
   "name": "Circumference",
   "glyph": "周",
+  "source": "single",
   "level": 7,
   "kanji": [
    "週",
@@ -3291,6 +3654,7 @@
  {
   "name": "Clan",
   "glyph": "氏",
+  "source": "single",
   "level": 7,
   "kanji": [
    "氏",
@@ -3306,6 +3670,7 @@
  {
   "name": "Fish",
   "glyph": "魚",
+  "source": "wanikani",
   "level": 7,
   "kanji": [
    "魚",
@@ -3319,6 +3684,7 @@
  {
   "name": "Husband",
   "glyph": "夫",
+  "source": "wanikani",
   "level": 7,
   "kanji": [
    "失",
@@ -3336,8 +3702,23 @@
   ]
  },
  {
+  "name": "Mama",
+  "glyph": "マ",
+  "source": "wanikani",
+  "level": 7,
+  "kanji": [
+   "通",
+   "予",
+   "疑",
+   "勇",
+   "痛",
+   "踊"
+  ]
+ },
+ {
   "name": "Oneself",
   "glyph": "己",
+  "source": "single",
   "level": 7,
   "kanji": [
    "記",
@@ -3357,6 +3738,7 @@
  {
   "name": "Pig",
   "glyph": "豕",
+  "source": "wanikani",
   "level": 7,
   "kanji": [
    "家",
@@ -3369,12 +3751,33 @@
    "遂",
    "塚",
    "蒙"
-  ],
-  "uncertain": true
+  ]
+ },
+ {
+  "name": "Table",
+  "glyph": "几",
+  "source": "wanikani",
+  "level": 7,
+  "kanji": [
+   "風",
+   "冗",
+   "処",
+   "航",
+   "机",
+   "抗",
+   "拠",
+   "肌",
+   "飢",
+   "凡",
+   "殻",
+   "帆",
+   "坑"
+  ]
  },
  {
   "name": "Teacher",
   "glyph": "孝",
+  "source": "single",
   "level": 7,
   "kanji": [
    "教",
@@ -3385,6 +3788,7 @@
  {
   "name": "Temple",
   "glyph": "寺",
+  "source": "wanikani",
   "level": 7,
   "kanji": [
    "時",
@@ -3401,6 +3805,7 @@
  {
   "name": "Top Hat",
   "glyph": "且",
+  "source": "single",
   "level": 7,
   "kanji": [
    "組",
@@ -3419,6 +3824,7 @@
  {
   "name": "Yellow",
   "glyph": "黄",
+  "source": "wanikani",
   "level": 7,
   "kanji": [
    "黄",
@@ -3426,8 +3832,56 @@
   ]
  },
  {
+  "name": "Cage",
+  "glyph": "匚",
+  "source": "wanikani",
+  "level": 8,
+  "kanji": [
+   "医",
+   "区",
+   "暇",
+   "匹",
+   "堰",
+   "匠",
+   "匿"
+  ]
+ },
+ {
+  "name": "Cliff",
+  "glyph": "厂",
+  "source": "wanikani",
+  "level": 8,
+  "kanji": [
+   "反",
+   "顔",
+   "岸",
+   "危",
+   "歴",
+   "圧",
+   "産",
+   "厚",
+   "派",
+   "備",
+   "励",
+   "脈",
+   "厳",
+   "灰",
+   "厄",
+   "炭",
+   "暦",
+   "崖",
+   "迅",
+   "盾",
+   "后",
+   "涯",
+   "栃",
+   "循"
+  ]
+ },
+ {
   "name": "Easy",
   "glyph": "易",
+  "source": "single",
   "level": 8,
   "kanji": [
    "場",
@@ -3442,6 +3896,7 @@
  {
   "name": "Gate",
   "glyph": "門",
+  "source": "wanikani",
   "level": 8,
   "kanji": [
    "間",
@@ -3464,6 +3919,7 @@
  {
   "name": "Hole",
   "glyph": "穴",
+  "source": "wanikani",
   "level": 8,
   "kanji": [
    "究",
@@ -3478,18 +3934,19 @@
  },
  {
   "name": "Hook",
-  "glyph": "亅",
+  "glyph": "ユ",
+  "source": "wanikani",
   "level": 8,
   "kanji": [
    "決",
    "候",
    "快"
-  ],
-  "uncertain": true
+  ]
  },
  {
   "name": "Horse",
   "glyph": "馬",
+  "source": "wanikani",
   "level": 8,
   "kanji": [
    "馬",
@@ -3510,6 +3967,7 @@
  {
   "name": "Net",
   "glyph": "网",
+  "source": "curated",
   "level": 8,
   "kanji": [
    "買",
@@ -3537,8 +3995,19 @@
   "uncertain": true
  },
  {
+  "name": "Sickle",
+  "glyph": "釆",
+  "source": "wanikani",
+  "level": 8,
+  "kanji": [
+   "番",
+   "釈"
+  ]
+ },
+ {
   "name": "Suit",
   "glyph": "合",
+  "source": "wanikani",
   "level": 8,
   "kanji": [
    "答",
@@ -3552,6 +4021,7 @@
  {
   "name": "Weapon",
   "glyph": "戈",
+  "source": "curated",
   "level": 8,
   "kanji": [
    "役",
@@ -3576,6 +4046,7 @@
  {
   "name": "Brush",
   "glyph": "聿",
+  "source": "wanikani",
   "level": 9,
   "kanji": [
    "事",
@@ -3593,12 +4064,37 @@
    "鍵",
    "唐",
    "庸"
-  ],
-  "uncertain": true
+  ]
+ },
+ {
+  "name": "Correct",
+  "glyph": "正",
+  "source": "wanikani",
+  "level": 9,
+  "kanji": [
+   "定",
+   "整",
+   "題",
+   "政",
+   "証",
+   "是",
+   "誕",
+   "提",
+   "従",
+   "症",
+   "延",
+   "縦",
+   "御",
+   "征",
+   "堤",
+   "淀",
+   "錠"
+  ]
  },
  {
   "name": "Eternity",
   "glyph": "永",
+  "source": "single",
   "level": 9,
   "kanji": [
    "泳",
@@ -3609,6 +4105,7 @@
  {
   "name": "Heavy",
   "glyph": "重",
+  "source": "wanikani",
   "level": 9,
   "kanji": [
    "重",
@@ -3622,6 +4119,7 @@
  {
   "name": "History",
   "glyph": "史",
+  "source": "wanikani",
   "level": 9,
   "kanji": [
    "使",
@@ -3631,6 +4129,7 @@
  {
   "name": "Jammed In",
   "glyph": "介",
+  "source": "single",
   "level": 9,
   "kanji": [
    "界",
@@ -3638,8 +4137,26 @@
   ]
  },
  {
+  "name": "Spring",
+  "glyph": "弓",
+  "source": "wanikani",
+  "level": 9,
+  "kanji": [
+   "実",
+   "寒",
+   "春",
+   "棒",
+   "寿",
+   "奏",
+   "泰",
+   "奉",
+   "俸"
+  ]
+ },
+ {
   "name": "Stamp",
   "glyph": "卩",
+  "source": "wanikani",
   "level": 9,
   "kanji": [
    "服",
@@ -3652,12 +4169,59 @@
    "脚",
    "柳",
    "卸"
-  ],
-  "uncertain": true
+  ]
+ },
+ {
+  "name": "Tent",
+  "glyph": "癶",
+  "source": "wanikani",
+  "level": 9,
+  "kanji": [
+   "発",
+   "祭",
+   "登",
+   "澄",
+   "葵"
+  ]
+ },
+ {
+  "name": "Wing",
+  "glyph": "勿",
+  "source": "wanikani",
+  "level": 9,
+  "kanji": [
+   "物",
+   "潟"
+  ]
+ },
+ {
+  "name": "Alcohol",
+  "glyph": "酉",
+  "source": "wanikani",
+  "level": 10,
+  "kanji": [
+   "配",
+   "酒",
+   "酸",
+   "尊",
+   "酔",
+   "酢",
+   "醤",
+   "酎",
+   "酬",
+   "酷",
+   "猶",
+   "醸",
+   "酵",
+   "酌",
+   "酪",
+   "醜"
+  ]
  },
  {
   "name": "Beans",
   "glyph": "豆",
+  "source": "wanikani",
   "level": 10,
   "kanji": [
    "頭",
@@ -3672,6 +4236,7 @@
  {
   "name": "Bundle",
   "glyph": "束",
+  "source": "single",
   "level": 10,
   "kanji": [
    "速",
@@ -3683,8 +4248,41 @@
   ]
  },
  {
+  "name": "Chinese",
+  "glyph": "漢",
+  "source": "wanikani",
+  "level": 10,
+  "kanji": [
+   "漢",
+   "難",
+   "嘆"
+  ]
+ },
+ {
+  "name": "Dynamite",
+  "glyph": "丙",
+  "source": "wanikani",
+  "level": 10,
+  "kanji": [
+   "病",
+   "柄"
+  ]
+ },
+ {
+  "name": "Fault",
+  "glyph": "失",
+  "source": "wanikani",
+  "level": 10,
+  "kanji": [
+   "鉄",
+   "秩",
+   "迭"
+  ]
+ },
+ {
   "name": "Kiss",
   "glyph": "各",
+  "source": "wanikani",
   "level": 10,
   "kanji": [
    "落",
@@ -3700,8 +4298,105 @@
   ]
  },
  {
+  "name": "Music",
+  "glyph": "曲",
+  "source": "wanikani",
+  "level": 10,
+  "kanji": [
+   "農",
+   "典",
+   "豊",
+   "遭",
+   "槽",
+   "曹"
+  ]
+ },
+ {
+  "name": "Turkey",
+  "glyph": "隹",
+  "source": "wanikani",
+  "level": 10,
+  "kanji": [
+   "進",
+   "集",
+   "曜",
+   "難",
+   "確",
+   "権",
+   "観",
+   "護",
+   "準",
+   "稚",
+   "催",
+   "雄",
+   "離",
+   "雑",
+   "推",
+   "歓",
+   "維",
+   "雇",
+   "勧",
+   "奪",
+   "躍",
+   "携",
+   "獲",
+   "雅",
+   "焦",
+   "誰",
+   "穫",
+   "鶴",
+   "唯",
+   "奮",
+   "濯",
+   "隻",
+   "擁",
+   "隼",
+   "准",
+   "羅",
+   "椎",
+   "雌",
+   "礁"
+  ]
+ },
+ {
+  "name": "Drunkard",
+  "glyph": "戈",
+  "source": "wanikani",
+  "level": 11,
+  "kanji": [
+   "成",
+   "戦",
+   "感",
+   "識",
+   "閥",
+   "機",
+   "械",
+   "域",
+   "職",
+   "裁",
+   "載",
+   "織",
+   "惑",
+   "幾",
+   "戒",
+   "茂",
+   "威",
+   "滅",
+   "歳",
+   "繊",
+   "戴",
+   "栽",
+   "賊",
+   "伐",
+   "哉",
+   "戯",
+   "蔑"
+  ]
+ },
+ {
   "name": "Escalator",
   "glyph": "及",
+  "source": "wanikani",
   "level": 11,
   "kanji": [
    "級",
@@ -3711,8 +4406,24 @@
   ]
  },
  {
+  "name": "Few",
+  "glyph": "少",
+  "source": "wanikani",
+  "level": 11,
+  "kanji": [
+   "秒",
+   "省",
+   "妙",
+   "砂",
+   "劣",
+   "賓",
+   "沙"
+  ]
+ },
+ {
   "name": "Orders",
   "glyph": "令",
+  "source": "wanikani",
   "level": 11,
   "kanji": [
    "命",
@@ -3727,6 +4438,7 @@
  {
   "name": "Simple",
   "glyph": "単",
+  "source": "single",
   "level": 11,
   "kanji": [
    "戦",
@@ -3736,8 +4448,37 @@
   ]
  },
  {
+  "name": "Skin",
+  "glyph": "皮",
+  "source": "wanikani",
+  "level": 11,
+  "kanji": [
+   "波",
+   "被",
+   "破",
+   "彼",
+   "疲",
+   "披"
+  ]
+ },
+ {
+  "name": "Sound",
+  "glyph": "音",
+  "source": "wanikani",
+  "level": 11,
+  "kanji": [
+   "意",
+   "識",
+   "職",
+   "響",
+   "織",
+   "闇"
+  ]
+ },
+ {
   "name": "Asia",
   "glyph": "亜",
+  "source": "single",
   "level": 12,
   "kanji": [
    "悪",
@@ -3745,8 +4486,30 @@
   ]
  },
  {
+  "name": "Beforehand",
+  "glyph": "予",
+  "source": "wanikani",
+  "level": 12,
+  "kanji": [
+   "野",
+   "預",
+   "序"
+  ]
+ },
+ {
+  "name": "Business",
+  "glyph": "業",
+  "source": "wanikani",
+  "level": 12,
+  "kanji": [
+   "僕",
+   "撲"
+  ]
+ },
+ {
   "name": "Compare",
   "glyph": "比",
+  "source": "wanikani",
   "level": 12,
   "kanji": [
    "階",
@@ -3760,8 +4523,34 @@
   ]
  },
  {
+  "name": "Crab",
+  "glyph": "其",
+  "source": "wanikani",
+  "level": 12,
+  "kanji": [
+   "期",
+   "基",
+   "旗",
+   "棋",
+   "碁",
+   "欺"
+  ]
+ },
+ {
+  "name": "Early",
+  "glyph": "早",
+  "source": "wanikani",
+  "level": 12,
+  "kanji": [
+   "章",
+   "卓",
+   "悼"
+  ]
+ },
+ {
   "name": "Excuse",
   "glyph": "免",
+  "source": "wanikani",
   "level": 12,
   "kanji": [
    "勉",
@@ -3773,6 +4562,7 @@
  {
   "name": "Jackhammer",
   "glyph": "示",
+  "source": "wanikani",
   "level": 12,
   "kanji": [
    "祭",
@@ -3796,8 +4586,55 @@
   ]
  },
  {
+  "name": "Request",
+  "glyph": "求",
+  "source": "wanikani",
+  "level": 12,
+  "kanji": [
+   "球",
+   "救"
+  ]
+ },
+ {
+  "name": "Someone",
+  "glyph": "者",
+  "source": "wanikani",
+  "level": 12,
+  "kanji": [
+   "都",
+   "暑",
+   "署",
+   "著",
+   "諸",
+   "緒",
+   "賭",
+   "箸",
+   "煮",
+   "曙"
+  ]
+ },
+ {
+  "name": "Together",
+  "glyph": "共",
+  "source": "wanikani",
+  "level": 12,
+  "kanji": [
+   "港",
+   "選",
+   "暴",
+   "供",
+   "異",
+   "殿",
+   "翼",
+   "戴",
+   "恭",
+   "洪"
+  ]
+ },
+ {
   "name": "Bookshelf",
   "glyph": "冊",
+  "source": "single",
   "level": 13,
   "kanji": [
    "輪",
@@ -3807,8 +4644,36 @@
   ]
  },
  {
+  "name": "Circle",
+  "glyph": "丸",
+  "source": "wanikani",
+  "level": 13,
+  "kanji": [
+   "熱",
+   "勢",
+   "熟",
+   "執",
+   "塾"
+  ]
+ },
+ {
+  "name": "East",
+  "glyph": "東",
+  "source": "wanikani",
+  "level": 13,
+  "kanji": [
+   "練",
+   "凍",
+   "棟",
+   "錬",
+   "陳",
+   "欄"
+  ]
+ },
+ {
   "name": "Elephant",
   "glyph": "象",
+  "source": "override",
   "level": 13,
   "kanji": [
    "像",
@@ -3818,6 +4683,7 @@
  {
   "name": "Fruit",
   "glyph": "果",
+  "source": "wanikani",
   "level": 13,
   "kanji": [
    "課",
@@ -3829,8 +4695,44 @@
   ]
  },
  {
+  "name": "Good",
+  "glyph": "艮",
+  "source": "wanikani",
+  "level": 13,
+  "kanji": [
+   "養",
+   "郎",
+   "娘",
+   "朗",
+   "浪"
+  ]
+ },
+ {
+  "name": "Hundred",
+  "glyph": "百",
+  "source": "wanikani",
+  "level": 13,
+  "kanji": [
+   "宿",
+   "優",
+   "縮",
+   "憂"
+  ]
+ },
+ {
+  "name": "Idea",
+  "glyph": "意",
+  "source": "wanikani",
+  "level": 13,
+  "kanji": [
+   "億",
+   "憶"
+  ]
+ },
+ {
   "name": "Original",
   "glyph": "原",
+  "source": "single",
   "level": 13,
   "kanji": [
    "願",
@@ -3841,6 +4743,7 @@
  {
   "name": "Products",
   "glyph": "品",
+  "source": "wanikani",
   "level": 13,
   "kanji": [
    "器",
@@ -3851,6 +4754,7 @@
  {
   "name": "Shrimp",
   "glyph": "尺",
+  "source": "wanikani",
   "level": 13,
   "kanji": [
    "駅",
@@ -3864,8 +4768,33 @@
   ]
  },
  {
+  "name": "Genius",
+  "glyph": "才",
+  "source": "wanikani",
+  "level": 14,
+  "kanji": [
+   "材",
+   "財",
+   "閉"
+  ]
+ },
+ {
+  "name": "Part",
+  "glyph": "分",
+  "source": "wanikani",
+  "level": 14,
+  "kanji": [
+   "雰",
+   "貧",
+   "粉",
+   "紛",
+   "盆"
+  ]
+ },
+ {
   "name": "Pool",
   "glyph": "卵",
+  "source": "single",
   "level": 14,
   "kanji": [
    "的",
@@ -3877,8 +4806,21 @@
   ]
  },
  {
+  "name": "Public",
+  "glyph": "公",
+  "source": "wanikani",
+  "level": 14,
+  "kanji": [
+   "松",
+   "総",
+   "訟",
+   "聡"
+  ]
+ },
+ {
   "name": "Well",
   "glyph": "井",
+  "source": "wanikani",
   "level": 14,
   "kanji": [
    "囲",
@@ -3890,22 +4832,48 @@
  {
   "name": "Height",
   "glyph": "丈",
+  "source": "wanikani",
   "level": 15,
   "kanji": [
    "丈"
   ]
  },
  {
+  "name": "Man",
+  "glyph": "男",
+  "source": "wanikani",
+  "level": 15,
+  "kanji": [
+   "勇",
+   "虜"
+  ]
+ },
+ {
   "name": "Face",
   "glyph": "面",
+  "source": "single",
   "level": 16,
   "kanji": [
    "面"
   ]
  },
  {
+  "name": "Snake",
+  "glyph": "巳",
+  "source": "wanikani",
+  "level": 16,
+  "kanji": [
+   "危",
+   "犯",
+   "腕",
+   "厄",
+   "範"
+  ]
+ },
+ {
   "name": "Spicy",
   "glyph": "辛",
+  "source": "wanikani",
   "level": 16,
   "kanji": [
    "幸",
@@ -3916,8 +4884,31 @@
   ]
  },
  {
+  "name": "Valley",
+  "glyph": "谷",
+  "source": "wanikani",
+  "level": 16,
+  "kanji": [
+   "浴",
+   "容",
+   "裕",
+   "欲",
+   "俗"
+  ]
+ },
+ {
+  "name": "Comfort",
+  "glyph": "楽",
+  "source": "wanikani",
+  "level": 17,
+  "kanji": [
+   "薬"
+  ]
+ },
+ {
   "name": "Criminal",
   "glyph": "非",
+  "source": "single",
   "level": 17,
   "kanji": [
    "悲",
@@ -3934,6 +4925,7 @@
  {
   "name": "Good Luck",
   "glyph": "吉",
+  "source": "single",
   "level": 17,
   "kanji": [
    "結",
@@ -3944,6 +4936,7 @@
  {
   "name": "Nothing",
   "glyph": "無",
+  "source": "wanikani",
   "level": 17,
   "kanji": [
    "無",
@@ -3951,8 +4944,91 @@
   ]
  },
  {
+  "name": "Tiger",
+  "glyph": "虍",
+  "source": "wanikani",
+  "level": 17,
+  "kanji": [
+   "虚",
+   "劇",
+   "慮",
+   "虎",
+   "墟",
+   "膚",
+   "虐",
+   "虜",
+   "戯"
+  ]
+ },
+ {
+  "name": "Walk",
+  "glyph": "歩",
+  "source": "wanikani",
+  "level": 17,
+  "kanji": [
+   "渉",
+   "頻"
+  ]
+ },
+ {
+  "name": "Conflict",
+  "glyph": "争",
+  "source": "wanikani",
+  "level": 18,
+  "kanji": [
+   "静",
+   "浄"
+  ]
+ },
+ {
+  "name": "Gambler",
+  "glyph": "焼",
+  "source": "wanikani",
+  "level": 18,
+  "kanji": [
+   "焼",
+   "暁"
+  ]
+ },
+ {
+  "name": "Happiness",
+  "glyph": "幸",
+  "source": "wanikani",
+  "level": 18,
+  "kanji": [
+   "達",
+   "報",
+   "執"
+  ]
+ },
+ {
+  "name": "Mask",
+  "glyph": "曽",
+  "source": "wanikani",
+  "level": 18,
+  "kanji": [
+   "僧",
+   "増",
+   "層",
+   "噌",
+   "贈",
+   "憎"
+  ]
+ },
+ {
+  "name": "Noon",
+  "glyph": "午",
+  "source": "wanikani",
+  "level": 18,
+  "kanji": [
+   "許",
+   "卸"
+  ]
+ },
+ {
   "name": "Paragraph",
   "glyph": "句",
+  "source": "wanikani",
   "level": 18,
   "kanji": [
    "句",
@@ -3961,8 +5037,18 @@
   ]
  },
  {
+  "name": "Previous",
+  "glyph": "先",
+  "source": "wanikani",
+  "level": 18,
+  "kanji": [
+   "洗"
+  ]
+ },
+ {
   "name": "Treasure Chest",
   "glyph": "凶",
+  "source": "single",
   "level": 18,
   "kanji": [
    "胸",
@@ -3972,8 +5058,34 @@
   ]
  },
  {
+  "name": "Reason",
+  "glyph": "由",
+  "source": "wanikani",
+  "level": 19,
+  "kanji": [
+   "宙",
+   "笛",
+   "届",
+   "油",
+   "軸",
+   "抽"
+  ]
+ },
+ {
+  "name": "Right",
+  "glyph": "右",
+  "source": "wanikani",
+  "level": 19,
+  "kanji": [
+   "若",
+   "諾",
+   "匿"
+  ]
+ },
+ {
   "name": "Fly",
   "glyph": "飛",
+  "source": "wanikani",
   "level": 20,
   "kanji": [
    "飛"
@@ -3982,6 +5094,7 @@
  {
   "name": "Mole",
   "glyph": "至",
+  "source": "single",
   "level": 20,
   "kanji": [
    "倒",
@@ -3994,6 +5107,7 @@
  {
   "name": "Mona Lisa",
   "glyph": "兼",
+  "source": "single",
   "level": 20,
   "kanji": [
    "嫌",
@@ -4006,6 +5120,7 @@
  {
   "name": "Righteousness",
   "glyph": "義",
+  "source": "wanikani",
   "level": 20,
   "kanji": [
    "議",
@@ -4015,8 +5130,20 @@
   ]
  },
  {
+  "name": "Angle",
+  "glyph": "角",
+  "source": "wanikani",
+  "level": 21,
+  "kanji": [
+   "解",
+   "触",
+   "蟹"
+  ]
+ },
+ {
   "name": "Blade",
   "glyph": "刃",
+  "source": "wanikani",
   "level": 21,
   "kanji": [
    "認",
@@ -4025,8 +5152,55 @@
   ]
  },
  {
+  "name": "Half",
+  "glyph": "半",
+  "source": "wanikani",
+  "level": 21,
+  "kanji": [
+   "判",
+   "伴",
+   "畔"
+  ]
+ },
+ {
+  "name": "Next",
+  "glyph": "次",
+  "source": "wanikani",
+  "level": 21,
+  "kanji": [
+   "資",
+   "姿",
+   "盗",
+   "諮",
+   "茨"
+  ]
+ },
+ {
+  "name": "Number",
+  "glyph": "番",
+  "source": "wanikani",
+  "level": 21,
+  "kanji": [
+   "審",
+   "翻",
+   "藩"
+  ]
+ },
+ {
+  "name": "Peace",
+  "glyph": "平",
+  "source": "wanikani",
+  "level": 21,
+  "kanji": [
+   "評",
+   "呼",
+   "坪"
+  ]
+ },
+ {
   "name": "Simultaneous",
   "glyph": "斉",
+  "source": "single",
   "level": 21,
   "kanji": [
    "済",
@@ -4038,6 +5212,7 @@
  {
   "name": "Spear",
   "glyph": "矛",
+  "source": "single",
   "level": 21,
   "kanji": [
    "務",
@@ -4047,8 +5222,20 @@
   ]
  },
  {
+  "name": "Ability",
+  "glyph": "能",
+  "source": "wanikani",
+  "level": 22,
+  "kanji": [
+   "態",
+   "熊",
+   "罷"
+  ]
+ },
+ {
   "name": "Allocate",
   "glyph": "充",
+  "source": "single",
   "level": 22,
   "kanji": [
    "統",
@@ -4059,6 +5246,7 @@
  {
   "name": "Bathtub",
   "glyph": "呂",
+  "source": "wanikani",
   "level": 22,
   "kanji": [
    "宮",
@@ -4067,8 +5255,30 @@
   ]
  },
  {
+  "name": "Cheap",
+  "glyph": "安",
+  "source": "wanikani",
+  "level": 22,
+  "kanji": [
+   "案"
+  ]
+ },
+ {
+  "name": "Become",
+  "glyph": "成",
+  "source": "wanikani",
+  "level": 23,
+  "kanji": [
+   "城",
+   "越",
+   "盛",
+   "誠"
+  ]
+ },
+ {
   "name": "Clothes",
   "glyph": "衣",
+  "source": "wanikani",
   "level": 23,
   "kanji": [
    "裁",
@@ -4087,6 +5297,7 @@
  {
   "name": "Demon",
   "glyph": "鬼",
+  "source": "wanikani",
   "level": 23,
   "kanji": [
    "鬼",
@@ -4100,6 +5311,7 @@
  {
   "name": "Leather",
   "glyph": "革",
+  "source": "wanikani",
   "level": 23,
   "kanji": [
    "革",
@@ -4110,6 +5322,7 @@
  {
   "name": "Restaurant",
   "glyph": "亭",
+  "source": "single",
   "level": 23,
   "kanji": [
    "停",
@@ -4117,8 +5330,18 @@
   ]
  },
  {
+  "name": "Road",
+  "glyph": "道",
+  "source": "wanikani",
+  "level": 23,
+  "kanji": [
+   "導"
+  ]
+ },
+ {
   "name": "Stairs",
   "glyph": "乃",
+  "source": "wanikani",
   "level": 23,
   "kanji": [
    "秀",
@@ -4129,8 +5352,18 @@
   ]
  },
  {
+  "name": "Control",
+  "glyph": "制",
+  "source": "wanikani",
+  "level": 24,
+  "kanji": [
+   "製"
+  ]
+ },
+ {
   "name": "Dawn",
   "glyph": "旦",
+  "source": "single",
   "level": 24,
   "kanji": [
    "担",
@@ -4145,18 +5378,115 @@
   ]
  },
  {
+  "name": "Guest",
+  "glyph": "客",
+  "source": "wanikani",
+  "level": 24,
+  "kanji": [
+   "額"
+  ]
+ },
+ {
+  "name": "Nature",
+  "glyph": "然",
+  "source": "wanikani",
+  "level": 24,
+  "kanji": [
+   "燃"
+  ]
+ },
+ {
   "name": "Bed",
-  "glyph": "爿",
+  "glyph": "巴",
+  "source": "wanikani",
   "level": 25,
   "kanji": [
    "肥",
    "把"
-  ],
-  "uncertain": true
+  ]
+ },
+ {
+  "name": "Both",
+  "glyph": "両",
+  "source": "wanikani",
+  "level": 25,
+  "kanji": [
+   "満"
+  ]
+ },
+ {
+  "name": "Capital",
+  "glyph": "京",
+  "source": "wanikani",
+  "level": 25,
+  "kanji": [
+   "影",
+   "景",
+   "就",
+   "涼",
+   "諒",
+   "鯨"
+  ]
+ },
+ {
+  "name": "Friend",
+  "glyph": "友",
+  "source": "wanikani",
+  "level": 25,
+  "kanji": [
+   "抜",
+   "髪"
+  ]
+ },
+ {
+  "name": "Mix",
+  "glyph": "交",
+  "source": "wanikani",
+  "level": 25,
+  "kanji": [
+   "効",
+   "絞",
+   "較",
+   "郊"
+  ]
+ },
+ {
+  "name": "Wedding",
+  "glyph": "甫",
+  "source": "wanikani",
+  "level": 25,
+  "kanji": [
+   "補",
+   "捕",
+   "浦",
+   "輔",
+   "舗",
+   "哺"
+  ]
+ },
+ {
+  "name": "Accept",
+  "glyph": "受",
+  "source": "wanikani",
+  "level": 26,
+  "kanji": [
+   "授"
+  ]
+ },
+ {
+  "name": "Announce",
+  "glyph": "告",
+  "source": "wanikani",
+  "level": 26,
+  "kanji": [
+   "造",
+   "酷"
+  ]
  },
  {
   "name": "Ego",
   "glyph": "我",
+  "source": "wanikani",
   "level": 26,
   "kanji": [
    "我",
@@ -4166,6 +5496,7 @@
  {
   "name": "Warehouse",
   "glyph": "倉",
+  "source": "single",
   "level": 26,
   "kanji": [
    "創",
@@ -4176,6 +5507,7 @@
  {
   "name": "Call",
   "glyph": "召",
+  "source": "single",
   "level": 27,
   "kanji": [
    "招",
@@ -4188,8 +5520,86 @@
   ]
  },
  {
+  "name": "Change",
+  "glyph": "化",
+  "source": "wanikani",
+  "level": 27,
+  "kanji": [
+   "靴",
+   "貨",
+   "傾"
+  ]
+ },
+ {
+  "name": "Exit",
+  "glyph": "出",
+  "source": "wanikani",
+  "level": 27,
+  "kanji": [
+   "屈",
+   "堀",
+   "掘",
+   "拙"
+  ]
+ },
+ {
+  "name": "Farming",
+  "glyph": "農",
+  "source": "wanikani",
+  "level": 27,
+  "kanji": [
+   "濃"
+  ]
+ },
+ {
+  "name": "Peoples",
+  "glyph": "民",
+  "source": "wanikani",
+  "level": 27,
+  "kanji": [
+   "眠"
+  ]
+ },
+ {
+  "name": "Rake",
+  "glyph": "而",
+  "source": "wanikani",
+  "level": 27,
+  "kanji": [
+   "端",
+   "需",
+   "耐",
+   "瑞"
+  ]
+ },
+ {
+  "name": "Substitute",
+  "glyph": "代",
+  "source": "wanikani",
+  "level": 27,
+  "kanji": [
+   "貸",
+   "袋"
+  ]
+ },
+ {
+  "name": "Surplus",
+  "glyph": "余",
+  "source": "wanikani",
+  "level": 27,
+  "kanji": [
+   "途",
+   "除",
+   "塗",
+   "斜",
+   "徐",
+   "叙"
+  ]
+ },
+ {
   "name": "Barracks",
   "glyph": "屯",
+  "source": "single",
   "level": 28,
   "kanji": [
    "逆",
@@ -4201,6 +5611,7 @@
  {
   "name": "Giant",
   "glyph": "巨",
+  "source": "wanikani",
   "level": 28,
   "kanji": [
    "巨",
@@ -4211,6 +5622,7 @@
  {
   "name": "Lovely",
   "glyph": "麗",
+  "source": "wanikani",
   "level": 28,
   "kanji": [
    "麗"
@@ -4219,6 +5631,7 @@
  {
   "name": "Odd",
   "glyph": "奇",
+  "source": "wanikani",
   "level": 28,
   "kanji": [
    "奇",
@@ -4230,8 +5643,57 @@
   ]
  },
  {
+  "name": "Specialty",
+  "glyph": "専",
+  "source": "wanikani",
+  "level": 28,
+  "kanji": [
+   "博",
+   "薄",
+   "簿",
+   "縛"
+  ]
+ },
+ {
+  "name": "Above",
+  "glyph": "上",
+  "source": "wanikani",
+  "level": 29,
+  "kanji": [
+   "督",
+   "寂",
+   "淑",
+   "峠",
+   "叔"
+  ]
+ },
+ {
+  "name": "Blame",
+  "glyph": "責",
+  "source": "wanikani",
+  "level": 29,
+  "kanji": [
+   "積",
+   "績",
+   "債"
+  ]
+ },
+ {
+  "name": "District",
+  "glyph": "区",
+  "source": "wanikani",
+  "level": 29,
+  "kanji": [
+   "欧",
+   "駆",
+   "枢",
+   "殴"
+  ]
+ },
+ {
   "name": "Nose",
   "glyph": "乙",
+  "source": "wanikani",
   "level": 29,
   "kanji": [
    "乾",
@@ -4241,6 +5703,7 @@
  {
   "name": "Servant",
   "glyph": "臣",
+  "source": "wanikani",
   "level": 29,
   "kanji": [
    "監",
@@ -4254,19 +5717,9 @@
   ]
  },
  {
-  "name": "Hills",
-  "glyph": "阝",
-  "level": 30,
-  "kanji": [
-   "乏",
-   "芝",
-   "之"
-  ],
-  "uncertain": true
- },
- {
   "name": "Lineage",
   "glyph": "系",
+  "source": "wanikani",
   "level": 30,
   "kanji": [
    "系",
@@ -4276,8 +5729,18 @@
   ]
  },
  {
+  "name": "North",
+  "glyph": "北",
+  "source": "wanikani",
+  "level": 30,
+  "kanji": [
+   "背"
+  ]
+ },
+ {
   "name": "One Sided",
   "glyph": "片",
+  "source": "single",
   "level": 30,
   "kanji": [
    "版",
@@ -4285,8 +5748,19 @@
   ]
  },
  {
+  "name": "Pirate",
+  "glyph": "尢",
+  "source": "wanikani",
+  "level": 30,
+  "kanji": [
+   "枕",
+   "沈"
+  ]
+ },
+ {
   "name": "Turtle Shell",
   "glyph": "甲",
+  "source": "single",
   "level": 30,
   "kanji": [
    "押",
@@ -4297,6 +5771,7 @@
  {
   "name": "Fang",
   "glyph": "牙",
+  "source": "wanikani",
   "level": 31,
   "kanji": [
    "既",
@@ -4309,8 +5784,32 @@
   ]
  },
  {
+  "name": "Oversee",
+  "glyph": "監",
+  "source": "wanikani",
+  "level": 31,
+  "kanji": [
+   "鑑",
+   "艦",
+   "藍"
+  ]
+ },
+ {
+  "name": "Certain",
+  "glyph": "必",
+  "source": "wanikani",
+  "level": 32,
+  "kanji": [
+   "密",
+   "秘",
+   "蜜",
+   "泌"
+  ]
+ },
+ {
   "name": "Cottage",
   "glyph": "舎",
+  "source": "single",
   "level": 32,
   "kanji": [
    "捨",
@@ -4319,8 +5818,49 @@
   ]
  },
  {
+  "name": "Night",
+  "glyph": "夜",
+  "source": "wanikani",
+  "level": 32,
+  "kanji": [
+   "液"
+  ]
+ },
+ {
+  "name": "Same",
+  "glyph": "同",
+  "source": "wanikani",
+  "level": 32,
+  "kanji": [
+   "興",
+   "銅",
+   "筒",
+   "胴",
+   "洞"
+  ]
+ },
+ {
+  "name": "Inside",
+  "glyph": "内",
+  "source": "wanikani",
+  "level": 33,
+  "kanji": [
+   "納"
+  ]
+ },
+ {
+  "name": "Interval",
+  "glyph": "間",
+  "source": "wanikani",
+  "level": 33,
+  "kanji": [
+   "簡"
+  ]
+ },
+ {
   "name": "Sock",
   "glyph": "享",
+  "source": "single",
   "level": 33,
   "kanji": [
    "熟",
@@ -4332,6 +5872,7 @@
  {
   "name": "Storehouse",
   "glyph": "蔵",
+  "source": "wanikani",
   "level": 33,
   "kanji": [
    "蔵",
@@ -4339,8 +5880,19 @@
   ]
  },
  {
+  "name": "Wide",
+  "glyph": "広",
+  "source": "wanikani",
+  "level": 33,
+  "kanji": [
+   "拡",
+   "鉱"
+  ]
+ },
+ {
   "name": "Catapult",
   "glyph": "呉",
+  "source": "wanikani",
   "level": 34,
   "kanji": [
    "誤",
@@ -4351,14 +5903,46 @@
  {
   "name": "Claw",
   "glyph": "爪",
+  "source": "wanikani",
   "level": 34,
   "kanji": [
    "爪"
   ]
  },
  {
+  "name": "Member",
+  "glyph": "員",
+  "source": "wanikani",
+  "level": 34,
+  "kanji": [
+   "損"
+  ]
+ },
+ {
+  "name": "Slice",
+  "glyph": "刻",
+  "source": "wanikani",
+  "level": 34,
+  "kanji": [
+   "刻",
+   "核",
+   "該",
+   "劾"
+  ]
+ },
+ {
+  "name": "Belt",
+  "glyph": "帯",
+  "source": "wanikani",
+  "level": 35,
+  "kanji": [
+   "滞"
+  ]
+ },
+ {
   "name": "Commander",
   "glyph": "将",
+  "source": "single",
   "level": 35,
   "kanji": [
    "醤",
@@ -4369,6 +5953,7 @@
  {
   "name": "Sake",
   "glyph": "為",
+  "source": "wanikani",
   "level": 35,
   "kanji": [
    "為",
@@ -4376,8 +5961,18 @@
   ]
  },
  {
+  "name": "Shuriken",
+  "glyph": "彑",
+  "source": "wanikani",
+  "level": 35,
+  "kanji": [
+   "互"
+  ]
+ },
+ {
   "name": "Turtle",
   "glyph": "亀",
+  "source": "wanikani",
   "level": 35,
   "kanji": [
    "亀",
@@ -4385,8 +5980,37 @@
   ]
  },
  {
+  "name": "Bright",
+  "glyph": "明",
+  "source": "wanikani",
+  "level": 36,
+  "kanji": [
+   "盟",
+   "萌"
+  ]
+ },
+ {
+  "name": "Departure",
+  "glyph": "発",
+  "source": "wanikani",
+  "level": 36,
+  "kanji": [
+   "廃"
+  ]
+ },
+ {
+  "name": "South",
+  "glyph": "南",
+  "source": "wanikani",
+  "level": 36,
+  "kanji": [
+   "献"
+  ]
+ },
+ {
   "name": "Sweet",
   "glyph": "甘",
+  "source": "wanikani",
   "level": 36,
   "kanji": [
    "甘",
@@ -4397,8 +6021,18 @@
   ]
  },
  {
+  "name": "Valuable",
+  "glyph": "貴",
+  "source": "wanikani",
+  "level": 36,
+  "kanji": [
+   "遺"
+  ]
+ },
+ {
   "name": "Omen",
   "glyph": "兆",
+  "source": "wanikani",
   "level": 37,
   "kanji": [
    "跳",
@@ -4410,8 +6044,36 @@
   ]
  },
  {
+  "name": "Prize",
+  "glyph": "賞",
+  "source": "wanikani",
+  "level": 37,
+  "kanji": [
+   "償"
+  ]
+ },
+ {
+  "name": "Skewer",
+  "glyph": "串",
+  "source": "wanikani",
+  "level": 37,
+  "kanji": [
+   "患"
+  ]
+ },
+ {
+  "name": "Violence",
+  "glyph": "暴",
+  "source": "wanikani",
+  "level": 37,
+  "kanji": [
+   "爆"
+  ]
+ },
+ {
   "name": "Wrap",
   "glyph": "包",
+  "source": "wanikani",
   "level": 37,
   "kanji": [
    "抱",
@@ -4423,17 +6085,158 @@
   ]
  },
  {
-  "name": "Cactus",
-  "glyph": "屮",
-  "level": 41,
+  "name": "Have",
+  "glyph": "有",
+  "source": "wanikani",
+  "level": 38,
   "kanji": [
-   "墟"
-  ],
-  "uncertain": true
+   "賄",
+   "随",
+   "髄",
+   "堕"
+  ]
+ },
+ {
+  "name": "Prefecture",
+  "glyph": "県",
+  "source": "wanikani",
+  "level": 38,
+  "kanji": [
+   "懸"
+  ]
+ },
+ {
+  "name": "Think",
+  "glyph": "思",
+  "source": "wanikani",
+  "level": 38,
+  "kanji": [
+   "慮"
+  ]
+ },
+ {
+  "name": "Tooth",
+  "glyph": "歯",
+  "source": "wanikani",
+  "level": 38,
+  "kanji": [
+   "齢"
+  ]
+ },
+ {
+  "name": "Buddy",
+  "glyph": "君",
+  "source": "wanikani",
+  "level": 39,
+  "kanji": [
+   "群",
+   "郡"
+  ]
+ },
+ {
+  "name": "Former",
+  "glyph": "旧",
+  "source": "wanikani",
+  "level": 39,
+  "kanji": [
+   "稲",
+   "陥"
+  ]
+ },
+ {
+  "name": "Hill",
+  "glyph": "岡",
+  "source": "wanikani",
+  "level": 39,
+  "kanji": [
+   "鋼",
+   "綱",
+   "網",
+   "剛"
+  ]
+ },
+ {
+  "name": "Reality",
+  "glyph": "真",
+  "source": "wanikani",
+  "level": 39,
+  "kanji": [
+   "慎",
+   "鎮"
+  ]
+ },
+ {
+  "name": "Scroll",
+  "glyph": "巻",
+  "source": "wanikani",
+  "level": 39,
+  "kanji": [
+   "圏"
+  ]
+ },
+ {
+  "name": "Sky",
+  "glyph": "空",
+  "source": "wanikani",
+  "level": 39,
+  "kanji": [
+   "控"
+  ]
+ },
+ {
+  "name": "Three",
+  "glyph": "三",
+  "source": "wanikani",
+  "level": 39,
+  "kanji": [
+   "邦",
+   "鋳"
+  ]
+ },
+ {
+  "name": "Employ",
+  "glyph": "雇",
+  "source": "wanikani",
+  "level": 40,
+  "kanji": [
+   "顧"
+  ]
+ },
+ {
+  "name": "Every",
+  "glyph": "毎",
+  "source": "wanikani",
+  "level": 40,
+  "kanji": [
+   "敏",
+   "繁",
+   "悔",
+   "侮"
+  ]
+ },
+ {
+  "name": "Preserve",
+  "glyph": "保",
+  "source": "wanikani",
+  "level": 40,
+  "kanji": [
+   "褒"
+  ]
+ },
+ {
+  "name": "Bone",
+  "glyph": "骨",
+  "source": "wanikani",
+  "level": 42,
+  "kanji": [
+   "滑",
+   "髄"
+  ]
  },
  {
   "name": "Melon",
   "glyph": "瓜",
+  "source": "wanikani",
   "level": 42,
   "kanji": [
    "弧",
@@ -4443,8 +6246,27 @@
   ]
  },
  {
+  "name": "Shop",
+  "glyph": "屋",
+  "source": "wanikani",
+  "level": 42,
+  "kanji": [
+   "握"
+  ]
+ },
+ {
+  "name": "Badger",
+  "glyph": "豸",
+  "source": "wanikani",
+  "level": 43,
+  "kanji": [
+   "懇"
+  ]
+ },
+ {
   "name": "Imperial",
   "glyph": "龍",
+  "source": "wanikani",
   "level": 43,
   "kanji": [
    "襲",
@@ -4454,6 +6276,7 @@
  {
   "name": "Can",
   "glyph": "缶",
+  "source": "wanikani",
   "level": 44,
   "kanji": [
    "缶",
@@ -4464,6 +6287,7 @@
  {
   "name": "Dragon",
   "glyph": "竜",
+  "source": "wanikani",
   "level": 44,
   "kanji": [
    "竜",
@@ -4471,8 +6295,75 @@
   ]
  },
  {
+  "name": "Wind",
+  "glyph": "風",
+  "source": "wanikani",
+  "level": 44,
+  "kanji": [
+   "嵐",
+   "颯",
+   "楓"
+  ]
+ },
+ {
+  "name": "Again",
+  "glyph": "更",
+  "source": "wanikani",
+  "level": 45,
+  "kanji": [
+   "硬"
+  ]
+ },
+ {
+  "name": "House",
+  "glyph": "家",
+  "source": "wanikani",
+  "level": 45,
+  "kanji": [
+   "稼",
+   "嫁"
+  ]
+ },
+ {
+  "name": "Protect",
+  "glyph": "守",
+  "source": "wanikani",
+  "level": 45,
+  "kanji": [
+   "狩"
+  ]
+ },
+ {
+  "name": "Favor",
+  "glyph": "恵",
+  "source": "wanikani",
+  "level": 46,
+  "kanji": [
+   "穂"
+  ]
+ },
+ {
+  "name": "Wave",
+  "glyph": "波",
+  "source": "wanikani",
+  "level": 47,
+  "kanji": [
+   "婆"
+  ]
+ },
+ {
+  "name": "Form",
+  "glyph": "容",
+  "source": "wanikani",
+  "level": 48,
+  "kanji": [
+   "溶"
+  ]
+ },
+ {
   "name": "Mysterious",
   "glyph": "玄",
+  "source": "wanikani",
   "level": 48,
   "kanji": [
    "畜",
@@ -4482,8 +6373,18 @@
   ]
  },
  {
+  "name": "Sunlight",
+  "glyph": "光",
+  "source": "wanikani",
+  "level": 48,
+  "kanji": [
+   "輝"
+  ]
+ },
+ {
   "name": "Crab Trap",
   "glyph": "甚",
+  "source": "single",
   "level": 49,
   "kanji": [
    "勘",
@@ -4492,8 +6393,38 @@
   ]
  },
  {
+  "name": "Times",
+  "glyph": "回",
+  "source": "wanikani",
+  "level": 49,
+  "kanji": [
+   "壇",
+   "凛"
+  ]
+ },
+ {
+  "name": "Fat",
+  "glyph": "太",
+  "source": "wanikani",
+  "level": 50,
+  "kanji": [
+   "駄",
+   "汰"
+  ]
+ },
+ {
+  "name": "Name",
+  "glyph": "名",
+  "source": "wanikani",
+  "level": 50,
+  "kanji": [
+   "銘"
+  ]
+ },
+ {
   "name": "Frostbite",
   "glyph": "冫",
+  "source": "curated",
   "level": 52,
   "kanji": [
    "綾",
@@ -4505,6 +6436,7 @@
  {
   "name": "Concave",
   "glyph": "凹",
+  "source": "single",
   "level": 57,
   "kanji": [
    "凹"
@@ -4513,6 +6445,7 @@
  {
   "name": "Convex",
   "glyph": "凸",
+  "source": "single",
   "level": 57,
   "kanji": [
    "凸"

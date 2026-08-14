@@ -18,19 +18,37 @@ const MAX_LEVEL = 60;
 function readJSON(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
 
 // --- Radical glyph resolution --------------------------------------------
-// The source data has radical NAMES but not glyphs. We resolve a glyph from
-// only two trustworthy sources:
-//   1. CURATED  — hand-mapped standard Kangxi shapes (flagged `uncertain`,
-//                 meaning "hand-guessed, may differ from WaniKani's artwork").
-//   2. SINGLE   — a kanji whose wk_radicals is exactly [thisRadical]; then the
-//                 kanji glyph provably *is* the radical (e.g. 木 -> "Tree").
-// A meaning-match heuristic was tried and rejected: only ~8% of its glyphs
-// were plausible radical shapes (it mapped "Roof"->屋, "Umbrella"->傘, etc.).
-// Radicals we cannot resolve either way are OMITTED from the curriculum
-// rather than shown with a wrong/faked glyph; kanji drop them as prereqs.
+// The kanji source has radical NAMES but no glyphs. We resolve a glyph by
+// precedence (highest first):
+//   1. OVERRIDE — hand-resolved cases where AUTH and SINGLE disagree.
+//   2. AUTH     — WaniKani's authoritative Unicode `character` for the radical
+//                 (tools/wk-radicals-source.json, matched on name). The right
+//                 answer: no inference, just WaniKani's actual character.
+//   3. SINGLE   — a kanji whose wk_radicals is exactly [thisRadical]; the kanji
+//                 glyph provably *is* the radical (木 -> "Tree"). Fills gaps
+//                 where the AUTH dataset's names have drifted from ours.
+//   4. CURATED  — small hand-mapped Kangxi fallback, flagged `uncertain`.
+// A meaning-match heuristic was tried and rejected (~8% plausible: "Roof"->屋).
+// Radicals WaniKani ships only as an image (no Unicode) — and any we still
+// can't resolve — are OMITTED; kanji simply drop them as prerequisites.
+
+// AUTH source: name(lowercased) -> Unicode character; image-only names tracked.
+const AUTH = {};
+const IMG_ONLY = new Set();
+for (const r of readJSON(path.join(__dirname, 'wk-radicals-source.json'))) {
+  const m = (r.meaning || '').trim().toLowerCase();
+  if (r.character) AUTH[m] = r.character;
+  else if (r.image) IMG_ONLY.add(m);
+}
+
+// Overrides for the 4 AUTH-vs-SINGLE disagreements (AUTH wrong on Elephant/Task).
+const OVERRIDE = { Fins: 'ハ', Barb: '亅', Elephant: '象', Task: '用' };
+
+// Kangxi fallback used only when AUTH and SINGLE both miss (and the radical is
+// not image-only in AUTH, which would mean WaniKani deliberately has no glyph).
 const CURATED = {
   Toe: '卜', Drop: '丶', Slide: 'ノ', Lid: '亠', Head: '冂', Legs: '儿',
-  Private: '厶', Dry: '干', Bow: '弓', Stick: '丨', Winter: '夂', Spoon: '匕',
+  Private: '厶', Dry: '干', Bow: '弓', Winter: '夂', Spoon: '匕',
   Towel: '巾', Canopy: '广', Narwhal: 'ナ',
   Axe: '斤', Coffin: '匚', Flowers: '艹', Frostbite: '冫', Hook: '亅',
   Horns: '丷', Knife: '刂', Net: '网', Pig: '豕', Stamp: '卩', Twenty: '廿',
@@ -130,18 +148,23 @@ function main() {
     }
   }
   const radicals = [];
-  const omitted = [];
+  const omitted = { imageOnly: [], unknown: [] };
   for (const [name, chars] of Object.entries(radicalKanji)) {
-    // CURATED (hand-guessed) wins; else SINGLE (trusted). No glyph -> omit.
-    const curated = CURATED[name];
-    const glyph = curated || singleGlyph[name] || '';
-    if (!glyph) { omitted.push(name); continue; }
+    const lower = name.toLowerCase();
+    // Precedence: OVERRIDE > AUTH (WaniKani char) > SINGLE (trusted) > CURATED.
+    let glyph = '', source = '';
+    if (OVERRIDE[name]) { glyph = OVERRIDE[name]; source = 'override'; }
+    else if (AUTH[lower]) { glyph = AUTH[lower]; source = 'wanikani'; }
+    else if (singleGlyph[name]) { glyph = singleGlyph[name]; source = 'single'; }
+    else if (CURATED[name] && !IMG_ONLY.has(lower)) { glyph = CURATED[name]; source = 'curated'; }
+    if (!glyph) { (IMG_ONLY.has(lower) ? omitted.imageOnly : omitted.unknown).push(name); continue; }
     radicals.push({
       name,
       glyph,
+      source,
       level: radicalLevel[name],
       kanji: chars,
-      ...(curated ? { uncertain: true } : {}),   // curated = hand-guessed shape
+      ...(source === 'curated' ? { uncertain: true } : {}),
     });
   }
 
@@ -156,7 +179,7 @@ function main() {
 
   // --- Report ---
   const byLvl = l => kanji.filter(k => k.level === l).length;
-  const uncertain = radicals.filter(r => r.uncertain).map(r => r.name);
+  const bySource = s => radicals.filter(r => r.source === s).length;
   const noExamples = kanji.filter(k => k.examples.length === 0).length;
   const withSentence = kanji.filter(k => k.sentence).length;
   // kanji that lost ALL radical prereqs because their radicals were omitted
@@ -164,11 +187,18 @@ function main() {
   const zeroRadical = kanji.filter(k => k.radicals.length && !k.radicals.some(r => radNames.has(r)));
   const zeroL13 = zeroRadical.filter(k => k.level <= 3).length;
   console.log(`kanji: ${kanji.length} (L1=${byLvl(1)} L2=${byLvl(2)} L3=${byLvl(3)}), levels 1..${MAX_LEVEL}`);
-  console.log(`radicals resolved: ${radicals.length} (curated/uncertain=${uncertain.length}, trusted single-radical=${radicals.length - uncertain.length})`);
-  console.log(`radicals omitted (no reliable glyph): ${omitted.length}`);
+  console.log(`radicals resolved: ${radicals.length} ` +
+    `(wanikani=${bySource('wanikani')}, single=${bySource('single')}, ` +
+    `curated=${bySource('curated')}, override=${bySource('override')})`);
+  console.log(`radicals omitted: image-only=${omitted.imageOnly.length}, unknown=${omitted.unknown.length}`);
   console.log(`kanji with zero resolvable radicals: ${zeroRadical.length} total, ${zeroL13} in L1-3`);
   console.log(`kanji with example words: ${kanji.length - noExamples}/${kanji.length}`);
   console.log(`kanji with a focus-word sentence: ${withSentence}/${kanji.length}`);
+  if (zeroL13 > 0) {
+    console.error(`\n✗ FAIL: ${zeroL13} L1-3 kanji lost their radical prerequisite: ` +
+      zeroRadical.filter(k => k.level <= 3).map(k => k.char).join(''));
+    process.exit(1);
+  }
 }
 
 main();

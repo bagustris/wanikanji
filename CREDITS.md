@@ -41,6 +41,18 @@ Some `examples` were backfilled from the
 - Copyright © Kanji alive.
 - Licence: **CC BY 4.0** — <https://creativecommons.org/licenses/by/4.0/>
 
+## Radical glyphs (`tools/wk-radicals-source.json`)
+
+The authoritative radical name → Unicode character mapping used to resolve
+radical glyphs comes from
+[baerrach/wanikani_exporter](https://github.com/baerrach/wanikani_exporter)
+(`radicals.json`), a JSON export of WaniKani radical data.
+
+- Licence: **MIT** — <https://github.com/baerrach/wanikani_exporter/blob/master/LICENSE>
+- Radicals WaniKani renders as custom images (no Unicode `character`) are not
+  reproduced here; they are omitted from the curriculum. "WaniKani" and its
+  radical names/artwork are property of [Tofugu / WaniKani](https://www.wanikani.com/).
+
 ## Language facts
 
 Kanji readings, okurigana, and radical names are language facts, not copied from

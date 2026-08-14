@@ -7,6 +7,7 @@
     autoAdvance: false,   // advance automatically after a correct answer
     romajiInput: true,    // convert romaji -> hiragana in reading fields
     strictReadings: false, // grade readings only against the primary reading
+    bypassSchedule: false, // treat all learned items as due (ignores SRS timing)
     batchSize: 5,         // items introduced per lesson batch
   };
 

@@ -23,7 +23,10 @@ Live: https://bagustris.github.io/wanikanji
   incorrect-answer penalty formula.
 - **Lessons** introduce new items; **Reviews** quiz the ones that are due;
   **Extra Study** lets you practice learned items any time without touching the
-  SRS schedule.
+  SRS schedule. A **Bypass schedule** setting makes every learned item
+  reviewable immediately (still updating the SRS) — handy for cramming/testing.
+- **Item info** after answering: kanji show example words + a sentence;
+  **radicals show the kanji that use them** (with meanings). Toggleable.
 - **Progression gating:** a kanji unlocks once its component radicals reach
   Guru; a level is passed when 90% of its kanji reach Guru, unlocking the next.
 - **Typed grading:** readings match any accepted reading (kana), or only the
@@ -62,30 +65,35 @@ node js/srs/__tests__/run-tests.js        # SRS stages / intervals / penalty
 node tools/build-data.js
 ```
 
-### Radical glyphs — a known limitation
+### Radical glyphs
 
-The source data provides radical **names** but not **glyphs**. WaniKani draws
-many radicals as custom artwork (with playful names like *Poop*, *Blackjack*,
-*Death Star*) that have no Unicode equivalent. The build resolves a glyph from
-only two trustworthy sources:
+The kanji source provides radical **names** but not **glyphs**, so the build
+resolves each radical's glyph by precedence (`tools/build-data.js`):
 
-1. **Trusted** (192 radicals) — a kanji whose radical list is exactly that one
-   radical, so the kanji glyph provably *is* the radical (木 → "Tree").
-2. **Curated** (31 radicals) — hand-mapped standard Kangxi shapes (卜, 斤, 网…),
-   flagged `"uncertain": true` in `data/radicals.json` and shown with an
-   "≈ shape approximated" note in the app.
+1. **`OVERRIDE`** (4) — hand-resolved cases where the two sources below disagree.
+2. **Authoritative** (298) — WaniKani's actual Unicode `character` for the
+   radical, from `tools/wk-radicals-source.json`
+   ([baerrach/wanikani_exporter], MIT). No inference — WaniKani's real glyph.
+3. **Trusted single-radical** (51) — a kanji whose radical list is exactly that
+   one radical, so the kanji glyph provably *is* the radical (木 → "Tree").
+   Fills names the dataset has since renamed.
+4. **Curated** (6) — a small Kangxi fallback, flagged `"uncertain": true` and
+   shown with an "≈ approximated" note.
 
-A meaning-match heuristic was tried and **rejected** — only ~8% of its glyphs
-were plausible radical shapes. The remaining **255 radicals are omitted** rather
-than faked; kanji simply drop them as prerequisites. This leaves **0** of the
-Level 1–3 kanji without a radical prerequisite; **239** kanji at higher levels
-(of 2,026) end up with no radical gate and become lessonable as soon as their
-level unlocks. To tighten high-level gating, add entries to `CURATED` in
-`tools/build-data.js` and re-run it.
+That resolves **359 radicals**. A meaning-match heuristic was tried and
+**rejected** (only ~8% of its glyphs were plausible radical shapes — it mapped
+"Roof"→屋, "Umbrella"→傘). WaniKani draws ~49 radicals as **custom artwork**
+(playful names like *Poop*, *Death Star*) with no Unicode form; those, plus ~70
+whose names have drifted, are **omitted** rather than faked. This leaves **0**
+Level 1–3 kanji without a radical prerequisite; **83** kanji at higher levels
+(of 2,026) have no radical gate and become lessonable as soon as their level
+unlocks.
+
+[baerrach/wanikani_exporter]: https://github.com/baerrach/wanikani_exporter
 
 ## Scope / roadmap
 
 All 60 WaniKani levels are included. Not yet included: vocabulary as SRS items,
-audio readings, mnemonics, cross-device sync, and glyphs for the 255 omitted
-custom-art radicals. See `PLAN.md` for the full design and `GOAL.md` for the
-acceptance criteria.
+audio readings, mnemonics, cross-device sync, and the ~119 omitted radicals
+(custom-art with no Unicode, or renamed in the source). See `PLAN.md` for the
+full design and `GOAL.md` for the acceptance criteria.

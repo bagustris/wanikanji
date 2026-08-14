@@ -37,6 +37,7 @@
           meanings: [r.name],
           questions: ['meaning'],
           radicals: [],
+          kanji: r.kanji || [],   // kanji that use this radical (for item info)
           uncertain: !!r.uncertain,
         };
         this.items.push(item);

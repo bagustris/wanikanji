@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.3.0 — 2026-08-14
+
+Authoritative radical glyphs, radical item info, and a schedule-bypass setting.
+
+### Added
+- **Authoritative radical glyphs** — radical shapes now come from WaniKani's real
+  Unicode characters (vendored `tools/wk-radicals-source.json`,
+  [baerrach/wanikani_exporter], MIT), resolving **359 radicals** (was 223) and
+  cutting un-gated kanji from 239 to 83. Precedence: override → authoritative →
+  trusted single-radical → curated. Each radical records its `source`.
+- **Radical item info** — after answering a radical (or on its lesson card), the
+  panel lists the kanji that use it, with meanings (mirrors kanji example words).
+- **Bypass schedule** setting — treat all learned items as due, ignoring SRS
+  timing (reviews still update the SRS). For cramming/testing.
+
+### Changed
+- Dropped the meaning-match heuristic entirely (measured ~8% plausible glyphs).
+- Service worker cache bumped to `wanikanji-v3`.
+
+[baerrach/wanikani_exporter]: https://github.com/baerrach/wanikani_exporter
+
 ## v0.2.0 — 2026-08-14
 
 Scaled to all 60 WaniKani levels and refined radical/reading handling.

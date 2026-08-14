@@ -1,0 +1,4280 @@
+[
+ {
+  "char": "一",
+  "level": 1,
+  "meanings": [
+   "One"
+  ],
+  "readingsOn": [
+   "いち",
+   "いつ"
+  ],
+  "readingsKun": [
+   "ひと"
+  ],
+  "primaryReadings": [
+   "ひと"
+  ],
+  "acceptReadings": [
+   "いち",
+   "いつ",
+   "ひと"
+  ],
+  "radicals": [
+   "Ground"
+  ],
+  "examples": [
+   {
+    "word": "一つ",
+    "reading": "ひとつ",
+    "gloss": "one (thing)"
+   },
+   {
+    "word": "一年",
+    "reading": "いちねん",
+    "gloss": "one year"
+   }
+  ],
+  "sentence": {
+   "sentence": "りんごが一つあります。",
+   "translation": "There is one apple."
+  }
+ },
+ {
+  "char": "二",
+  "level": 1,
+  "meanings": [
+   "Two"
+  ],
+  "readingsOn": [
+   "に"
+  ],
+  "readingsKun": [
+   "ふた"
+  ],
+  "primaryReadings": [
+   "ふた"
+  ],
+  "acceptReadings": [
+   "に",
+   "ふた"
+  ],
+  "radicals": [
+   "Two"
+  ],
+  "examples": [
+   {
+    "word": "二時間",
+    "reading": "にじかん",
+    "gloss": "two hours"
+   },
+   {
+    "word": "二月",
+    "reading": "にがつ",
+    "gloss": "February"
+   },
+   {
+    "word": "二枚目",
+    "reading": "にまいめ",
+    "gloss": "second (flat object)"
+   },
+   {
+    "word": "二つ",
+    "reading": "ふたつ",
+    "gloss": "two (pieces)"
+   }
+  ],
+  "sentence": {
+   "sentence": "たまごが二つある。",
+   "translation": "There are two eggs."
+  }
+ },
+ {
+  "char": "九",
+  "level": 1,
+  "meanings": [
+   "Nine"
+  ],
+  "readingsOn": [
+   "く",
+   "きゅう"
+  ],
+  "readingsKun": [
+   "ここの"
+  ],
+  "primaryReadings": [
+   "ここの"
+  ],
+  "acceptReadings": [
+   "く",
+   "きゅう",
+   "ここの"
+  ],
+  "radicals": [
+   "Nine"
+  ],
+  "examples": [
+   {
+    "word": "九州",
+    "reading": "きゅうしゅう",
+    "gloss": "Kyuushuu"
+   },
+   {
+    "word": "九回",
+    "reading": "きゅうかい",
+    "gloss": "9 times"
+   },
+   {
+    "word": "九年",
+    "reading": "きゅうねん",
+    "gloss": "9 years"
+   },
+   {
+    "word": "九日",
+    "reading": "ここのか",
+    "gloss": "9 days, 9th of the month"
+   }
+  ],
+  "sentence": {
+   "sentence": "みかんが九つある。",
+   "translation": "There are nine mandarin oranges."
+  }
+ },
+ {
+  "char": "七",
+  "level": 1,
+  "meanings": [
+   "Seven"
+  ],
+  "readingsOn": [
+   "しち"
+  ],
+  "readingsKun": [
+   "なな",
+   "なの"
+  ],
+  "primaryReadings": [
+   "なな",
+   "なの"
+  ],
+  "acceptReadings": [
+   "しち",
+   "なな",
+   "なの"
+  ],
+  "radicals": [
+   "Seven"
+  ],
+  "examples": [
+   {
+    "word": "七時",
+    "reading": "しちじ",
+    "gloss": "7 o'clock"
+   },
+   {
+    "word": "十七",
+    "reading": "じゅうしち",
+    "gloss": "17"
+   },
+   {
+    "word": "七五三",
+    "reading": "しちごさん",
+    "gloss": "festival for children aged 7, 5 & 3"
+   },
+   {
+    "word": "七回",
+    "reading": "ななかい",
+    "gloss": "7 times"
+   }
+  ],
+  "sentence": {
+   "sentence": "ほしが七つならぶ。",
+   "translation": "Seven stars line up."
+  }
+ },
+ {
+  "char": "人",
+  "level": 1,
+  "meanings": [
+   "Person"
+  ],
+  "readingsOn": [
+   "にん",
+   "じん"
+  ],
+  "readingsKun": [
+   "ひと",
+   "と"
+  ],
+  "primaryReadings": [
+   "ひと",
+   "と"
+  ],
+  "acceptReadings": [
+   "にん",
+   "じん",
+   "ひと",
+   "と"
+  ],
+  "radicals": [
+   "Person"
+  ],
+  "examples": [
+   {
+    "word": "人",
+    "reading": "ひと",
+    "gloss": "person"
+   },
+   {
+    "word": "人柄",
+    "reading": "ひとがら",
+    "gloss": "personality"
+   },
+   {
+    "word": "*一人",
+    "reading": "ひとり",
+    "gloss": "one person"
+   },
+   {
+    "word": "人類学",
+    "reading": "じんるいがく",
+    "gloss": "anthropology"
+   }
+  ],
+  "sentence": {
+   "sentence": "人がおおぜいいる。",
+   "translation": "There are many people."
+  }
+ },
+ {
+  "char": "入",
+  "level": 1,
+  "meanings": [
+   "Enter"
+  ],
+  "readingsOn": [
+   "にゅう"
+  ],
+  "readingsKun": [
+   "はい",
+   "い"
+  ],
+  "primaryReadings": [
+   "はい",
+   "い"
+  ],
+  "acceptReadings": [
+   "にゅう",
+   "はい",
+   "い"
+  ],
+  "radicals": [
+   "Enter"
+  ],
+  "examples": [
+   {
+    "word": "気に入る",
+    "reading": "きにいる",
+    "gloss": "be pleased with, come to like"
+   },
+   {
+    "word": "入り口",
+    "reading": "いりぐち",
+    "gloss": "entrance"
+   },
+   {
+    "word": "仲間入り",
+    "reading": "なかまいり",
+    "gloss": "join a group"
+   },
+   {
+    "word": "入れる",
+    "reading": "いれる",
+    "gloss": "put in, let in [v.t.]"
+   }
+  ],
+  "sentence": {
+   "sentence": "はこに入れる。",
+   "translation": "I put it into the box."
+  }
+ },
+ {
+  "char": "八",
+  "level": 1,
+  "meanings": [
+   "Eight"
+  ],
+  "readingsOn": [
+   "はち"
+  ],
+  "readingsKun": [
+   "や",
+   "よう"
+  ],
+  "primaryReadings": [
+   "や",
+   "よう"
+  ],
+  "acceptReadings": [
+   "はち",
+   "や",
+   "よう"
+  ],
+  "radicals": [
+   "Fins"
+  ],
+  "examples": [
+   {
+    "word": "八月",
+    "reading": "はちがつ",
+    "gloss": "August"
+   },
+   {
+    "word": "八時間",
+    "reading": "はちじかん",
+    "gloss": "8 hours"
+   },
+   {
+    "word": "尺八",
+    "reading": "しゃくはち",
+    "gloss": "bamboo flute"
+   },
+   {
+    "word": "八つ",
+    "reading": "やっつ",
+    "gloss": "8 (objects)"
+   }
+  ],
+  "sentence": {
+   "sentence": "クッキーが八つある。",
+   "translation": "There are eight cookies."
+  }
+ },
+ {
+  "char": "力",
+  "level": 1,
+  "meanings": [
+   "Power",
+   "^Strength"
+  ],
+  "readingsOn": [
+   "りょく",
+   "りき"
+  ],
+  "readingsKun": [
+   "ちから"
+  ],
+  "primaryReadings": [
+   "ちから"
+  ],
+  "acceptReadings": [
+   "りょく",
+   "りき",
+   "ちから"
+  ],
+  "radicals": [
+   "Power"
+  ],
+  "examples": [
+   {
+    "word": "力",
+    "reading": "ちから",
+    "gloss": "force [n.]"
+   },
+   {
+    "word": "体力",
+    "reading": "たいりょく",
+    "gloss": "physical strength"
+   },
+   {
+    "word": "能力",
+    "reading": "のうりょく",
+    "gloss": "ability"
+   },
+   {
+    "word": "実力",
+    "reading": "じつりょく",
+    "gloss": "real ability"
+   }
+  ],
+  "sentence": {
+   "sentence": "力もちだ。",
+   "translation": "I am a strong person."
+  }
+ },
+ {
+  "char": "十",
+  "level": 1,
+  "meanings": [
+   "Ten"
+  ],
+  "readingsOn": [
+   "じゅう"
+  ],
+  "readingsKun": [
+   "とお"
+  ],
+  "primaryReadings": [
+   "とお"
+  ],
+  "acceptReadings": [
+   "じゅう",
+   "とお"
+  ],
+  "radicals": [
+   "Cross"
+  ],
+  "examples": [
+   {
+    "word": "十",
+    "reading": "じゅう",
+    "gloss": "10"
+   },
+   {
+    "word": "十年",
+    "reading": "じゅうねん",
+    "gloss": "10 years"
+   },
+   {
+    "word": "十分な",
+    "reading": "じゅうぶんな",
+    "gloss": "enough"
+   },
+   {
+    "word": "十日",
+    "reading": "とおか",
+    "gloss": "10 days, 10th of the month"
+   }
+  ],
+  "sentence": {
+   "sentence": "りんごが十ある。",
+   "translation": "There are ten apples."
+  }
+ },
+ {
+  "char": "三",
+  "level": 1,
+  "meanings": [
+   "Three"
+  ],
+  "readingsOn": [
+   "さん"
+  ],
+  "readingsKun": [
+   "み"
+  ],
+  "primaryReadings": [
+   "み"
+  ],
+  "acceptReadings": [
+   "さん",
+   "み"
+  ],
+  "radicals": [
+   "Ground",
+   "Two"
+  ],
+  "examples": [
+   {
+    "word": "三人",
+    "reading": "さんにん",
+    "gloss": "3 people"
+   },
+   {
+    "word": "三時",
+    "reading": "さんじ",
+    "gloss": "3 o'clock"
+   },
+   {
+    "word": "三枚",
+    "reading": "さんまい",
+    "gloss": "3 (flat objects)"
+   },
+   {
+    "word": "三月",
+    "reading": "さんがつ",
+    "gloss": "March"
+   }
+  ],
+  "sentence": {
+   "sentence": "りんごが三つある。",
+   "translation": "There are three apples."
+  }
+ },
+ {
+  "char": "上",
+  "level": 1,
+  "meanings": [
+   "Above",
+   "^Up",
+   "^Over"
+  ],
+  "readingsOn": [
+   "じょう"
+  ],
+  "readingsKun": [
+   "うえ",
+   "あ",
+   "のぼ",
+   "うわ",
+   "かみ"
+  ],
+  "primaryReadings": [
+   "うえ",
+   "あ",
+   "のぼ",
+   "うわ",
+   "かみ"
+  ],
+  "acceptReadings": [
+   "じょう",
+   "うえ",
+   "あ",
+   "のぼ",
+   "うわ",
+   "かみ"
+  ],
+  "radicals": [
+   "Toe",
+   "Ground"
+  ],
+  "examples": [
+   {
+    "word": "上",
+    "reading": "うえ",
+    "gloss": "above, on top, upper part of"
+   },
+   {
+    "word": "目上",
+    "reading": "めうえ",
+    "gloss": "superior(s)"
+   },
+   {
+    "word": "上下する",
+    "reading": "じょうげする",
+    "gloss": "go up and down"
+   },
+   {
+    "word": "頂上",
+    "reading": "ちょうじょう",
+    "gloss": "summit"
+   }
+  ],
+  "sentence": {
+   "sentence": "つくえの上に本がある。",
+   "translation": "There is a book on the desk."
+  }
+ },
+ {
+  "char": "下",
+  "level": 1,
+  "meanings": [
+   "Below",
+   "^Down",
+   "^Under",
+   "^Beneath"
+  ],
+  "readingsOn": [
+   "か",
+   "げ"
+  ],
+  "readingsKun": [
+   "した",
+   "さ",
+   "くだ",
+   "お"
+  ],
+  "primaryReadings": [
+   "した",
+   "さ",
+   "くだ",
+   "お"
+  ],
+  "acceptReadings": [
+   "か",
+   "げ",
+   "した",
+   "さ",
+   "くだ",
+   "お"
+  ],
+  "radicals": [
+   "Ground",
+   "Toe"
+  ],
+  "examples": [
+   {
+    "word": "下",
+    "reading": "した",
+    "gloss": "under, below"
+   },
+   {
+    "word": "靴下",
+    "reading": "くつした",
+    "gloss": "socks"
+   },
+   {
+    "word": "地下鉄",
+    "reading": "ちかてつ",
+    "gloss": "subway"
+   },
+   {
+    "word": "上下する",
+    "reading": "じょうげする",
+    "gloss": "go up and down"
+   }
+  ],
+  "sentence": {
+   "sentence": "つくえの下にねこがいる。",
+   "translation": "There is a cat under the desk."
+  }
+ },
+ {
+  "char": "口",
+  "level": 1,
+  "meanings": [
+   "Mouth"
+  ],
+  "readingsOn": [
+   "こう",
+   "^く"
+  ],
+  "readingsKun": [
+   "くち"
+  ],
+  "primaryReadings": [
+   "くち"
+  ],
+  "acceptReadings": [
+   "こう",
+   "^く",
+   "くち"
+  ],
+  "radicals": [
+   "Mouth"
+  ],
+  "examples": [
+   {
+    "word": "口調",
+    "reading": "くちょう",
+    "gloss": "tone of voice"
+   },
+   {
+    "word": "口",
+    "reading": "くち",
+    "gloss": "mouth"
+   },
+   {
+    "word": "無口な",
+    "reading": "むくちな",
+    "gloss": "reticent"
+   },
+   {
+    "word": "人口",
+    "reading": "じんこう",
+    "gloss": "population"
+   }
+  ],
+  "sentence": {
+   "sentence": "口をあける。",
+   "translation": "Open your mouth."
+  }
+ },
+ {
+  "char": "大",
+  "level": 1,
+  "meanings": [
+   "Big",
+   "^Large"
+  ],
+  "readingsOn": [
+   "たい",
+   "だい"
+  ],
+  "readingsKun": [
+   "おお"
+  ],
+  "primaryReadings": [
+   "おお"
+  ],
+  "acceptReadings": [
+   "たい",
+   "だい",
+   "おお"
+  ],
+  "radicals": [
+   "Big"
+  ],
+  "examples": [
+   {
+    "word": "大きい",
+    "reading": "おおきい",
+    "gloss": "big"
+   },
+   {
+    "word": "大阪",
+    "reading": "おおさか",
+    "gloss": "Osaka"
+   },
+   {
+    "word": "大学",
+    "reading": "だいがく",
+    "gloss": "university"
+   },
+   {
+    "word": "大学院",
+    "reading": "だいがくいん",
+    "gloss": "graduate school"
+   }
+  ],
+  "sentence": {
+   "sentence": "大きい木がある。",
+   "translation": "There is a big tree."
+  }
+ },
+ {
+  "char": "女",
+  "level": 1,
+  "meanings": [
+   "Woman"
+  ],
+  "readingsOn": [
+   "じょ"
+  ],
+  "readingsKun": [
+   "おんな",
+   "め"
+  ],
+  "primaryReadings": [
+   "おんな",
+   "め"
+  ],
+  "acceptReadings": [
+   "じょ",
+   "おんな",
+   "め"
+  ],
+  "radicals": [
+   "Woman"
+  ],
+  "examples": [
+   {
+    "word": "女",
+    "reading": "おんな",
+    "gloss": "woman"
+   },
+   {
+    "word": "女の子",
+    "reading": "おんなのこ",
+    "gloss": "girl"
+   },
+   {
+    "word": "女性",
+    "reading": "じょせい",
+    "gloss": "female"
+   },
+   {
+    "word": "女子学生",
+    "reading": "じょしがくせい",
+    "gloss": "female student"
+   }
+  ],
+  "sentence": {
+   "sentence": "女の子がわらう。",
+   "translation": "The girl laughs."
+  }
+ },
+ {
+  "char": "山",
+  "level": 1,
+  "meanings": [
+   "Mountain"
+  ],
+  "readingsOn": [
+   "さん"
+  ],
+  "readingsKun": [
+   "やま"
+  ],
+  "primaryReadings": [
+   "やま"
+  ],
+  "acceptReadings": [
+   "さん",
+   "やま"
+  ],
+  "radicals": [
+   "Mountain"
+  ],
+  "examples": [
+   {
+    "word": "山",
+    "reading": "やま",
+    "gloss": "mountain, pile, climax"
+   },
+   {
+    "word": "岩山",
+    "reading": "いわやま",
+    "gloss": "rocky mountain"
+   },
+   {
+    "word": "山火事",
+    "reading": "やまかじ",
+    "gloss": "bushfire"
+   },
+   {
+    "word": "富士山",
+    "reading": "ふじさん",
+    "gloss": "Mt Fuji"
+   }
+  ],
+  "sentence": {
+   "sentence": "山にのぼる。",
+   "translation": "I climb the mountain."
+  }
+ },
+ {
+  "char": "川",
+  "level": 1,
+  "meanings": [
+   "River"
+  ],
+  "readingsOn": [
+   "せん"
+  ],
+  "readingsKun": [
+   "かわ"
+  ],
+  "primaryReadings": [
+   "せん"
+  ],
+  "acceptReadings": [
+   "せん",
+   "かわ"
+  ],
+  "radicals": [
+   "River"
+  ],
+  "examples": [
+   {
+    "word": "川",
+    "reading": "かわ",
+    "gloss": "river"
+   },
+   {
+    "word": "川上",
+    "reading": "かわかみ",
+    "gloss": "upper reaches of a river"
+   },
+   {
+    "word": "川下",
+    "reading": "かわしも",
+    "gloss": "downstream"
+   },
+   {
+    "word": "河川",
+    "reading": "かせん",
+    "gloss": "rivers"
+   }
+  ],
+  "sentence": {
+   "sentence": "川でさかなをつる。",
+   "translation": "I fish in the river."
+  }
+ },
+ {
+  "char": "工",
+  "level": 1,
+  "meanings": [
+   "Construction",
+   "^Industry"
+  ],
+  "readingsOn": [
+   "こう",
+   "^く"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "こう"
+  ],
+  "acceptReadings": [
+   "こう",
+   "^く"
+  ],
+  "radicals": [
+   "Construction"
+  ],
+  "examples": [
+   {
+    "word": "工事",
+    "reading": "こうじ",
+    "gloss": "construction work"
+   },
+   {
+    "word": "工場",
+    "reading": "こうじょう",
+    "gloss": "factory"
+   },
+   {
+    "word": "工学部",
+    "reading": "こうがくぶ",
+    "gloss": "engineering department"
+   },
+   {
+    "word": "人工的な",
+    "reading": "じんこうてきな",
+    "gloss": "artificial"
+   }
+  ],
+  "sentence": {
+   "sentence": "工作の時間だ。",
+   "translation": "It's crafts time."
+  }
+ },
+ {
+  "char": "刀",
+  "level": 2,
+  "meanings": [
+   "Sword",
+   "^Katana"
+  ],
+  "readingsOn": [
+   "とう"
+  ],
+  "readingsKun": [
+   "かたな"
+  ],
+  "primaryReadings": [
+   "かたな"
+  ],
+  "acceptReadings": [
+   "とう",
+   "かたな"
+  ],
+  "radicals": [
+   "Sword"
+  ],
+  "examples": [
+   {
+    "word": "刀",
+    "reading": "かたな",
+    "gloss": "sword, blade"
+   },
+   {
+    "word": "刀剣",
+    "reading": "とうけん",
+    "gloss": "swords"
+   },
+   {
+    "word": "刀身",
+    "reading": "とうしん",
+    "gloss": "sword blade"
+   },
+   {
+    "word": "名刀",
+    "reading": "めいとう",
+    "gloss": "famous sword, excellent sword"
+   }
+  ],
+  "sentence": {
+   "sentence": "刀を作る。",
+   "translation": "Make a sword."
+  }
+ },
+ {
+  "char": "土",
+  "level": 2,
+  "meanings": [
+   "Dirt",
+   "^Soil",
+   "^Earth",
+   "^Ground"
+  ],
+  "readingsOn": [
+   "ど",
+   "^と"
+  ],
+  "readingsKun": [
+   "つち"
+  ],
+  "primaryReadings": [
+   "つち"
+  ],
+  "acceptReadings": [
+   "ど",
+   "^と",
+   "つち"
+  ],
+  "radicals": [
+   "Dirt"
+  ],
+  "examples": [
+   {
+    "word": "土",
+    "reading": "つち",
+    "gloss": "soil"
+   },
+   {
+    "word": "土色",
+    "reading": "つちいろ",
+    "gloss": "earth colored"
+   },
+   {
+    "word": "土曜日",
+    "reading": "どようび",
+    "gloss": "Saturday"
+   },
+   {
+    "word": "土日",
+    "reading": "どにち",
+    "gloss": "Saturday and Sunday"
+   }
+  ],
+  "sentence": {
+   "sentence": "土をほる。",
+   "translation": "I dig the soil."
+  }
+ },
+ {
+  "char": "千",
+  "level": 2,
+  "meanings": [
+   "Thousand"
+  ],
+  "readingsOn": [
+   "せん"
+  ],
+  "readingsKun": [
+   "ち"
+  ],
+  "primaryReadings": [
+   "ち"
+  ],
+  "acceptReadings": [
+   "せん",
+   "ち"
+  ],
+  "radicals": [
+   "Thousand"
+  ],
+  "examples": [
+   {
+    "word": "千",
+    "reading": "せん",
+    "gloss": "1000"
+   },
+   {
+    "word": "八千",
+    "reading": "はっせん",
+    "gloss": "8000"
+   },
+   {
+    "word": "三千",
+    "reading": "さんぜん",
+    "gloss": "3000"
+   },
+   {
+    "word": "千切れる",
+    "reading": "ちぎれる",
+    "gloss": "be torn off"
+   }
+  ],
+  "sentence": {
+   "sentence": "千人があつまる。",
+   "translation": "A thousand people gather."
+  }
+ },
+ {
+  "char": "夕",
+  "level": 2,
+  "meanings": [
+   "Evening"
+  ],
+  "readingsOn": [
+   "せき"
+  ],
+  "readingsKun": [
+   "ゆう"
+  ],
+  "primaryReadings": [
+   "せき"
+  ],
+  "acceptReadings": [
+   "せき",
+   "ゆう"
+  ],
+  "radicals": [
+   "Evening"
+  ],
+  "examples": [
+   {
+    "word": "夕方",
+    "reading": "ゆうがた",
+    "gloss": "evening"
+   },
+   {
+    "word": "夕食",
+    "reading": "ゆうしょく",
+    "gloss": "dinner"
+   },
+   {
+    "word": "夕日",
+    "reading": "ゆうひ",
+    "gloss": "the evening sun"
+   },
+   {
+    "word": "夕刊",
+    "reading": "ゆうかん",
+    "gloss": "evening paper"
+   }
+  ],
+  "sentence": {
+   "sentence": "夕やけがきれいだ。",
+   "translation": "The sunset is beautiful."
+  }
+ },
+ {
+  "char": "子",
+  "level": 2,
+  "meanings": [
+   "Child",
+   "^Kid"
+  ],
+  "readingsOn": [
+   "し",
+   "す"
+  ],
+  "readingsKun": [
+   "こ"
+  ],
+  "primaryReadings": [
+   "こ"
+  ],
+  "acceptReadings": [
+   "し",
+   "す",
+   "こ"
+  ],
+  "radicals": [
+   "Child"
+  ],
+  "examples": [
+   {
+    "word": "子供",
+    "reading": "こども",
+    "gloss": "child"
+   },
+   {
+    "word": "息子",
+    "reading": "むすこ",
+    "gloss": "son"
+   },
+   {
+    "word": "帽子",
+    "reading": "ぼうし",
+    "gloss": "hat, cap"
+   },
+   {
+    "word": "電子レンジ",
+    "reading": "でんしレンジ",
+    "gloss": "microwave oven"
+   }
+  ],
+  "sentence": {
+   "sentence": "子どもがわらう。",
+   "translation": "The child laughs."
+  }
+ },
+ {
+  "char": "小",
+  "level": 2,
+  "meanings": [
+   "Small",
+   "^Little"
+  ],
+  "readingsOn": [
+   "しょう"
+  ],
+  "readingsKun": [
+   "ちい",
+   "こ",
+   "お"
+  ],
+  "primaryReadings": [
+   "ちい",
+   "こ",
+   "お"
+  ],
+  "acceptReadings": [
+   "しょう",
+   "ちい",
+   "こ",
+   "お"
+  ],
+  "radicals": [
+   "Small"
+  ],
+  "examples": [
+   {
+    "word": "小さい",
+    "reading": "ちいさい",
+    "gloss": "small"
+   },
+   {
+    "word": "小学校",
+    "reading": "しょうがっこう",
+    "gloss": "elementary school"
+   }
+  ],
+  "sentence": {
+   "sentence": "小さい犬がいる。",
+   "translation": "There is a small dog."
+  }
+ },
+ {
+  "char": "丁",
+  "level": 2,
+  "meanings": [
+   "Street"
+  ],
+  "readingsOn": [
+   "ちょう",
+   "^てい"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "ちょう"
+  ],
+  "acceptReadings": [
+   "ちょう",
+   "^てい"
+  ],
+  "radicals": [
+   "Street"
+  ],
+  "examples": [
+   {
+    "word": "丁寧な",
+    "reading": "ていねいな",
+    "gloss": "polite, courteous, careful"
+   },
+   {
+    "word": "丁重な",
+    "reading": "ていちょうな",
+    "gloss": "polite, courteous"
+   },
+   {
+    "word": "丁",
+    "reading": "ちょう",
+    "gloss": "counter for guns and tofu"
+   },
+   {
+    "word": "丁度",
+    "reading": "ちょうど",
+    "gloss": "just, right, exactly"
+   }
+  ],
+  "sentence": {
+   "sentence": "丁寧に話す。",
+   "translation": "Speak politely."
+  }
+ },
+ {
+  "char": "了",
+  "level": 2,
+  "meanings": [
+   "Finish",
+   "^Complete",
+   "^End"
+  ],
+  "readingsOn": [
+   "りょう"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "りょう"
+  ],
+  "acceptReadings": [
+   "りょう"
+  ],
+  "radicals": [
+   "Barb"
+  ],
+  "examples": [
+   {
+    "word": "未了",
+    "reading": "みりょう",
+    "gloss": "unfinished, yet not finished [n.]"
+   },
+   {
+    "word": "了解する",
+    "reading": "りょうかいする",
+    "gloss": "consent, comprehend"
+   },
+   {
+    "word": "了承する",
+    "reading": "りょうしょうする",
+    "gloss": "approve, consent"
+   },
+   {
+    "word": "完了する",
+    "reading": "かんりょうする",
+    "gloss": "complete, conclude"
+   }
+  ],
+  "sentence": {
+   "sentence": "彼の指示に了解する。",
+   "translation": "I acknowledge his instructions."
+  }
+ },
+ {
+  "char": "又",
+  "level": 2,
+  "meanings": [
+   "Again"
+  ],
+  "readingsOn": [],
+  "readingsKun": [
+   "また"
+  ],
+  "primaryReadings": [
+   "また"
+  ],
+  "acceptReadings": [
+   "また"
+  ],
+  "radicals": [
+   "Stool"
+  ],
+  "examples": [],
+  "sentence": {
+   "sentence": "彼は又、遅刻した。",
+   "translation": "He was late again."
+  }
+ },
+ {
+  "char": "丸",
+  "level": 2,
+  "meanings": [
+   "Circle",
+   "^Circular",
+   "^Round"
+  ],
+  "readingsOn": [
+   "がん"
+  ],
+  "readingsKun": [
+   "まる"
+  ],
+  "primaryReadings": [
+   "がん"
+  ],
+  "acceptReadings": [
+   "がん",
+   "まる"
+  ],
+  "radicals": [
+   "Nine",
+   "Drop"
+  ],
+  "examples": [
+   {
+    "word": "丸い",
+    "reading": "まるい",
+    "gloss": "round, spherical"
+   },
+   {
+    "word": "丸顔",
+    "reading": "まるがお",
+    "gloss": "round face"
+   },
+   {
+    "word": "丸っきり",
+    "reading": "まるっきり",
+    "gloss": "completely, just as if"
+   },
+   {
+    "word": "丸める",
+    "reading": "まるめる",
+    "gloss": "round off, roll up, cajole [v.t.]"
+   }
+  ],
+  "sentence": {
+   "sentence": "丸をかく。",
+   "translation": "Draw a circle."
+  }
+ },
+ {
+  "char": "才",
+  "level": 2,
+  "meanings": [
+   "Genius"
+  ],
+  "readingsOn": [
+   "さい"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "さい"
+  ],
+  "acceptReadings": [
+   "さい"
+  ],
+  "radicals": [
+   "Cross",
+   "Slide"
+  ],
+  "examples": [
+   {
+    "word": "十八才",
+    "reading": "じゅうはっさい",
+    "gloss": "18 years old"
+   },
+   {
+    "word": "何才",
+    "reading": "なんさい",
+    "gloss": "how old"
+   },
+   {
+    "word": "才能",
+    "reading": "さいのう",
+    "gloss": "talent"
+   },
+   {
+    "word": "天才",
+    "reading": "てんさい",
+    "gloss": "genius"
+   }
+  ],
+  "sentence": {
+   "sentence": "七才になる。",
+   "translation": "Turn seven years old."
+  }
+ },
+ {
+  "char": "中",
+  "level": 2,
+  "meanings": [
+   "Middle",
+   "^In",
+   "^Inside",
+   "^Center"
+  ],
+  "readingsOn": [
+   "ちゅう"
+  ],
+  "readingsKun": [
+   "なか"
+  ],
+  "primaryReadings": [
+   "なか"
+  ],
+  "acceptReadings": [
+   "ちゅう",
+   "なか"
+  ],
+  "radicals": [
+   "Middle"
+  ],
+  "examples": [
+   {
+    "word": "中",
+    "reading": "なか",
+    "gloss": "inside"
+   },
+   {
+    "word": "中村",
+    "reading": "なかむら",
+    "gloss": "Nakamura (surname)"
+   },
+   {
+    "word": "中川",
+    "reading": "なかがわ",
+    "gloss": "Nakagawa (surname)"
+   },
+   {
+    "word": "田中",
+    "reading": "たなか",
+    "gloss": "Tanaka (surname)"
+   }
+  ],
+  "sentence": {
+   "sentence": "はこの中に入る。",
+   "translation": "I go inside the box."
+  }
+ },
+ {
+  "char": "五",
+  "level": 2,
+  "meanings": [
+   "Five"
+  ],
+  "readingsOn": [
+   "ご"
+  ],
+  "readingsKun": [
+   "いつ"
+  ],
+  "primaryReadings": [
+   "いつ"
+  ],
+  "acceptReadings": [
+   "ご",
+   "いつ"
+  ],
+  "radicals": [
+   "Five"
+  ],
+  "examples": [
+   {
+    "word": "五月",
+    "reading": "ごがつ",
+    "gloss": "May"
+   },
+   {
+    "word": "五時間",
+    "reading": "ごじかん",
+    "gloss": "5 hours"
+   },
+   {
+    "word": "五階",
+    "reading": "ごかい",
+    "gloss": "5th floor"
+   },
+   {
+    "word": "五人",
+    "reading": "ごにん",
+    "gloss": "5 people"
+   }
+  ],
+  "sentence": {
+   "sentence": "ほしが五つひかる。",
+   "translation": "Five stars are shining."
+  }
+ },
+ {
+  "char": "六",
+  "level": 2,
+  "meanings": [
+   "Six"
+  ],
+  "readingsOn": [
+   "ろく"
+  ],
+  "readingsKun": [
+   "む"
+  ],
+  "primaryReadings": [
+   "む"
+  ],
+  "acceptReadings": [
+   "ろく",
+   "む"
+  ],
+  "radicals": [
+   "Lid",
+   "Fins"
+  ],
+  "examples": [
+   {
+    "word": "六時",
+    "reading": "ろくじ",
+    "gloss": "6 o'clock"
+   },
+   {
+    "word": "六才",
+    "reading": "ろくさい",
+    "gloss": "6 years old"
+   },
+   {
+    "word": "六番目",
+    "reading": "ろくばんめ",
+    "gloss": "6th"
+   },
+   {
+    "word": "六月",
+    "reading": "ろくがつ",
+    "gloss": "June"
+   }
+  ],
+  "sentence": {
+   "sentence": "たまごが六つある。",
+   "translation": "There are six eggs."
+  }
+ },
+ {
+  "char": "円",
+  "level": 2,
+  "meanings": [
+   "Yen",
+   "^Round",
+   "^Circle"
+  ],
+  "readingsOn": [
+   "えん"
+  ],
+  "readingsKun": [
+   "まる"
+  ],
+  "primaryReadings": [
+   "まる"
+  ],
+  "acceptReadings": [
+   "えん",
+   "まる"
+  ],
+  "radicals": [
+   "Lid",
+   "Head"
+  ],
+  "examples": [
+   {
+    "word": "千円",
+    "reading": "せんえん",
+    "gloss": "a thousand yen"
+   },
+   {
+    "word": "円高",
+    "reading": "えんだか",
+    "gloss": "strong yen"
+   },
+   {
+    "word": "円安",
+    "reading": "えんやす",
+    "gloss": "cheap yen"
+   },
+   {
+    "word": "円満な",
+    "reading": "えんまんな",
+    "gloss": "peaceful"
+   }
+  ],
+  "sentence": {
+   "sentence": "円をかきます。",
+   "translation": "I draw a circle."
+  }
+ },
+ {
+  "char": "天",
+  "level": 2,
+  "meanings": [
+   "Heaven"
+  ],
+  "readingsOn": [
+   "てん"
+  ],
+  "readingsKun": [
+   "あま"
+  ],
+  "primaryReadings": [
+   "あま"
+  ],
+  "acceptReadings": [
+   "てん",
+   "あま"
+  ],
+  "radicals": [
+   "Heaven"
+  ],
+  "examples": [
+   {
+    "word": "天気",
+    "reading": "てんき",
+    "gloss": "weather, fine weather"
+   },
+   {
+    "word": "天候",
+    "reading": "てんこう",
+    "gloss": "weather"
+   },
+   {
+    "word": "天国",
+    "reading": "てんごく",
+    "gloss": "heaven"
+   },
+   {
+    "word": "天皇",
+    "reading": "てんのう",
+    "gloss": "emperor"
+   }
+  ],
+  "sentence": {
+   "sentence": "きょうは天気がいい。",
+   "translation": "The weather is nice today."
+  }
+ },
+ {
+  "char": "手",
+  "level": 2,
+  "meanings": [
+   "Hand"
+  ],
+  "readingsOn": [
+   "しゅ"
+  ],
+  "readingsKun": [
+   "て"
+  ],
+  "primaryReadings": [
+   "しゅ"
+  ],
+  "acceptReadings": [
+   "しゅ",
+   "て"
+  ],
+  "radicals": [
+   "Hand"
+  ],
+  "examples": [
+   {
+    "word": "手紙",
+    "reading": "てがみ",
+    "gloss": "letter"
+   },
+   {
+    "word": "手帳",
+    "reading": "てちょう",
+    "gloss": "notebook"
+   },
+   {
+    "word": "手伝う",
+    "reading": "てつだう",
+    "gloss": "help"
+   },
+   {
+    "word": "手前",
+    "reading": "てまえ",
+    "gloss": "in front of oneself, this side"
+   }
+  ],
+  "sentence": {
+   "sentence": "手をあらう。",
+   "translation": "I wash my hands."
+  }
+ },
+ {
+  "char": "文",
+  "level": 2,
+  "meanings": [
+   "Writing",
+   "^Sentence"
+  ],
+  "readingsOn": [
+   "ぶん",
+   "もん"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "ぶん"
+  ],
+  "acceptReadings": [
+   "ぶん",
+   "もん"
+  ],
+  "radicals": [
+   "Writing"
+  ],
+  "examples": [
+   {
+    "word": "文法",
+    "reading": "ぶんぽう",
+    "gloss": "grammar"
+   },
+   {
+    "word": "文章",
+    "reading": "ぶんしょう",
+    "gloss": "sentence"
+   },
+   {
+    "word": "文学",
+    "reading": "ぶんがく",
+    "gloss": "literature"
+   },
+   {
+    "word": "文化",
+    "reading": "ぶんか",
+    "gloss": "culture"
+   }
+  ],
+  "sentence": {
+   "sentence": "文をよむ。",
+   "translation": "I read the sentence."
+  }
+ },
+ {
+  "char": "日",
+  "level": 2,
+  "meanings": [
+   "Sun",
+   "^Day"
+  ],
+  "readingsOn": [
+   "にち",
+   "じつ"
+  ],
+  "readingsKun": [
+   "ひ",
+   "か",
+   "び"
+  ],
+  "primaryReadings": [
+   "ひ",
+   "か",
+   "び"
+  ],
+  "acceptReadings": [
+   "にち",
+   "じつ",
+   "ひ",
+   "か",
+   "び"
+  ],
+  "radicals": [
+   "Sun"
+  ],
+  "examples": [
+   {
+    "word": "一日",
+    "reading": "いちにち",
+    "gloss": "1 day"
+   },
+   {
+    "word": "日数",
+    "reading": "にっすう",
+    "gloss": "a number of days"
+   },
+   {
+    "word": "本日",
+    "reading": "ほんじつ",
+    "gloss": "today"
+   },
+   {
+    "word": "朝日",
+    "reading": "あさひ",
+    "gloss": "morning sun"
+   }
+  ],
+  "sentence": {
+   "sentence": "きょうはいい日だ。",
+   "translation": "Today is a nice day."
+  }
+ },
+ {
+  "char": "月",
+  "level": 2,
+  "meanings": [
+   "Moon",
+   "^Month"
+  ],
+  "readingsOn": [
+   "げつ",
+   "がつ"
+  ],
+  "readingsKun": [
+   "つき"
+  ],
+  "primaryReadings": [
+   "つき"
+  ],
+  "acceptReadings": [
+   "げつ",
+   "がつ",
+   "つき"
+  ],
+  "radicals": [
+   "Moon"
+  ],
+  "examples": [
+   {
+    "word": "月見",
+    "reading": "つきみ",
+    "gloss": "moon viewing"
+   },
+   {
+    "word": "毎月",
+    "reading": "まいつき",
+    "gloss": "every month"
+   },
+   {
+    "word": "来月",
+    "reading": "らいげつ",
+    "gloss": "next month"
+   },
+   {
+    "word": "月曜日",
+    "reading": "げつようび",
+    "gloss": "Monday"
+   }
+  ],
+  "sentence": {
+   "sentence": "月がきれいだ。",
+   "translation": "The moon is beautiful."
+  }
+ },
+ {
+  "char": "木",
+  "level": 2,
+  "meanings": [
+   "Tree",
+   "^Wood"
+  ],
+  "readingsOn": [
+   "もく",
+   "ぼく"
+  ],
+  "readingsKun": [
+   "き",
+   "こ"
+  ],
+  "primaryReadings": [
+   "き",
+   "こ"
+  ],
+  "acceptReadings": [
+   "もく",
+   "ぼく",
+   "き",
+   "こ"
+  ],
+  "radicals": [
+   "Tree"
+  ],
+  "examples": [
+   {
+    "word": "木曜日",
+    "reading": "もくようび",
+    "gloss": "Thursday"
+   },
+   {
+    "word": "木材",
+    "reading": "もくざい",
+    "gloss": "lumber"
+   },
+   {
+    "word": "木造",
+    "reading": "もくぞう",
+    "gloss": "wooden"
+   },
+   {
+    "word": "大木",
+    "reading": "たいぼく",
+    "gloss": "large tree"
+   }
+  ],
+  "sentence": {
+   "sentence": "木にのぼる。",
+   "translation": "I climb the tree."
+  }
+ },
+ {
+  "char": "水",
+  "level": 2,
+  "meanings": [
+   "Water"
+  ],
+  "readingsOn": [
+   "すい"
+  ],
+  "readingsKun": [
+   "みず"
+  ],
+  "primaryReadings": [
+   "みず"
+  ],
+  "acceptReadings": [
+   "すい",
+   "みず"
+  ],
+  "radicals": [
+   "Water"
+  ],
+  "examples": [
+   {
+    "word": "水",
+    "reading": "みず",
+    "gloss": "water"
+   },
+   {
+    "word": "水着",
+    "reading": "みずぎ",
+    "gloss": "bathing suit"
+   },
+   {
+    "word": "水色",
+    "reading": "みずいろ",
+    "gloss": "light blue"
+   },
+   {
+    "word": "水曜日",
+    "reading": "すいようび",
+    "gloss": "Wednesday"
+   }
+  ],
+  "sentence": {
+   "sentence": "水をのむ。",
+   "translation": "I drink water."
+  }
+ },
+ {
+  "char": "火",
+  "level": 2,
+  "meanings": [
+   "Fire"
+  ],
+  "readingsOn": [
+   "か"
+  ],
+  "readingsKun": [
+   "ひ",
+   "ほ"
+  ],
+  "primaryReadings": [
+   "ひ",
+   "ほ"
+  ],
+  "acceptReadings": [
+   "か",
+   "ひ",
+   "ほ"
+  ],
+  "radicals": [
+   "Fire"
+  ],
+  "examples": [
+   {
+    "word": "火",
+    "reading": "ひ",
+    "gloss": "flame, fire"
+   },
+   {
+    "word": "火事",
+    "reading": "かじ",
+    "gloss": "fire"
+   },
+   {
+    "word": "火力",
+    "reading": "かりょく",
+    "gloss": "thermal power"
+   },
+   {
+    "word": "火曜日",
+    "reading": "かようび",
+    "gloss": "Tuesday"
+   }
+  ],
+  "sentence": {
+   "sentence": "火がもえている。",
+   "translation": "The fire is burning."
+  }
+ },
+ {
+  "char": "犬",
+  "level": 2,
+  "meanings": [
+   "Dog"
+  ],
+  "readingsOn": [
+   "けん"
+  ],
+  "readingsKun": [
+   "いぬ"
+  ],
+  "primaryReadings": [
+   "けん"
+  ],
+  "acceptReadings": [
+   "けん",
+   "いぬ"
+  ],
+  "radicals": [
+   "Dog"
+  ],
+  "examples": [
+   {
+    "word": "犬",
+    "reading": "いぬ",
+    "gloss": "dog"
+   },
+   {
+    "word": "飼い犬",
+    "reading": "かいいぬ",
+    "gloss": "pet dog"
+   },
+   {
+    "word": "子犬",
+    "reading": "こいぬ",
+    "gloss": "puppy"
+   },
+   {
+    "word": "番犬",
+    "reading": "ばんけん",
+    "gloss": "watchdog"
+   }
+  ],
+  "sentence": {
+   "sentence": "犬がはしっている。",
+   "translation": "The dog is running."
+  }
+ },
+ {
+  "char": "王",
+  "level": 2,
+  "meanings": [
+   "King"
+  ],
+  "readingsOn": [
+   "おう"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "おう"
+  ],
+  "acceptReadings": [
+   "おう"
+  ],
+  "radicals": [
+   "King"
+  ],
+  "examples": [
+   {
+    "word": "王様",
+    "reading": "おうさま",
+    "gloss": "king"
+   },
+   {
+    "word": "王国",
+    "reading": "おうこく",
+    "gloss": "kingdom, monarchy"
+   },
+   {
+    "word": "王者",
+    "reading": "おうじゃ",
+    "gloss": "king, monarch, ruler"
+   },
+   {
+    "word": "王子",
+    "reading": "おうじ",
+    "gloss": "prince"
+   }
+  ],
+  "sentence": {
+   "sentence": "王さまがいます。",
+   "translation": "There is a king."
+  }
+ },
+ {
+  "char": "出",
+  "level": 2,
+  "meanings": [
+   "Exit"
+  ],
+  "readingsOn": [
+   "しゅつ"
+  ],
+  "readingsKun": [
+   "で",
+   "だ"
+  ],
+  "primaryReadings": [
+   "で",
+   "だ"
+  ],
+  "acceptReadings": [
+   "しゅつ",
+   "で",
+   "だ"
+  ],
+  "radicals": [
+   "Mountain"
+  ],
+  "examples": [
+   {
+    "word": "出る",
+    "reading": "でる",
+    "gloss": "come out [v.i.]"
+   },
+   {
+    "word": "出かける",
+    "reading": "でかける",
+    "gloss": "go out"
+   },
+   {
+    "word": "出す",
+    "reading": "だす",
+    "gloss": "put out, send [v.t.]"
+   },
+   {
+    "word": "引き出し",
+    "reading": "ひきだし",
+    "gloss": "drawer"
+   }
+  ],
+  "sentence": {
+   "sentence": "そとに出る。",
+   "translation": "I go outside."
+  }
+ },
+ {
+  "char": "右",
+  "level": 2,
+  "meanings": [
+   "Right"
+  ],
+  "readingsOn": [
+   "^う",
+   "ゆう"
+  ],
+  "readingsKun": [
+   "みぎ"
+  ],
+  "primaryReadings": [
+   "みぎ"
+  ],
+  "acceptReadings": [
+   "^う",
+   "ゆう",
+   "みぎ"
+  ],
+  "radicals": [
+   "Narwhal",
+   "Mouth"
+  ],
+  "examples": [
+   {
+    "word": "右",
+    "reading": "みぎ",
+    "gloss": "right"
+   },
+   {
+    "word": "右手",
+    "reading": "みぎて",
+    "gloss": "right hand, right side"
+   },
+   {
+    "word": "右側",
+    "reading": "みぎがわ",
+    "gloss": "right side"
+   },
+   {
+    "word": "右折する",
+    "reading": "うせつする",
+    "gloss": "turn to the right"
+   }
+  ],
+  "sentence": {
+   "sentence": "右にまがります。",
+   "translation": "Turn to the right."
+  }
+ },
+ {
+  "char": "四",
+  "level": 2,
+  "meanings": [
+   "Four"
+  ],
+  "readingsOn": [
+   "し"
+  ],
+  "readingsKun": [
+   "よん",
+   "よ"
+  ],
+  "primaryReadings": [
+   "よん",
+   "よ"
+  ],
+  "acceptReadings": [
+   "し",
+   "よん",
+   "よ"
+  ],
+  "radicals": [
+   "Mouth",
+   "Legs"
+  ],
+  "examples": [
+   {
+    "word": "四つ",
+    "reading": "よっつ",
+    "gloss": "4 (objects)"
+   },
+   {
+    "word": "四日",
+    "reading": "よっか",
+    "gloss": "4 days, 4th of the month"
+   },
+   {
+    "word": "四回",
+    "reading": "よんかい",
+    "gloss": "4 times"
+   },
+   {
+    "word": "四月",
+    "reading": "しがつ",
+    "gloss": "April"
+   }
+  ],
+  "sentence": {
+   "sentence": "たまごが四つある。",
+   "translation": "There are four eggs."
+  }
+ },
+ {
+  "char": "左",
+  "level": 2,
+  "meanings": [
+   "Left"
+  ],
+  "readingsOn": [
+   "さ"
+  ],
+  "readingsKun": [
+   "ひだり"
+  ],
+  "primaryReadings": [
+   "ひだり"
+  ],
+  "acceptReadings": [
+   "さ",
+   "ひだり"
+  ],
+  "radicals": [
+   "Narwhal",
+   "Construction"
+  ],
+  "examples": [
+   {
+    "word": "左",
+    "reading": "ひだり",
+    "gloss": "left"
+   },
+   {
+    "word": "左側",
+    "reading": "ひだりがわ",
+    "gloss": "left side"
+   },
+   {
+    "word": "左向き",
+    "reading": "ひだりむき",
+    "gloss": "left facing"
+   },
+   {
+    "word": "左右する",
+    "reading": "さゆうする",
+    "gloss": "influence, control, command"
+   }
+  ],
+  "sentence": {
+   "sentence": "左にまがる。",
+   "translation": "Turn to the left."
+  }
+ },
+ {
+  "char": "本",
+  "level": 2,
+  "meanings": [
+   "Book",
+   "^Origin",
+   "^Real",
+   "^Main"
+  ],
+  "readingsOn": [
+   "ほん"
+  ],
+  "readingsKun": [
+   "もと"
+  ],
+  "primaryReadings": [
+   "もと"
+  ],
+  "acceptReadings": [
+   "ほん",
+   "もと"
+  ],
+  "radicals": [
+   "Book"
+  ],
+  "examples": [
+   {
+    "word": "本",
+    "reading": "ほん",
+    "gloss": "book"
+   },
+   {
+    "word": "本日",
+    "reading": "ほんじつ",
+    "gloss": "today"
+   },
+   {
+    "word": "本店",
+    "reading": "ほんてん",
+    "gloss": "head office"
+   },
+   {
+    "word": "本当に",
+    "reading": "ほんとうに",
+    "gloss": "really"
+   }
+  ],
+  "sentence": {
+   "sentence": "本をよむ。",
+   "translation": "I read the book."
+  }
+ },
+ {
+  "char": "正",
+  "level": 2,
+  "meanings": [
+   "Correct"
+  ],
+  "readingsOn": [
+   "せい",
+   "しょう"
+  ],
+  "readingsKun": [
+   "ただ",
+   "まさ"
+  ],
+  "primaryReadings": [
+   "ただ",
+   "まさ"
+  ],
+  "acceptReadings": [
+   "せい",
+   "しょう",
+   "ただ",
+   "まさ"
+  ],
+  "radicals": [
+   "Ground",
+   "Stop"
+  ],
+  "examples": [
+   {
+    "word": "正しい",
+    "reading": "ただしい",
+    "gloss": "correct [adj.]"
+   },
+   {
+    "word": "正す",
+    "reading": "ただす",
+    "gloss": "straighten"
+   },
+   {
+    "word": "正解",
+    "reading": "せいかい",
+    "gloss": "correct answer"
+   },
+   {
+    "word": "正義",
+    "reading": "せいぎ",
+    "gloss": "justice"
+   }
+  ],
+  "sentence": {
+   "sentence": "正しいこたえをかく。",
+   "translation": "I write the correct answer."
+  }
+ },
+ {
+  "char": "玉",
+  "level": 2,
+  "meanings": [
+   "Ball"
+  ],
+  "readingsOn": [
+   "ぎょく"
+  ],
+  "readingsKun": [
+   "たま"
+  ],
+  "primaryReadings": [
+   "ぎょく"
+  ],
+  "acceptReadings": [
+   "ぎょく",
+   "たま"
+  ],
+  "radicals": [
+   "King",
+   "Drop"
+  ],
+  "examples": [
+   {
+    "word": "玉",
+    "reading": "たま",
+    "gloss": "ball, jewel"
+   },
+   {
+    "word": "玉子",
+    "reading": "たまご",
+    "gloss": "egg"
+   },
+   {
+    "word": "玉葱",
+    "reading": "たまねぎ",
+    "gloss": "onion"
+   },
+   {
+    "word": "水玉模様",
+    "reading": "みずたまもよう",
+    "gloss": "polka dots"
+   }
+  ],
+  "sentence": {
+   "sentence": "玉をなげる。",
+   "translation": "I throw the ball."
+  }
+ },
+ {
+  "char": "田",
+  "level": 2,
+  "meanings": [
+   "Rice Paddy",
+   "^Rice Field",
+   "^Field"
+  ],
+  "readingsOn": [
+   "でん"
+  ],
+  "readingsKun": [
+   "た"
+  ],
+  "primaryReadings": [
+   "でん"
+  ],
+  "acceptReadings": [
+   "でん",
+   "た"
+  ],
+  "radicals": [
+   "Rice Paddy"
+  ],
+  "examples": [
+   {
+    "word": "田んぼ",
+    "reading": "たんぼ",
+    "gloss": "rice field"
+   },
+   {
+    "word": "田植え",
+    "reading": "たうえ",
+    "gloss": "rice planting"
+   },
+   {
+    "word": "水田",
+    "reading": "すいでん",
+    "gloss": "rice field"
+   },
+   {
+    "word": "田園",
+    "reading": "でんえん",
+    "gloss": "rural area"
+   }
+  ],
+  "sentence": {
+   "sentence": "田でこめをつくる。",
+   "translation": "I grow rice in the rice field."
+  }
+ },
+ {
+  "char": "白",
+  "level": 2,
+  "meanings": [
+   "White"
+  ],
+  "readingsOn": [
+   "はく"
+  ],
+  "readingsKun": [
+   "しろ",
+   "しら"
+  ],
+  "primaryReadings": [
+   "しろ",
+   "しら"
+  ],
+  "acceptReadings": [
+   "はく",
+   "しろ",
+   "しら"
+  ],
+  "radicals": [
+   "White"
+  ],
+  "examples": [
+   {
+    "word": "白い",
+    "reading": "しろい",
+    "gloss": "white"
+   },
+   {
+    "word": "白紙",
+    "reading": "はくし",
+    "gloss": "white paper"
+   },
+   {
+    "word": "白人",
+    "reading": "はくじん",
+    "gloss": "Caucasian"
+   },
+   {
+    "word": "白鳥",
+    "reading": "はくちょう",
+    "gloss": "swan"
+   }
+  ],
+  "sentence": {
+   "sentence": "白がすきです。",
+   "translation": "I like white."
+  }
+ },
+ {
+  "char": "目",
+  "level": 2,
+  "meanings": [
+   "Eye"
+  ],
+  "readingsOn": [
+   "もく"
+  ],
+  "readingsKun": [
+   "め"
+  ],
+  "primaryReadings": [
+   "もく"
+  ],
+  "acceptReadings": [
+   "もく",
+   "め"
+  ],
+  "radicals": [
+   "Eye"
+  ],
+  "examples": [
+   {
+    "word": "目",
+    "reading": "め",
+    "gloss": "eye"
+   },
+   {
+    "word": "目を通す",
+    "reading": "めをとおす",
+    "gloss": "scan, look over"
+   },
+   {
+    "word": "駄目な",
+    "reading": "だめな",
+    "gloss": "useless"
+   },
+   {
+    "word": "真面目な",
+    "reading": "まじめな",
+    "gloss": "serious"
+   }
+  ],
+  "sentence": {
+   "sentence": "目をとじる。",
+   "translation": "I close my eyes."
+  }
+ },
+ {
+  "char": "立",
+  "level": 2,
+  "meanings": [
+   "Stand"
+  ],
+  "readingsOn": [
+   "りつ",
+   "りゅう"
+  ],
+  "readingsKun": [
+   "た"
+  ],
+  "primaryReadings": [
+   "た"
+  ],
+  "acceptReadings": [
+   "りつ",
+   "りゅう",
+   "た"
+  ],
+  "radicals": [
+   "Stand"
+  ],
+  "examples": [
+   {
+    "word": "立つ",
+    "reading": "たつ",
+    "gloss": "to stand"
+   },
+   {
+    "word": "国立",
+    "reading": "こくりつ",
+    "gloss": "national"
+   }
+  ],
+  "sentence": {
+   "sentence": "はたを立てる。",
+   "translation": "I put up the flag."
+  }
+ },
+ {
+  "char": "万",
+  "level": 3,
+  "meanings": [
+   "Ten Thousand"
+  ],
+  "readingsOn": [
+   "まん",
+   "ばん"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "まん"
+  ],
+  "acceptReadings": [
+   "まん",
+   "ばん"
+  ],
+  "radicals": [
+   "Leaf",
+   "Sword"
+  ],
+  "examples": [
+   {
+    "word": "一万円",
+    "reading": "いちまんえん",
+    "gloss": "ten thousand yen"
+   },
+   {
+    "word": "万年筆",
+    "reading": "まんねんひつ",
+    "gloss": "fountain pen"
+   },
+   {
+    "word": "万引きする",
+    "reading": "まんびきする",
+    "gloss": "shoplift"
+   },
+   {
+    "word": "万歳",
+    "reading": "ばんざい",
+    "gloss": "banzai! (cheer)"
+   }
+  ],
+  "sentence": {
+   "sentence": "一万円さつを見る。",
+   "translation": "Look at the 10,000 yen bill."
+  }
+ },
+ {
+  "char": "今",
+  "level": 3,
+  "meanings": [
+   "Now"
+  ],
+  "readingsOn": [
+   "こん"
+  ],
+  "readingsKun": [
+   "いま"
+  ],
+  "primaryReadings": [
+   "いま"
+  ],
+  "acceptReadings": [
+   "こん",
+   "いま"
+  ],
+  "radicals": [
+   "Now"
+  ],
+  "examples": [
+   {
+    "word": "今",
+    "reading": "いま",
+    "gloss": "now"
+   },
+   {
+    "word": "今風",
+    "reading": "いまふう",
+    "gloss": "modern style"
+   },
+   {
+    "word": "今月",
+    "reading": "こんげつ",
+    "gloss": "this month"
+   },
+   {
+    "word": "今週",
+    "reading": "こんしゅう",
+    "gloss": "this week"
+   }
+  ],
+  "sentence": {
+   "sentence": "今、雨がやんだ。",
+   "translation": "Now, the rain has stopped."
+  }
+ },
+ {
+  "char": "元",
+  "level": 3,
+  "meanings": [
+   "Origin"
+  ],
+  "readingsOn": [
+   "げん",
+   "がん"
+  ],
+  "readingsKun": [
+   "もと"
+  ],
+  "primaryReadings": [
+   "もと"
+  ],
+  "acceptReadings": [
+   "げん",
+   "がん",
+   "もと"
+  ],
+  "radicals": [
+   "Origin"
+  ],
+  "examples": [
+   {
+    "word": "元気な",
+    "reading": "げんきな",
+    "gloss": "energetic"
+   },
+   {
+    "word": "紀元前",
+    "reading": "きげんぜん",
+    "gloss": "B.C.E."
+   },
+   {
+    "word": "三次元",
+    "reading": "さんじげん",
+    "gloss": "3 dimensions"
+   },
+   {
+    "word": "元祖",
+    "reading": "がんそ",
+    "gloss": "founder, inventor"
+   }
+  ],
+  "sentence": {
+   "sentence": "元気にあいさつする。",
+   "translation": "Greet cheerfully."
+  }
+ },
+ {
+  "char": "公",
+  "level": 3,
+  "meanings": [
+   "Public"
+  ],
+  "readingsOn": [
+   "こう"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "こう"
+  ],
+  "acceptReadings": [
+   "こう"
+  ],
+  "radicals": [
+   "Fins",
+   "Private"
+  ],
+  "examples": [
+   {
+    "word": "公園",
+    "reading": "こうえん",
+    "gloss": "park"
+   },
+   {
+    "word": "公害",
+    "reading": "こうがい",
+    "gloss": "public nuisance, pollution"
+   },
+   {
+    "word": "公判",
+    "reading": "こうはん",
+    "gloss": "public hearing, trial"
+   },
+   {
+    "word": "公式",
+    "reading": "こうしき",
+    "gloss": "formula, formal, official"
+   }
+  ],
+  "sentence": {
+   "sentence": "公園でボールをける。",
+   "translation": "Kick a ball at the park."
+  }
+ },
+ {
+  "char": "内",
+  "level": 3,
+  "meanings": [
+   "Inside",
+   "^Within"
+  ],
+  "readingsOn": [
+   "ない"
+  ],
+  "readingsKun": [
+   "うち"
+  ],
+  "primaryReadings": [
+   "うち"
+  ],
+  "acceptReadings": [
+   "ない",
+   "うち"
+  ],
+  "radicals": [
+   "Head",
+   "Person"
+  ],
+  "examples": [
+   {
+    "word": "内側",
+    "reading": "うちがわ",
+    "gloss": "inside"
+   },
+   {
+    "word": "内気な",
+    "reading": "うちきな",
+    "gloss": "shy"
+   },
+   {
+    "word": "内容",
+    "reading": "ないよう",
+    "gloss": "content"
+   },
+   {
+    "word": "内部",
+    "reading": "ないぶ",
+    "gloss": "interior"
+   }
+  ],
+  "sentence": {
+   "sentence": "家の内にいる。",
+   "translation": "Be inside the house."
+  }
+ },
+ {
+  "char": "分",
+  "level": 3,
+  "meanings": [
+   "Part",
+   "^Minute",
+   "^Separate",
+   "^Understand"
+  ],
+  "readingsOn": [
+   "ぶん",
+   "ふん",
+   "ぶ"
+  ],
+  "readingsKun": [
+   "わ"
+  ],
+  "primaryReadings": [
+   "わ"
+  ],
+  "acceptReadings": [
+   "ぶん",
+   "ふん",
+   "ぶ",
+   "わ"
+  ],
+  "radicals": [
+   "Fins",
+   "Sword"
+  ],
+  "examples": [
+   {
+    "word": "随分",
+    "reading": "ずいぶん",
+    "gloss": "extremely"
+   },
+   {
+    "word": "多分",
+    "reading": "たぶん",
+    "gloss": "perhaps"
+   },
+   {
+    "word": "十分に",
+    "reading": "じゅうぶんに",
+    "gloss": "enough"
+   },
+   {
+    "word": "自分",
+    "reading": "じぶん",
+    "gloss": "oneself"
+   }
+  ],
+  "sentence": {
+   "sentence": "自分でやってみる。",
+   "translation": "I'll try it myself."
+  }
+ },
+ {
+  "char": "切",
+  "level": 3,
+  "meanings": [
+   "Cut"
+  ],
+  "readingsOn": [
+   "せつ"
+  ],
+  "readingsKun": [
+   "き"
+  ],
+  "primaryReadings": [
+   "き"
+  ],
+  "acceptReadings": [
+   "せつ",
+   "き"
+  ],
+  "radicals": [
+   "Seven",
+   "Sword"
+  ],
+  "examples": [
+   {
+    "word": "切る",
+    "reading": "きる",
+    "gloss": "cut"
+   },
+   {
+    "word": "締め切り",
+    "reading": "しめきり",
+    "gloss": "deadline"
+   },
+   {
+    "word": "切符",
+    "reading": "きっぷ",
+    "gloss": "ticket"
+   },
+   {
+    "word": "切断する",
+    "reading": "せつだんする",
+    "gloss": "cut"
+   }
+  ],
+  "sentence": {
+   "sentence": "紙を切る。",
+   "translation": "Cut the paper."
+  }
+ },
+ {
+  "char": "午",
+  "level": 3,
+  "meanings": [
+   "Noon"
+  ],
+  "readingsOn": [
+   "ご"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "ご"
+  ],
+  "acceptReadings": [
+   "ご"
+  ],
+  "radicals": [
+   "Slide",
+   "Dry"
+  ],
+  "examples": [
+   {
+    "word": "午前",
+    "reading": "ごぜん",
+    "gloss": "morning"
+   },
+   {
+    "word": "午後",
+    "reading": "ごご",
+    "gloss": "afternoon"
+   },
+   {
+    "word": "正午",
+    "reading": "しょうご",
+    "gloss": "noon"
+   }
+  ],
+  "sentence": {
+   "sentence": "午後に出かける。",
+   "translation": "Go out in the afternoon."
+  }
+ },
+ {
+  "char": "友",
+  "level": 3,
+  "meanings": [
+   "Friend"
+  ],
+  "readingsOn": [
+   "ゆう"
+  ],
+  "readingsKun": [
+   "とも"
+  ],
+  "primaryReadings": [
+   "とも"
+  ],
+  "acceptReadings": [
+   "ゆう",
+   "とも"
+  ],
+  "radicals": [
+   "Narwhal",
+   "Stool"
+  ],
+  "examples": [
+   {
+    "word": "友達",
+    "reading": "ともだち",
+    "gloss": "friend"
+   },
+   {
+    "word": "友人",
+    "reading": "ゆうじん",
+    "gloss": "friend"
+   },
+   {
+    "word": "友情",
+    "reading": "ゆうじょう",
+    "gloss": "friendship"
+   },
+   {
+    "word": "親友",
+    "reading": "しんゆう",
+    "gloss": "close friend"
+   }
+  ],
+  "sentence": {
+   "sentence": "友だちとあそぶ。",
+   "translation": "Play with a friend."
+  }
+ },
+ {
+  "char": "太",
+  "level": 3,
+  "meanings": [
+   "Fat"
+  ],
+  "readingsOn": [
+   "たい",
+   "た"
+  ],
+  "readingsKun": [
+   "ふと"
+  ],
+  "primaryReadings": [
+   "ふと"
+  ],
+  "acceptReadings": [
+   "たい",
+   "た",
+   "ふと"
+  ],
+  "radicals": [
+   "Big",
+   "Drop"
+  ],
+  "examples": [
+   {
+    "word": "太る",
+    "reading": "ふとる",
+    "gloss": "become fat"
+   },
+   {
+    "word": "太い",
+    "reading": "ふとい",
+    "gloss": "fat, thick"
+   },
+   {
+    "word": "太陽",
+    "reading": "たいよう",
+    "gloss": "sun"
+   },
+   {
+    "word": "太鼓",
+    "reading": "たいこ",
+    "gloss": "drum"
+   }
+  ],
+  "sentence": {
+   "sentence": "太いえだを見る。",
+   "translation": "Look at the thick branch."
+  }
+ },
+ {
+  "char": "少",
+  "level": 3,
+  "meanings": [
+   "Few",
+   "^A Little"
+  ],
+  "readingsOn": [
+   "しょう"
+  ],
+  "readingsKun": [
+   "すこ"
+  ],
+  "primaryReadings": [
+   "すこ"
+  ],
+  "acceptReadings": [
+   "しょう",
+   "すこ"
+  ],
+  "radicals": [
+   "Small",
+   "Slide"
+  ],
+  "examples": [
+   {
+    "word": "少し",
+    "reading": "すこし",
+    "gloss": "small quantity, a little"
+   },
+   {
+    "word": "少々",
+    "reading": "しょうしょう",
+    "gloss": "small quantity, a little"
+   },
+   {
+    "word": "少数",
+    "reading": "しょうすう",
+    "gloss": "minority"
+   },
+   {
+    "word": "少量",
+    "reading": "しょうりょう",
+    "gloss": "small quantity"
+   }
+  ],
+  "sentence": {
+   "sentence": "少し休む。",
+   "translation": "Rest a little."
+  }
+ },
+ {
+  "char": "引",
+  "level": 3,
+  "meanings": [
+   "Pull"
+  ],
+  "readingsOn": [
+   "いん"
+  ],
+  "readingsKun": [
+   "ひ"
+  ],
+  "primaryReadings": [
+   "いん"
+  ],
+  "acceptReadings": [
+   "いん",
+   "ひ"
+  ],
+  "radicals": [
+   "Bow",
+   "Stick"
+  ],
+  "examples": [
+   {
+    "word": "引く",
+    "reading": "ひく",
+    "gloss": "pull"
+   },
+   {
+    "word": "引き出し",
+    "reading": "ひきだし",
+    "gloss": "drawer"
+   },
+   {
+    "word": "引っ越し",
+    "reading": "ひっこし",
+    "gloss": "moving (e.g. residence)"
+   },
+   {
+    "word": "引力",
+    "reading": "いんりょく",
+    "gloss": "gravity"
+   }
+  ],
+  "sentence": {
+   "sentence": "戸を引く。",
+   "translation": "Pull the door."
+  }
+ },
+ {
+  "char": "心",
+  "level": 3,
+  "meanings": [
+   "Heart"
+  ],
+  "readingsOn": [
+   "しん"
+  ],
+  "readingsKun": [
+   "こころ"
+  ],
+  "primaryReadings": [
+   "こころ"
+  ],
+  "acceptReadings": [
+   "しん",
+   "こころ"
+  ],
+  "radicals": [
+   "Heart"
+  ],
+  "examples": [
+   {
+    "word": "心",
+    "reading": "こころ",
+    "gloss": "heart, spirit"
+   },
+   {
+    "word": "心理学",
+    "reading": "しんりがく",
+    "gloss": "psychology"
+   },
+   {
+    "word": "心臓病",
+    "reading": "しんぞうびょう",
+    "gloss": "heart disease"
+   },
+   {
+    "word": "心臓まひ",
+    "reading": "しんぞうまひ",
+    "gloss": "heart attack"
+   }
+  ],
+  "sentence": {
+   "sentence": "心があたたかい。",
+   "translation": "Warm-hearted."
+  }
+ },
+ {
+  "char": "戸",
+  "level": 3,
+  "meanings": [
+   "Door"
+  ],
+  "readingsOn": [
+   "こ"
+  ],
+  "readingsKun": [
+   "と"
+  ],
+  "primaryReadings": [
+   "こ"
+  ],
+  "acceptReadings": [
+   "こ",
+   "と"
+  ],
+  "radicals": [
+   "Door"
+  ],
+  "examples": [
+   {
+    "word": "戸",
+    "reading": "と",
+    "gloss": "door"
+   },
+   {
+    "word": "戸棚",
+    "reading": "とだな",
+    "gloss": "cupboard"
+   },
+   {
+    "word": "戸籍",
+    "reading": "こせき",
+    "gloss": "census, family register"
+   },
+   {
+    "word": "戸主",
+    "reading": "こしゅ",
+    "gloss": "head of a household"
+   }
+  ],
+  "sentence": {
+   "sentence": "戸をしめる。",
+   "translation": "Close the door."
+  }
+ },
+ {
+  "char": "方",
+  "level": 3,
+  "meanings": [
+   "Direction",
+   "^Way"
+  ],
+  "readingsOn": [
+   "ほう"
+  ],
+  "readingsKun": [
+   "かた"
+  ],
+  "primaryReadings": [
+   "かた"
+  ],
+  "acceptReadings": [
+   "ほう",
+   "かた"
+  ],
+  "radicals": [
+   "Direction"
+  ],
+  "examples": [
+   {
+    "word": "方向",
+    "reading": "ほうこう",
+    "gloss": "direction"
+   },
+   {
+    "word": "方言",
+    "reading": "ほうげん",
+    "gloss": "dialect"
+   },
+   {
+    "word": "地方",
+    "reading": "ちほう",
+    "gloss": "area"
+   },
+   {
+    "word": "方針",
+    "reading": "ほうしん",
+    "gloss": "policy, principle"
+   }
+  ],
+  "sentence": {
+   "sentence": "右の方を見る。",
+   "translation": "Look in the direction of the right."
+  }
+ },
+ {
+  "char": "牛",
+  "level": 3,
+  "meanings": [
+   "Cow"
+  ],
+  "readingsOn": [
+   "ぎゅう"
+  ],
+  "readingsKun": [
+   "うし"
+  ],
+  "primaryReadings": [
+   "うし"
+  ],
+  "acceptReadings": [
+   "ぎゅう",
+   "うし"
+  ],
+  "radicals": [
+   "Cow"
+  ],
+  "examples": [
+   {
+    "word": "牛",
+    "reading": "うし",
+    "gloss": "cow"
+   },
+   {
+    "word": "子牛",
+    "reading": "こうし",
+    "gloss": "calf"
+   },
+   {
+    "word": "牛乳",
+    "reading": "ぎゅうにゅう",
+    "gloss": "(cow) milk"
+   },
+   {
+    "word": "牛肉",
+    "reading": "ぎゅうにく",
+    "gloss": "beef"
+   }
+  ],
+  "sentence": {
+   "sentence": "牛が草を食べる。",
+   "translation": "The cow eats grass."
+  }
+ },
+ {
+  "char": "父",
+  "level": 3,
+  "meanings": [
+   "Father",
+   "^Dad"
+  ],
+  "readingsOn": [
+   "ふ"
+  ],
+  "readingsKun": [
+   "ちち"
+  ],
+  "primaryReadings": [
+   "ふ"
+  ],
+  "acceptReadings": [
+   "ふ",
+   "ちち"
+  ],
+  "radicals": [
+   "Father"
+  ],
+  "examples": [
+   {
+    "word": "父",
+    "reading": "ちち",
+    "gloss": "one's own father"
+   },
+   {
+    "word": "父親",
+    "reading": "ちちおや",
+    "gloss": "father"
+   },
+   {
+    "word": "父母",
+    "reading": "ふぼ",
+    "gloss": "one's own father and mother"
+   },
+   {
+    "word": "祖父",
+    "reading": "そふ",
+    "gloss": "one's own grandfather"
+   }
+  ],
+  "sentence": {
+   "sentence": "父とあそぶ。",
+   "translation": "Play with my father."
+  }
+ },
+ {
+  "char": "毛",
+  "level": 3,
+  "meanings": [
+   "Fur",
+   "^Hair"
+  ],
+  "readingsOn": [
+   "もう"
+  ],
+  "readingsKun": [
+   "け"
+  ],
+  "primaryReadings": [
+   "け"
+  ],
+  "acceptReadings": [
+   "もう",
+   "け"
+  ],
+  "radicals": [
+   "Fur"
+  ],
+  "examples": [
+   {
+    "word": "毛",
+    "reading": "け",
+    "gloss": "hair, fur"
+   },
+   {
+    "word": "毛糸",
+    "reading": "けいと",
+    "gloss": "knitting wool"
+   },
+   {
+    "word": "髪の毛",
+    "reading": "かみのけ",
+    "gloss": "hair (on the head)"
+   },
+   {
+    "word": "毛布",
+    "reading": "もうふ",
+    "gloss": "blanket"
+   }
+  ],
+  "sentence": {
+   "sentence": "毛がやわらかい。",
+   "translation": "The fur is soft."
+  }
+ },
+ {
+  "char": "止",
+  "level": 3,
+  "meanings": [
+   "Stop"
+  ],
+  "readingsOn": [
+   "し"
+  ],
+  "readingsKun": [
+   "と",
+   "や"
+  ],
+  "primaryReadings": [
+   "と",
+   "や"
+  ],
+  "acceptReadings": [
+   "し",
+   "と",
+   "や"
+  ],
+  "radicals": [
+   "Stop"
+  ],
+  "examples": [
+   {
+    "word": "止まる",
+    "reading": "とまる",
+    "gloss": "stop [v.i.]"
+   },
+   {
+    "word": "止める",
+    "reading": "とめる",
+    "gloss": "stop [v.t.]"
+   },
+   {
+    "word": "停止する",
+    "reading": "ていしする",
+    "gloss": "stop"
+   },
+   {
+    "word": "中止する",
+    "reading": "ちゅうしする",
+    "gloss": "cancel"
+   }
+  ],
+  "sentence": {
+   "sentence": "車を止める。",
+   "translation": "Stop the car."
+  }
+ },
+ {
+  "char": "冬",
+  "level": 3,
+  "meanings": [
+   "Winter"
+  ],
+  "readingsOn": [
+   "とう"
+  ],
+  "readingsKun": [
+   "ふゆ"
+  ],
+  "primaryReadings": [
+   "とう"
+  ],
+  "acceptReadings": [
+   "とう",
+   "ふゆ"
+  ],
+  "radicals": [
+   "Winter",
+   "Two"
+  ],
+  "examples": [
+   {
+    "word": "冬",
+    "reading": "ふゆ",
+    "gloss": "winter"
+   },
+   {
+    "word": "冬学期",
+    "reading": "ふゆがっき",
+    "gloss": "winter semester"
+   },
+   {
+    "word": "真冬",
+    "reading": "まふゆ",
+    "gloss": "midwinter"
+   },
+   {
+    "word": "冬期",
+    "reading": "とうき",
+    "gloss": "winter term"
+   }
+  ],
+  "sentence": {
+   "sentence": "冬になる。",
+   "translation": "Winter comes."
+  }
+ },
+ {
+  "char": "北",
+  "level": 3,
+  "meanings": [
+   "North"
+  ],
+  "readingsOn": [
+   "ほく"
+  ],
+  "readingsKun": [
+   "きた"
+  ],
+  "primaryReadings": [
+   "きた"
+  ],
+  "acceptReadings": [
+   "ほく",
+   "きた"
+  ],
+  "radicals": [
+   "Fingers",
+   "Spoon"
+  ],
+  "examples": [
+   {
+    "word": "北",
+    "reading": "きた",
+    "gloss": "north"
+   },
+   {
+    "word": "北風",
+    "reading": "きたかぜ",
+    "gloss": "north wind"
+   },
+   {
+    "word": "北半球",
+    "reading": "きたはんきゅう",
+    "gloss": "northern hemisphere"
+   },
+   {
+    "word": "北部",
+    "reading": "ほくぶ",
+    "gloss": "northern part"
+   }
+  ],
+  "sentence": {
+   "sentence": "北から来る風がつめたい。",
+   "translation": "The wind coming from the north is cold."
+  }
+ },
+ {
+  "char": "半",
+  "level": 3,
+  "meanings": [
+   "Half"
+  ],
+  "readingsOn": [
+   "はん"
+  ],
+  "readingsKun": [
+   "なか"
+  ],
+  "primaryReadings": [
+   "なか"
+  ],
+  "acceptReadings": [
+   "はん",
+   "なか"
+  ],
+  "radicals": [
+   "Triceratops",
+   "Dry"
+  ],
+  "examples": [
+   {
+    "word": "半分",
+    "reading": "はんぶん",
+    "gloss": "half"
+   },
+   {
+    "word": "半額",
+    "reading": "はんがく",
+    "gloss": "half price"
+   },
+   {
+    "word": "半導体",
+    "reading": "はんどうたい",
+    "gloss": "semiconductor"
+   },
+   {
+    "word": "半熟",
+    "reading": "はんじゅく",
+    "gloss": "soft-boiled"
+   }
+  ],
+  "sentence": {
+   "sentence": "三時半に帰る。",
+   "translation": "Go home at 3:30."
+  }
+ },
+ {
+  "char": "古",
+  "level": 3,
+  "meanings": [
+   "Old"
+  ],
+  "readingsOn": [
+   "こ"
+  ],
+  "readingsKun": [
+   "ふる"
+  ],
+  "primaryReadings": [
+   "ふる"
+  ],
+  "acceptReadings": [
+   "こ",
+   "ふる"
+  ],
+  "radicals": [
+   "Old"
+  ],
+  "examples": [
+   {
+    "word": "古い",
+    "reading": "ふるい",
+    "gloss": "old"
+   },
+   {
+    "word": "古新聞",
+    "reading": "ふるしんぶん",
+    "gloss": "old newspapers"
+   },
+   {
+    "word": "古典",
+    "reading": "こてん",
+    "gloss": "classics"
+   },
+   {
+    "word": "古代",
+    "reading": "こだい",
+    "gloss": "ancient times"
+   }
+  ],
+  "sentence": {
+   "sentence": "古い本を読む。",
+   "translation": "Read an old book."
+  }
+ },
+ {
+  "char": "台",
+  "level": 3,
+  "meanings": [
+   "Machine"
+  ],
+  "readingsOn": [
+   "だい",
+   "^たい"
+  ],
+  "readingsKun": [],
+  "primaryReadings": [
+   "だい"
+  ],
+  "acceptReadings": [
+   "だい",
+   "^たい"
+  ],
+  "radicals": [
+   "Private",
+   "Mouth"
+  ],
+  "examples": [
+   {
+    "word": "台",
+    "reading": "だい",
+    "gloss": "stand, rack"
+   },
+   {
+    "word": "台座",
+    "reading": "だいざ",
+    "gloss": "pedestal"
+   },
+   {
+    "word": "台所",
+    "reading": "だいどころ",
+    "gloss": "kitchen"
+   },
+   {
+    "word": "台地",
+    "reading": "だいち",
+    "gloss": "plateau"
+   }
+  ],
+  "sentence": {
+   "sentence": "車が一台ある。",
+   "translation": "There is one car."
+  }
+ },
+ {
+  "char": "外",
+  "level": 3,
+  "meanings": [
+   "Outside"
+  ],
+  "readingsOn": [
+   "がい"
+  ],
+  "readingsKun": [
+   "そと",
+   "はず"
+  ],
+  "primaryReadings": [
+   "そと",
+   "はず"
+  ],
+  "acceptReadings": [
+   "がい",
+   "そと",
+   "はず"
+  ],
+  "radicals": [
+   "Evening",
+   "Toe"
+  ],
+  "examples": [
+   {
+    "word": "外",
+    "reading": "そと",
+    "gloss": "outside"
+   },
+   {
+    "word": "外国",
+    "reading": "がいこく",
+    "gloss": "foreign country"
+   },
+   {
+    "word": "外部",
+    "reading": "がいぶ",
+    "gloss": "the outside"
+   },
+   {
+    "word": "国外",
+    "reading": "こくがい",
+    "gloss": "outside the country"
+   }
+  ],
+  "sentence": {
+   "sentence": "外であそぶ。",
+   "translation": "Play outside."
+  }
+ },
+ {
+  "char": "市",
+  "level": 3,
+  "meanings": [
+   "City"
+  ],
+  "readingsOn": [
+   "し"
+  ],
+  "readingsKun": [
+   "いち"
+  ],
+  "primaryReadings": [
+   "いち"
+  ],
+  "acceptReadings": [
+   "し",
+   "いち"
+  ],
+  "radicals": [
+   "Lid",
+   "Towel"
+  ],
+  "examples": [
+   {
+    "word": "横浜市",
+    "reading": "よこはまし",
+    "gloss": "Yokohama city"
+   },
+   {
+    "word": "都市",
+    "reading": "とし",
+    "gloss": "city, urban area"
+   },
+   {
+    "word": "市内",
+    "reading": "しない",
+    "gloss": "(within a) city"
+   },
+   {
+    "word": "市外",
+    "reading": "しがい",
+    "gloss": "outside the city"
+   }
+  ],
+  "sentence": {
+   "sentence": "市にすむ。",
+   "translation": "Live in the city."
+  }
+ },
+ {
+  "char": "広",
+  "level": 3,
+  "meanings": [
+   "Wide"
+  ],
+  "readingsOn": [
+   "こう"
+  ],
+  "readingsKun": [
+   "ひろ"
+  ],
+  "primaryReadings": [
+   "こう"
+  ],
+  "acceptReadings": [
+   "こう",
+   "ひろ"
+  ],
+  "radicals": [
+   "Canopy",
+   "Private"
+  ],
+  "examples": [
+   {
+    "word": "広い",
+    "reading": "ひろい",
+    "gloss": "spacious"
+   },
+   {
+    "word": "広まる",
+    "reading": "ひろまる",
+    "gloss": "spread [v.i.]"
+   },
+   {
+    "word": "広がる",
+    "reading": "ひろがる",
+    "gloss": "spread [v.i.]"
+   },
+   {
+    "word": "広げる",
+    "reading": "ひろげる",
+    "gloss": "spread [v.t.]"
+   }
+  ],
+  "sentence": {
+   "sentence": "広い海を見る。",
+   "translation": "Look at the wide sea."
+  }
+ },
+ {
+  "char": "母",
+  "level": 3,
+  "meanings": [
+   "Mother",
+   "^Mom",
+   "^Mum"
+  ],
+  "readingsOn": [
+   "ぼ"
+  ],
+  "readingsKun": [
+   "はは"
+  ],
+  "primaryReadings": [
+   "ぼ"
+  ],
+  "acceptReadings": [
+   "ぼ",
+   "はは"
+  ],
+  "radicals": [
+   "Sun",
+   "Drop"
+  ],
+  "examples": [
+   {
+    "word": "母",
+    "reading": "はは",
+    "gloss": "one's own mother"
+   },
+   {
+    "word": "母親",
+    "reading": "ははおや",
+    "gloss": "mother"
+   },
+   {
+    "word": "母国語",
+    "reading": "ぼこくご",
+    "gloss": "mother tongue"
+   },
+   {
+    "word": "母音",
+    "reading": "ぼいん",
+    "gloss": "vowel"
+   }
+  ],
+  "sentence": {
+   "sentence": "母とかいものする。",
+   "translation": "Go shopping with my mother."
+  }
+ },
+ {
+  "char": "用",
+  "level": 3,
+  "meanings": [
+   "Task",
+   "^Use"
+  ],
+  "readingsOn": [
+   "よう"
+  ],
+  "readingsKun": [
+   "もち"
+  ],
+  "primaryReadings": [
+   "もち"
+  ],
+  "acceptReadings": [
+   "よう",
+   "もち"
+  ],
+  "radicals": [
+   "Task"
+  ],
+  "examples": [
+   {
+    "word": "用事",
+    "reading": "ようじ",
+    "gloss": "task"
+   },
+   {
+    "word": "急用",
+    "reading": "きゅうよう",
+    "gloss": "urgent business"
+   },
+   {
+    "word": "費用",
+    "reading": "ひよう",
+    "gloss": "cost"
+   },
+   {
+    "word": "家庭用",
+    "reading": "かていよう",
+    "gloss": "for home (vs. business) use"
+   }
+  ],
+  "sentence": {
+   "sentence": "用がある。",
+   "translation": "I have things to do."
+  }
+ },
+ {
+  "char": "矢",
+  "level": 3,
+  "meanings": [
+   "Arrow"
+  ],
+  "readingsOn": [
+   "し"
+  ],
+  "readingsKun": [
+   "や"
+  ],
+  "primaryReadings": [
+   "し"
+  ],
+  "acceptReadings": [
+   "し",
+   "や"
+  ],
+  "radicals": [
+   "Arrow"
+  ],
+  "examples": [
+   {
+    "word": "矢",
+    "reading": "や",
+    "gloss": "arrow"
+   },
+   {
+    "word": "矢印",
+    "reading": "やじるし",
+    "gloss": "directional arrow"
+   },
+   {
+    "word": "矢先",
+    "reading": "やさき",
+    "gloss": "arrowhead, brunt, target"
+   },
+   {
+    "word": "弓矢",
+    "reading": "ゆみや",
+    "gloss": "bow and arrow"
+   }
+  ],
+  "sentence": {
+   "sentence": "矢がとぶ。",
+   "translation": "The arrow flies."
+  }
+ },
+ {
+  "char": "生",
+  "level": 3,
+  "meanings": [
+   "Life"
+  ],
+  "readingsOn": [
+   "せい",
+   "しょう"
+  ],
+  "readingsKun": [
+   "い",
+   "なま",
+   "う",
+   "は",
+   "き"
+  ],
+  "primaryReadings": [
+   "い",
+   "なま",
+   "う",
+   "は",
+   "き"
+  ],
+  "acceptReadings": [
+   "せい",
+   "しょう",
+   "い",
+   "なま",
+   "う",
+   "は",
+   "き"
+  ],
+  "radicals": [
+   "Life"
+  ],
+  "examples": [
+   {
+    "word": "学生",
+    "reading": "がくせい",
+    "gloss": "student"
+   },
+   {
+    "word": "生活",
+    "reading": "せいかつ",
+    "gloss": "daily life"
+   },
+   {
+    "word": "生まれる",
+    "reading": "うまれる",
+    "gloss": "to be born"
+   }
+  ],
+  "sentence": {
+   "sentence": "赤ちゃんが生まれる。",
+   "translation": "A baby is born."
+  }
+ }
+]

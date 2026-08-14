@@ -1,0 +1,7 @@
+# Editor / assistant metadata
+.specstory/
+.claude/
+
+# OS junk
+.DS_Store
+Thumbs.db

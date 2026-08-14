@@ -1,0 +1,625 @@
+[
+ {
+  "name": "Big",
+  "glyph": "大",
+  "level": 1,
+  "kanji": [
+   "大",
+   "太"
+  ]
+ },
+ {
+  "name": "Construction",
+  "glyph": "工",
+  "level": 1,
+  "kanji": [
+   "工",
+   "左"
+  ]
+ },
+ {
+  "name": "Cross",
+  "glyph": "十",
+  "level": 1,
+  "kanji": [
+   "十",
+   "才"
+  ]
+ },
+ {
+  "name": "Enter",
+  "glyph": "入",
+  "level": 1,
+  "kanji": [
+   "入"
+  ]
+ },
+ {
+  "name": "Fins",
+  "glyph": "八",
+  "level": 1,
+  "kanji": [
+   "八",
+   "六",
+   "公",
+   "分"
+  ]
+ },
+ {
+  "name": "Ground",
+  "glyph": "一",
+  "level": 1,
+  "kanji": [
+   "一",
+   "三",
+   "上",
+   "下",
+   "正"
+  ]
+ },
+ {
+  "name": "Mountain",
+  "glyph": "山",
+  "level": 1,
+  "kanji": [
+   "山",
+   "出"
+  ]
+ },
+ {
+  "name": "Mouth",
+  "glyph": "口",
+  "level": 1,
+  "kanji": [
+   "口",
+   "右",
+   "四",
+   "台"
+  ]
+ },
+ {
+  "name": "Nine",
+  "glyph": "九",
+  "level": 1,
+  "kanji": [
+   "九",
+   "丸"
+  ]
+ },
+ {
+  "name": "Person",
+  "glyph": "人",
+  "level": 1,
+  "kanji": [
+   "人",
+   "内"
+  ]
+ },
+ {
+  "name": "Power",
+  "glyph": "力",
+  "level": 1,
+  "kanji": [
+   "力"
+  ]
+ },
+ {
+  "name": "River",
+  "glyph": "川",
+  "level": 1,
+  "kanji": [
+   "川"
+  ]
+ },
+ {
+  "name": "Seven",
+  "glyph": "七",
+  "level": 1,
+  "kanji": [
+   "七",
+   "切"
+  ]
+ },
+ {
+  "name": "Toe",
+  "glyph": "卜",
+  "level": 1,
+  "kanji": [
+   "上",
+   "下",
+   "外"
+  ]
+ },
+ {
+  "name": "Two",
+  "glyph": "二",
+  "level": 1,
+  "kanji": [
+   "二",
+   "三",
+   "冬"
+  ]
+ },
+ {
+  "name": "Woman",
+  "glyph": "女",
+  "level": 1,
+  "kanji": [
+   "女"
+  ]
+ },
+ {
+  "name": "Barb",
+  "glyph": "了",
+  "level": 2,
+  "kanji": [
+   "了"
+  ]
+ },
+ {
+  "name": "Book",
+  "glyph": "本",
+  "level": 2,
+  "kanji": [
+   "本"
+  ]
+ },
+ {
+  "name": "Child",
+  "glyph": "子",
+  "level": 2,
+  "kanji": [
+   "子"
+  ]
+ },
+ {
+  "name": "Dirt",
+  "glyph": "土",
+  "level": 2,
+  "kanji": [
+   "土"
+  ]
+ },
+ {
+  "name": "Dog",
+  "glyph": "犬",
+  "level": 2,
+  "kanji": [
+   "犬"
+  ]
+ },
+ {
+  "name": "Drop",
+  "glyph": "丶",
+  "level": 2,
+  "kanji": [
+   "丸",
+   "玉",
+   "太",
+   "母"
+  ]
+ },
+ {
+  "name": "Evening",
+  "glyph": "夕",
+  "level": 2,
+  "kanji": [
+   "夕",
+   "外"
+  ]
+ },
+ {
+  "name": "Eye",
+  "glyph": "目",
+  "level": 2,
+  "kanji": [
+   "目"
+  ]
+ },
+ {
+  "name": "Fire",
+  "glyph": "火",
+  "level": 2,
+  "kanji": [
+   "火"
+  ]
+ },
+ {
+  "name": "Five",
+  "glyph": "五",
+  "level": 2,
+  "kanji": [
+   "五"
+  ]
+ },
+ {
+  "name": "Hand",
+  "glyph": "手",
+  "level": 2,
+  "kanji": [
+   "手"
+  ]
+ },
+ {
+  "name": "Head",
+  "glyph": "冂",
+  "level": 2,
+  "kanji": [
+   "円",
+   "内"
+  ]
+ },
+ {
+  "name": "Heaven",
+  "glyph": "天",
+  "level": 2,
+  "kanji": [
+   "天"
+  ]
+ },
+ {
+  "name": "King",
+  "glyph": "王",
+  "level": 2,
+  "kanji": [
+   "王",
+   "玉"
+  ]
+ },
+ {
+  "name": "Legs",
+  "glyph": "儿",
+  "level": 2,
+  "kanji": [
+   "四"
+  ]
+ },
+ {
+  "name": "Lid",
+  "glyph": "亠",
+  "level": 2,
+  "kanji": [
+   "六",
+   "円",
+   "市"
+  ]
+ },
+ {
+  "name": "Middle",
+  "glyph": "中",
+  "level": 2,
+  "kanji": [
+   "中"
+  ]
+ },
+ {
+  "name": "Moon",
+  "glyph": "月",
+  "level": 2,
+  "kanji": [
+   "月"
+  ]
+ },
+ {
+  "name": "Narwhal",
+  "glyph": "ナ",
+  "level": 2,
+  "kanji": [
+   "右",
+   "左",
+   "友"
+  ],
+  "uncertain": true
+ },
+ {
+  "name": "Rice Paddy",
+  "glyph": "田",
+  "level": 2,
+  "kanji": [
+   "田"
+  ]
+ },
+ {
+  "name": "Slide",
+  "glyph": "ノ",
+  "level": 2,
+  "kanji": [
+   "才",
+   "午",
+   "少"
+  ]
+ },
+ {
+  "name": "Small",
+  "glyph": "小",
+  "level": 2,
+  "kanji": [
+   "小",
+   "少"
+  ]
+ },
+ {
+  "name": "Stand",
+  "glyph": "立",
+  "level": 2,
+  "kanji": [
+   "立"
+  ]
+ },
+ {
+  "name": "Stool",
+  "glyph": "又",
+  "level": 2,
+  "kanji": [
+   "又",
+   "友"
+  ]
+ },
+ {
+  "name": "Stop",
+  "glyph": "止",
+  "level": 2,
+  "kanji": [
+   "正",
+   "止"
+  ]
+ },
+ {
+  "name": "Street",
+  "glyph": "丁",
+  "level": 2,
+  "kanji": [
+   "丁"
+  ]
+ },
+ {
+  "name": "Sun",
+  "glyph": "日",
+  "level": 2,
+  "kanji": [
+   "日",
+   "母"
+  ]
+ },
+ {
+  "name": "Sword",
+  "glyph": "刀",
+  "level": 2,
+  "kanji": [
+   "刀",
+   "万",
+   "分",
+   "切"
+  ]
+ },
+ {
+  "name": "Thousand",
+  "glyph": "千",
+  "level": 2,
+  "kanji": [
+   "千"
+  ]
+ },
+ {
+  "name": "Tree",
+  "glyph": "木",
+  "level": 2,
+  "kanji": [
+   "木"
+  ]
+ },
+ {
+  "name": "Water",
+  "glyph": "水",
+  "level": 2,
+  "kanji": [
+   "水"
+  ]
+ },
+ {
+  "name": "White",
+  "glyph": "白",
+  "level": 2,
+  "kanji": [
+   "白"
+  ]
+ },
+ {
+  "name": "Writing",
+  "glyph": "文",
+  "level": 2,
+  "kanji": [
+   "文"
+  ]
+ },
+ {
+  "name": "Arrow",
+  "glyph": "矢",
+  "level": 3,
+  "kanji": [
+   "矢"
+  ]
+ },
+ {
+  "name": "Bow",
+  "glyph": "弓",
+  "level": 3,
+  "kanji": [
+   "引"
+  ]
+ },
+ {
+  "name": "Canopy",
+  "glyph": "广",
+  "level": 3,
+  "kanji": [
+   "広"
+  ]
+ },
+ {
+  "name": "Cow",
+  "glyph": "牛",
+  "level": 3,
+  "kanji": [
+   "牛"
+  ]
+ },
+ {
+  "name": "Direction",
+  "glyph": "方",
+  "level": 3,
+  "kanji": [
+   "方"
+  ]
+ },
+ {
+  "name": "Door",
+  "glyph": "戸",
+  "level": 3,
+  "kanji": [
+   "戸"
+  ]
+ },
+ {
+  "name": "Dry",
+  "glyph": "干",
+  "level": 3,
+  "kanji": [
+   "午",
+   "半"
+  ]
+ },
+ {
+  "name": "Father",
+  "glyph": "父",
+  "level": 3,
+  "kanji": [
+   "父"
+  ]
+ },
+ {
+  "name": "Fingers",
+  "glyph": "爿",
+  "level": 3,
+  "kanji": [
+   "北"
+  ],
+  "uncertain": true
+ },
+ {
+  "name": "Fur",
+  "glyph": "毛",
+  "level": 3,
+  "kanji": [
+   "毛"
+  ]
+ },
+ {
+  "name": "Heart",
+  "glyph": "心",
+  "level": 3,
+  "kanji": [
+   "心"
+  ]
+ },
+ {
+  "name": "Leaf",
+  "glyph": "万",
+  "level": 3,
+  "kanji": [
+   "万"
+  ],
+  "uncertain": true
+ },
+ {
+  "name": "Life",
+  "glyph": "生",
+  "level": 3,
+  "kanji": [
+   "生"
+  ]
+ },
+ {
+  "name": "Now",
+  "glyph": "今",
+  "level": 3,
+  "kanji": [
+   "今"
+  ]
+ },
+ {
+  "name": "Old",
+  "glyph": "古",
+  "level": 3,
+  "kanji": [
+   "古"
+  ]
+ },
+ {
+  "name": "Origin",
+  "glyph": "元",
+  "level": 3,
+  "kanji": [
+   "元"
+  ]
+ },
+ {
+  "name": "Private",
+  "glyph": "厶",
+  "level": 3,
+  "kanji": [
+   "公",
+   "台",
+   "広"
+  ]
+ },
+ {
+  "name": "Spoon",
+  "glyph": "匕",
+  "level": 3,
+  "kanji": [
+   "北"
+  ]
+ },
+ {
+  "name": "Stick",
+  "glyph": "丨",
+  "level": 3,
+  "kanji": [
+   "引"
+  ]
+ },
+ {
+  "name": "Task",
+  "glyph": "用",
+  "level": 3,
+  "kanji": [
+   "用"
+  ]
+ },
+ {
+  "name": "Towel",
+  "glyph": "巾",
+  "level": 3,
+  "kanji": [
+   "市"
+  ]
+ },
+ {
+  "name": "Triceratops",
+  "glyph": "䒑",
+  "level": 3,
+  "kanji": [
+   "半"
+  ],
+  "uncertain": true
+ },
+ {
+  "name": "Winter",
+  "glyph": "夂",
+  "level": 3,
+  "kanji": [
+   "冬"
+  ]
+ }
+]

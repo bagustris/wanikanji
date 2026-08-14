@@ -166,8 +166,8 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .item-info h4 { margin: 0.6rem 0 0.3rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
 .item-info .word-list { display: flex; flex-direction: column; gap: 0.3rem; }
 .item-info .word { display: flex; justify-content: space-between; gap: 0.6rem; font-size: 0.9rem; }
-.item-info .word .jp { font-weight: 600; }
-.item-info .word .rd { color: var(--muted); }
+.item-info .word .jp { font-weight: 700; font-size: 1.05rem; color: var(--fg); }
+.item-info .word .rd { color: var(--accent); font-weight: 500; font-style: italic; }
 .item-info .word .gl { color: var(--muted); flex: 1; text-align: right; }
 .item-info .sentence { font-size: 0.95rem; margin: 0.2rem 0; }
 .item-info .sentence-tr { color: var(--muted); font-size: 0.85rem; }

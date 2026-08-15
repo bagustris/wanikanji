@@ -18,16 +18,11 @@
   }
   function levelUnlocked(lvl) { return lvl === 1 || levelPassed(lvl - 1); }
 
-  function prereqMet(item) {
-    if (!levelUnlocked(item.level)) return false;
-    if (item.type === 'radical') return true;
-    return Data.radicalItemsFor(item).every(r => stageOf(r.id) >= SRS.GURU);
-  }
+  function prereqMet(item) { return levelUnlocked(item.level); }
   function availableLessons() {
-    // radicals before kanji, lower level first
     return Data.items
       .filter(i => !isLearned(i.id) && prereqMet(i))
-      .sort((a, b) => a.level - b.level || (a.type === b.type ? 0 : a.type === 'radical' ? -1 : 1));
+      .sort((a, b) => a.level - b.level);
   }
   function dueReviews(t) {
     // Bypass mode: every learned, non-burned item counts as due (ignores SRS
@@ -73,8 +68,7 @@
     const firstLocked = allLevels.find(l => !levelUnlocked(l));
     const shownLevels = allLevels.filter(l => levelUnlocked(l) || l === firstLocked);
     $('level-progress').innerHTML = shownLevels.map(lvl => {
-      const rads = Data.radicalsInLevel(lvl), ks = Data.kanjiInLevel(lvl);
-      const rGuru = rads.filter(r => stageOf(r.id) >= SRS.GURU).length;
+      const ks = Data.kanjiInLevel(lvl);
       const kGuru = ks.filter(k => stageOf(k.id) >= SRS.GURU).length;
       const unlocked = levelUnlocked(lvl);
       const passed = levelPassed(lvl);
@@ -82,10 +76,6 @@
       return `<div class="level-row">
         <div class="level-row-head"><strong>Level ${lvl}</strong><span class="${unlocked ? '' : 'locked'}">${status}</span></div>
         <div class="level-bars">
-          <div class="level-bar">
-            <div class="level-bar-track"><div class="level-bar-fill fill-radical" style="width:${pct(rGuru, rads.length)}%"></div></div>
-            <div class="level-bar-label"><span>Radicals</span><span>${rGuru}/${rads.length}</span></div>
-          </div>
           <div class="level-bar">
             <div class="level-bar-track"><div class="level-bar-fill fill-kanji" style="width:${pct(kGuru, ks.length)}%"></div></div>
             <div class="level-bar-label"><span>Kanji</span><span>${kGuru}/${ks.length}</span></div>
@@ -101,7 +91,7 @@
         const next = Math.min(...upcoming.map(s => s.dueAt));
         $('next-review-hint').textContent = `Next review ${relTime(next - t)}. Use Extra Study to practice now.`;
       } else if (active.length === 0) {
-        $('next-review-hint').textContent = 'Start with Lessons to learn your first radicals.';
+        $('next-review-hint').textContent = 'Start with Lessons to learn your first kanji.';
       } else {
         $('next-review-hint').textContent = '';
       }
@@ -143,22 +133,17 @@
   function lessonPrev() { if (lessonIdx > 0) { lessonIdx--; renderLessonCard(); } }
 
   function itemCardHTML(item) {
-    if (item.type === 'radical') {
-      return `<span class="type-badge badge-radical">Radical 部首</span>
-        <div class="glyph badge-radical-glyph">${item.glyph}</div>
-        <div class="primary-meaning">${item.name}</div>
-        ${item.uncertain ? '<div class="uncertain-flag">≈ shape approximated with a standard character</div>' : ''}
-        <p class="composition">Learn this radical's name — you'll type it in reviews.</p>
-        ${itemInfoHTML(item)}`;
-    }
     const on = item.readingsOn.join('、') || '—';
     const kun = item.readingsKun.join('、') || '—';
-    const rads = Data.radicalItemsFor(item).map(r => `<span class="rad">${r.glyph} ${r.name}</span>`).join('');
+    // Radicals are a lightweight visual hint here, not a quizzable item:
+    // just glyph + name, no SRS state of their own.
+    const rads = Data.radicalItemsFor(item)
+      .map(r => `<span class="rad${r.uncertain ? ' rad-uncertain' : ''}">${r.glyph} ${r.name}</span>`).join('');
     return `<span class="type-badge badge-kanji">Kanji 漢字</span>
       <div class="glyph badge-kanji-glyph">${item.char}</div>
       <div class="primary-meaning">${item.meanings[0]}</div>
       <div class="readings">on: <b>${on}</b> &nbsp; kun: <b>${kun}</b></div>
-      <div class="composition">Radicals: ${rads || '—'}</div>
+      <div class="composition">Made of: ${rads || '—'}</div>
       ${itemInfoHTML(item)}`;
   }
 
@@ -190,16 +175,14 @@
     if (quiz.queue.length === 0) return finishQuiz();
     const q = quiz.queue[0];
     const item = quiz.perItem[q.id].item;
-    const isRadical = item.type === 'radical';
     $('quiz-progress').textContent = `${quiz.done} / ${quiz.total}`;
     const glyph = $('quiz-glyph');
     glyph.textContent = item.glyph;
     glyph.className = 'quiz-glyph ' + item.type;
-    $('quiz-type-badge').textContent = isRadical ? 'Radical' : 'Kanji';
-    $('quiz-type-badge').className = 'type-badge ' + (isRadical ? 'badge-radical' : 'badge-kanji');
+    $('quiz-type-badge').textContent = 'Kanji';
+    $('quiz-type-badge').className = 'type-badge badge-kanji';
     const isReading = q.qtype === 'reading';
-    const label = isReading ? '読み方 <b>Reading</b> (hiragana)'
-      : isRadical ? '部首の名前 <b>Radical name</b>' : '意味 <b>Meaning</b>';
+    const label = isReading ? '読み方 <b>Reading</b> (hiragana)' : '意味 <b>Meaning</b>';
     const qtypeLabel = isReading ? 'READING 読み方' : 'MEANING 意味';
     $('quiz-prompt').innerHTML =
       `<span class="qtype-badge ${isReading ? 'qtype-reading' : 'qtype-meaning'}">${qtypeLabel}</span>${label}`;
@@ -338,21 +321,6 @@
   }
 
   function itemInfoHTML(item) {
-    if (item.type === 'radical') {
-      // Kanji that use this radical + their meanings (mirrors kanji examples).
-      const used = (item.kanji || []).map(ch => Data.byId['k:' + ch]).filter(Boolean);
-      if (!used.length) return '';
-      const CAP = 12;
-      let html = '<h4>この部首を使う漢字 · Kanji using this radical</h4><div class="word-list">';
-      html += used.slice(0, CAP).map(k => {
-        const rd = (k.primaryReadings || []).slice(0, 2).join('、');
-        return `<div class="word rad-use"><span class="jp">${k.char}</span><span class="rd">${rd}</span><span class="gl">${k.meanings[0]}</span></div>`;
-      }).join('');
-      html += '</div>';
-      if (used.length > CAP) html += `<p class="sentence-tr">+${used.length - CAP} more</p>`;
-      return `<div class="item-info">${html}</div>`;
-    }
-    if (item.type !== 'kanji') return '';
     let html = '';
     if (item.examples && item.examples.length) {
       html += '<h4>例の言葉 · Example words</h4><div class="word-list">';

@@ -107,7 +107,6 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .level-bar-track { height: 8px; background: var(--border); border-radius: 5px; overflow: hidden; }
 .level-bar-fill { height: 100%; border-radius: 5px; }
 .level-bar-label { font-size: 0.65rem; color: var(--muted); margin-top: 0.2rem; display: flex; justify-content: space-between; }
-.fill-radical { background: var(--radical); }
 .fill-kanji { background: var(--kanji); }
 .next-review-hint { color: var(--muted); font-size: 0.85rem; text-align: center; margin-top: 1rem; }
 
@@ -130,26 +129,26 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 
 /* Type badge + glyphs */
 .type-badge { display: inline-block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.15rem 0.6rem; border-radius: 20px; color: #fff; margin-bottom: 0.6rem; }
-.badge-radical { background: var(--radical); }
 .badge-kanji { background: var(--kanji); }
 
 /* Item card (lessons) */
 .item-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem; text-align: center; }
 .item-card .glyph { font-size: 4.5rem; line-height: 1.1; margin: 0.3rem 0; }
-.badge-radical-glyph { color: var(--radical); }
 .badge-kanji-glyph { color: var(--kanji); }
 .item-card .primary-meaning { font-size: 1.5rem; font-weight: 700; margin: 0.2rem 0; }
 .item-card .readings { color: var(--muted); margin: 0.3rem 0 0.6rem; }
 .item-card .readings b { color: var(--fg); }
 .item-card .composition { font-size: 0.85rem; color: var(--muted); margin: 0.5rem 0; }
-.item-card .composition .rad { display: inline-block; background: var(--radical); color: #fff; border-radius: 6px; padding: 0.05rem 0.4rem; margin: 0.1rem; font-size: 0.8rem; }
+/* Component radicals: a lightweight visual hint, not a quizzable item —
+   small decorative chips, deliberately subordinate to the kanji above. */
+.item-card .composition .rad { display: inline-block; background: var(--radical); color: #fff; border-radius: 6px; padding: 0.05rem 0.4rem; margin: 0.1rem; font-size: 0.8rem; opacity: 0.85; }
+.item-card .composition .rad-uncertain { opacity: 0.6; font-style: italic; }
 .uncertain-flag { color: #c07a00; font-size: 0.75rem; }
 
 /* Quiz card */
 .quiz-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
 .quiz-glyph-wrap { margin-bottom: 0.5rem; }
 .quiz-glyph { display: block; font-size: 4.5rem; line-height: 1.15; }
-.quiz-glyph.radical { color: var(--radical); }
 .quiz-glyph.kanji { color: var(--kanji); }
 .quiz-prompt { font-size: 0.95rem; color: var(--muted); margin-bottom: 0.8rem; }
 .quiz-prompt b { color: var(--fg); }
@@ -180,8 +179,6 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .item-info .word .jp { font-weight: 700; font-size: 1.05rem; color: var(--fg); }
 .item-info .word .rd { color: var(--accent); font-weight: 500; font-style: italic; }
 .item-info .word .gl { color: var(--muted); flex: 1; text-align: right; }
-.item-info .word.rad-use .jp { color: var(--accent); font-family: "Noto Serif JP", serif; }
-.item-info .word.rad-use .rd { flex: none; text-align: center; min-width: 3.5rem; }
 .item-info .sentence { font-size: 0.95rem; margin: 0.2rem 0; }
 .item-info .sentence-tr { color: var(--muted); font-size: 0.85rem; }
 

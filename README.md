@@ -14,21 +14,26 @@ Live: https://bagustris.github.io/wanikanji
 
 ## What it does
 
-- **Radicals → Kanji** progression across **all 60 WaniKani levels**
-  (2,026 kanji, 223 radicals). Vocabulary is out of scope for now; instead each
-  kanji shows associated **example words and a sentence** (the "item info"
-  panel) so you learn kanji *in order to read* — toggleable in Settings.
+- **Kanji-only SRS** across **all 60 WaniKani levels** (2,026 kanji).
+  Vocabulary is out of scope for now; instead each kanji shows associated
+  **example words and a sentence** (the "item info" panel) so you learn kanji
+  *in order to read* — toggleable in Settings.
+- **Radicals as a lightweight visual aid, not a review track.** WaniKani's
+  223 radicals are shown as small glyph+name chips on each kanji's card
+  ("Made of: 一 Ground …") to help recognize its shape — they carry no SRS
+  state of their own, are never quizzed, and don't gate anything. Kanji
+  memorization is the goal; radicals are a mnemonic, not a 214-radical course.
 - **Full 9-stage SRS** (Apprentice 1–4 → Guru 1–2 → Master → Enlightened →
   Burned) with WaniKani intervals (4h, 8h, 1d, 2d, 1w, 2w, 1mo, 4mo) and the
   incorrect-answer penalty formula.
-- **Lessons** introduce new items; **Reviews** quiz the ones that are due;
+- **Lessons** introduce new kanji; **Reviews** quiz the ones that are due;
   **Extra Study** lets you practice learned items any time without touching the
   SRS schedule. A **Bypass schedule** setting makes every learned item
   reviewable immediately (still updating the SRS) — handy for cramming/testing.
-- **Item info** after answering: kanji show example words + a sentence;
-  **radicals show the kanji that use them** (with meanings). Toggleable.
-- **Progression gating:** a kanji unlocks once its component radicals reach
-  Guru; a level is passed when 90% of its kanji reach Guru, unlocking the next.
+- **Item info** after answering: example words + a sentence for that kanji.
+  Toggleable.
+- **Progression gating:** a level is passed (unlocking the next) once 90% of
+  its kanji reach Guru — no radical prerequisite.
 - **Typed grading:** readings match any accepted reading (kana), or only the
   primary reading if **Strict readings** is enabled in Settings; meanings are
   case/space-insensitive with small-typo tolerance (Levenshtein ≤ 1–2).
@@ -84,10 +89,9 @@ That resolves **359 radicals**. A meaning-match heuristic was tried and
 **rejected** (only ~8% of its glyphs were plausible radical shapes — it mapped
 "Roof"→屋, "Umbrella"→傘). WaniKani draws ~49 radicals as **custom artwork**
 (playful names like *Poop*, *Death Star*) with no Unicode form; those, plus ~70
-whose names have drifted, are **omitted** rather than faked. This leaves **0**
-Level 1–3 kanji without a radical prerequisite; **83** kanji at higher levels
-(of 2,026) have no radical gate and become lessonable as soon as their level
-unlocks.
+whose names have drifted, are **omitted** rather than faked and simply don't
+appear as a composition chip on the kanji that use them — this has no effect
+on lessons/reviews since radicals don't gate anything.
 
 [baerrach/wanikani_exporter]: https://github.com/baerrach/wanikani_exporter
 

@@ -1,15 +1,19 @@
 // Load + index data, build items and the unlock/dependency graph. window.Data.
+//
+// Radicals are NOT SRS items here — they're a lightweight, visual component
+// hint subordinate to kanji (a glyph + name shown on the kanji's card), not
+// a standalone lesson/review track. Only kanji enter `items`/the SRS queue.
 (function (root) {
   'use strict';
 
   const MAX_LEVEL = 3;
 
   const Data = {
-    radicals: [],       // raw radical records
+    radicals: [],       // raw radical records (component lookup only)
     kanji: [],          // raw kanji records
-    items: [],          // unified item list
+    items: [],          // unified item list (kanji only)
     byId: {},           // id -> item
-    radicalByName: {},   // name -> radical item
+    radicalByName: {},   // name -> radical record (glyph/name/uncertain)
 
     async load() {
       const [rads, kanji] = await Promise.all([
@@ -28,21 +32,11 @@
       this.radicalByName = {};
 
       for (const r of this.radicals) {
-        const item = {
-          id: 'r:' + r.name,
-          type: 'radical',
-          level: r.level,
+        this.radicalByName[r.name] = {
           glyph: r.glyph || r.name,
           name: r.name,
-          meanings: [r.name],
-          questions: ['meaning'],
-          radicals: [],
-          kanji: r.kanji || [],   // kanji that use this radical (for item info)
           uncertain: !!r.uncertain,
         };
-        this.items.push(item);
-        this.byId[item.id] = item;
-        this.radicalByName[r.name] = item;
       }
       for (const k of this.kanji) {
         const item = {
@@ -72,9 +66,8 @@
     },
 
     kanjiInLevel(lvl) { return this.items.filter(i => i.type === 'kanji' && i.level === lvl); },
-    radicalsInLevel(lvl) { return this.items.filter(i => i.type === 'radical' && i.level === lvl); },
 
-    // A kanji's radical items (resolved by name).
+    // A kanji's component radicals (resolved by name), for display only.
     radicalItemsFor(kanjiItem) {
       return (kanjiItem.radicals || []).map(n => this.radicalByName[n]).filter(Boolean);
     },

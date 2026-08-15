@@ -83,6 +83,8 @@ function buildKanjiDrillIndex() {
               sentence: s.sentence,
               translation: s.translation || '',
               target,
+              targetReading: ((s.readings && s.readings[0]) || '').replace(/\./g, ''),
+              targetGloss: s.meaning || '',
             });
           }
         }
@@ -99,6 +101,7 @@ function main() {
   const kanji = [];
   const radicalKanji = {};   // name -> [chars]
   const radicalLevel = {};   // name -> min level
+  let sentenceWordFoldedIn = 0;
 
   for (const [ch, v] of Object.entries(wk)) {
     const lvl = v.wk_level;
@@ -119,10 +122,20 @@ function main() {
       radicalLevel[r] = Math.min(radicalLevel[r] ?? 99, lvl);
     }
 
-    // one sentence whose target word contains this kanji (else none — a
+    // One sentence whose target word contains this kanji (else none — a
     // sentence where the kanji is incidental would undercut the purpose).
+    // Prefer a sentence built around a word already in the example-words
+    // list, so the sentence never introduces vocabulary the learner hasn't
+    // seen; if every candidate sentence's target word is new, fold that
+    // word into the example list instead of teaching it silently.
+    const exampleWords = (words[ch] || []).slice(0, 4);
     const sList = sents[ch] || [];
-    const sPref = sList[0] || null;
+    const sPref = sList.find(s => exampleWords.some(w => w.word === s.target)) || sList[0] || null;
+    const sentenceIntroducesNewWord = sPref && !exampleWords.some(w => w.word === sPref.target);
+    if (sentenceIntroducesNewWord) sentenceWordFoldedIn++;
+    const examples = sentenceIntroducesNewWord
+      ? [...exampleWords, { word: sPref.target, reading: sPref.targetReading, gloss: sPref.targetGloss }].slice(0, 5)
+      : exampleWords;
 
     kanji.push({
       char: ch,
@@ -133,7 +146,7 @@ function main() {
       primaryReadings: primary.length ? primary : allReadings.slice(0, 1),
       acceptReadings: allReadings.length ? allReadings : [],
       radicals: rads,
-      examples: (words[ch] || []).slice(0, 4),
+      examples,
       sentence: sPref ? { sentence: sPref.sentence, translation: sPref.translation } : null,
     });
   }
@@ -194,6 +207,7 @@ function main() {
   console.log(`kanji with zero resolvable radicals: ${zeroRadical.length} total, ${zeroL13} in L1-3`);
   console.log(`kanji with example words: ${kanji.length - noExamples}/${kanji.length}`);
   console.log(`kanji with a focus-word sentence: ${withSentence}/${kanji.length}`);
+  console.log(`sentences whose target word had to be folded into examples: ${sentenceWordFoldedIn}`);
   if (zeroL13 > 0) {
     console.error(`\n✗ FAIL: ${zeroL13} L1-3 kanji lost their radical prerequisite: ` +
       zeroRadical.filter(k => k.level <= 3).map(k => k.char).join(''));

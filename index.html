@@ -78,15 +78,15 @@
     <div class="cta-row">
       <button id="btn-lessons" class="cta-btn cta-lessons" disabled>
         <span class="cta-num" id="num-lessons">0</span>
-        <span class="cta-label">レッスン<span>Lessons</span></span>
+        <span class="cta-label">レッスン<span>Lessons · L</span></span>
       </button>
       <button id="btn-reviews" class="cta-btn cta-reviews" disabled>
         <span class="cta-num" id="num-reviews">0</span>
-        <span class="cta-label">復習<span>Reviews</span></span>
+        <span class="cta-label">復習<span>Reviews · R</span></span>
       </button>
     </div>
     <button id="btn-extra" class="extra-btn" disabled>
-      追加学習<span>Extra Study — practice learned items now (doesn't change SRS)</span>
+      追加学習<span>Extra Study — practice learned items now (doesn't change SRS) · E</span>
     </button>
 
     <h3 class="section-heading">SRSステージ<span>SRS stages</span></h3>
@@ -101,20 +101,20 @@
   <!-- Lesson info card -->
   <section id="screen-lesson" class="screen hidden">
     <div class="session-topbar">
-      <button class="link-btn btn-quit-session">&larr; やめる<span>Quit</span></button>
+      <button class="link-btn btn-quit-session">&larr; やめる<span>Quit · Q</span></button>
       <div id="lesson-progress" class="session-progress"></div>
     </div>
     <div id="lesson-card" class="item-card"></div>
     <div class="session-actions">
-      <button id="btn-lesson-prev" class="secondary-btn">&larr; 前</button>
-      <button id="btn-lesson-next" class="primary-btn">次 &rarr;<span>Enter</span></button>
+      <button id="btn-lesson-prev" class="secondary-btn">&larr; 前<span>H / ←</span></button>
+      <button id="btn-lesson-next" class="primary-btn">次 &rarr;<span>Enter / L / →</span></button>
     </div>
   </section>
 
   <!-- Typed quiz (reviews / lessons quiz / extra study) -->
   <section id="screen-quiz" class="screen hidden">
     <div class="session-topbar">
-      <button class="link-btn btn-quit-session">&larr; やめる<span>Quit</span></button>
+      <button class="link-btn btn-quit-session">&larr; やめる<span>Quit · Q</span></button>
       <div id="quiz-progress" class="session-progress"></div>
     </div>
     <div class="quiz-card" id="quiz-card">
@@ -128,8 +128,8 @@
                autocorrect="off" spellcheck="false" aria-label="Answer" />
       </form>
       <p id="quiz-feedback" class="quiz-feedback"></p>
-      <div id="item-info" class="item-info hidden"></div>
-      <p id="quiz-continue" class="quiz-continue hidden">つづける<span>Enter →</span></p>
+      <div id="item-info" class="hidden"></div>
+      <p id="quiz-continue" class="quiz-continue hidden">つづける<span>Enter / L / J / →</span></p>
     </div>
   </section>
 

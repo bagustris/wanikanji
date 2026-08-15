@@ -197,14 +197,18 @@
     glyph.className = 'quiz-glyph ' + item.type;
     $('quiz-type-badge').textContent = isRadical ? 'Radical' : 'Kanji';
     $('quiz-type-badge').className = 'type-badge ' + (isRadical ? 'badge-radical' : 'badge-kanji');
-    const label = q.qtype === 'reading' ? '読み方 <b>Reading</b> (hiragana)'
+    const isReading = q.qtype === 'reading';
+    const label = isReading ? '読み方 <b>Reading</b> (hiragana)'
       : isRadical ? '部首の名前 <b>Radical name</b>' : '意味 <b>Meaning</b>';
-    $('quiz-prompt').innerHTML = label;
+    const qtypeLabel = isReading ? 'READING 読み方' : 'MEANING 意味';
+    $('quiz-prompt').innerHTML =
+      `<span class="qtype-badge ${isReading ? 'qtype-reading' : 'qtype-meaning'}">${qtypeLabel}</span>${label}`;
     const input = $('quiz-input');
     input.value = '';
-    input.className = 'quiz-input';
+    input.className = 'quiz-input ' + (isReading ? 'mode-reading' : 'mode-meaning');
     input.disabled = false;
-    input.lang = q.qtype === 'reading' ? 'ja' : 'en';
+    input.lang = isReading ? 'ja' : 'en';
+    input.placeholder = isReading ? 'reading (hiragana)…' : 'meaning (English)…';
     $('quiz-feedback').textContent = '';
     $('quiz-feedback').className = 'quiz-feedback';
     $('quiz-continue').classList.add('hidden');
@@ -340,12 +344,13 @@
       if (!used.length) return '';
       const CAP = 12;
       let html = '<h4>この部首を使う漢字 · Kanji using this radical</h4><div class="word-list">';
-      html += used.slice(0, CAP).map(k =>
-        `<div class="word"><span class="jp">${k.char}</span><span class="gl">${k.meanings[0]}</span></div>`
-      ).join('');
+      html += used.slice(0, CAP).map(k => {
+        const rd = (k.primaryReadings || []).slice(0, 2).join('、');
+        return `<div class="word rad-use"><span class="jp">${k.char}</span><span class="rd">${rd}</span><span class="gl">${k.meanings[0]}</span></div>`;
+      }).join('');
       html += '</div>';
       if (used.length > CAP) html += `<p class="sentence-tr">+${used.length - CAP} more</p>`;
-      return html;
+      return `<div class="item-info">${html}</div>`;
     }
     if (item.type !== 'kanji') return '';
     let html = '';
@@ -362,7 +367,7 @@
       if (item.sentence.translation) html += `<p class="sentence-tr">${item.sentence.translation}</p>`;
     }
     if (!html) html = '<p class="sentence-tr">No example words available.</p>';
-    return html;
+    return `<div class="item-info">${html}</div>`;
   }
 
   // ============================ SETTINGS ============================
@@ -415,18 +420,29 @@
     $('quiz-form').addEventListener('submit', e => { e.preventDefault(); submitAnswer(); });
 
     document.addEventListener('keydown', e => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
       if (e.key === 'Escape') {
         if (!$('settings-overlay').classList.contains('hidden')) { $('settings-overlay').classList.add('hidden'); return; }
         if (!$('screen-quiz').classList.contains('hidden') && quiz && !quiz.awaitingContinue) { revealSkip(); e.preventDefault(); return; }
       }
-      // lesson navigation
-      if (!$('screen-lesson').classList.contains('hidden')) {
-        if (e.key === 'Enter' || e.key === 'ArrowRight') { lessonNext(); e.preventDefault(); }
-        else if (e.key === 'ArrowLeft') { lessonPrev(); e.preventDefault(); }
+      const key = e.key.toLowerCase();
+
+      // dashboard: L/R/E mirror the Lessons/Reviews/Extra Study buttons
+      if (!$('screen-dashboard').classList.contains('hidden')) {
+        if (key === 'l' && !$('btn-lessons').disabled) { $('btn-lessons').click(); e.preventDefault(); return; }
+        if (key === 'r' && !$('btn-reviews').disabled) { $('btn-reviews').click(); e.preventDefault(); return; }
+        if (key === 'e' && !$('btn-extra').disabled) { $('btn-extra').click(); e.preventDefault(); return; }
       }
-      // quiz continue
+      // lesson navigation: arrows or vim h/l, Q to quit (no text input on this screen)
+      if (!$('screen-lesson').classList.contains('hidden')) {
+        if (e.key === 'Enter' || e.key === 'ArrowRight' || key === 'l') { lessonNext(); e.preventDefault(); return; }
+        if (e.key === 'ArrowLeft' || key === 'h') { lessonPrev(); e.preventDefault(); return; }
+        if (key === 'q') { document.querySelector('#screen-lesson .btn-quit-session').click(); e.preventDefault(); return; }
+      }
+      // quiz continue: input is disabled while awaiting continue, so letter shortcuts are safe here
       if (!$('screen-quiz').classList.contains('hidden') && quiz && quiz.awaitingContinue) {
-        if (e.key === 'Enter' || e.key === 'ArrowRight' || e.key === ' ') { advance(); e.preventDefault(); }
+        if (e.key === 'Enter' || e.key === 'ArrowRight' || e.key === ' ' || key === 'l' || key === 'j') { advance(); e.preventDefault(); return; }
+        if (key === 'q') { document.querySelector('#screen-quiz .btn-quit-session').click(); e.preventDefault(); return; }
       }
     });
   }

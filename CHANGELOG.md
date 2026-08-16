@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.3.1 — 2026-08-16
+
+### Fixed
+- **Romaji `nn` mis-conversion** — typing `nn` (e.g. as the WaniKani-style way to
+  force a single ん) produced んん instead of ん. Also fixed the related case
+  `"konnya"` converting to こんにゃ instead of こんや. `"onna"` → おんな (second
+  `n` starting a new syllable before a plain vowel) is unaffected.
+
 ## v0.3.0 — 2026-08-14
 
 Authoritative radical glyphs, radical item info, and a schedule-bypass setting.

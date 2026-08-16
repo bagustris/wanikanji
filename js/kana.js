@@ -53,6 +53,16 @@
       if (ch === 'n') {
         const next = s[i + 1];
         if (next === "'") { out += 'ん'; i += 2; continue; }
+        // "nn" before y/consonant/end is one ん, not two (e.g. "konnya" -> こんや,
+        // not こんにゃ; "nn" -> ん, not んん). "nn" before a, i, u, e, o is left
+        // to the normal path below, where the second n starts na/ni/nu/ne/no
+        // (e.g. "onna" -> おんな).
+        if (next === 'n') {
+          const after = s[i + 2];
+          if (after === 'y' || after === undefined || !/[aiueo]/.test(after)) {
+            out += 'ん'; i += 2; continue;
+          }
+        }
         if (next === undefined || !/[aiueoy]/.test(next)) { out += 'ん'; i += 1; continue; }
       }
       // sokuon: doubled consonant (except n) -> っ

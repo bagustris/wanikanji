@@ -9,6 +9,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { deriveContext } = require('./furigana.js');
 
 const ROOT = path.join(__dirname, '..');
 const KD = path.join(ROOT, '..', 'kanji-drill', 'data');
@@ -55,7 +56,12 @@ const CURATED = {
   Weapon: '戈', Brush: '聿', Bed: '爿', Cactus: '屮', Hills: '阝',
 };
 
-function stripMark(r) { return r.replace(/^!/, ''); }
+// Source markers: "!" = primary reading, "^" = uncommon/nonstandard reading
+// or meaning (WaniKani exporter convention). Both are stripped for actual
+// use (grading, display) — "^" is not carried through anywhere else, so a
+// left-in "^" broke exact-match reading grading and showed literal carets
+// in the UI (e.g. 工's second meaning rendered as "^Industry").
+function stripMark(r) { return r.replace(/^[!^]/, ''); }
 function isPrimary(r) { return r.startsWith('!'); }
 
 // --- Build example WORDS and SENTENCES indexes keyed by kanji char ---
@@ -103,6 +109,17 @@ function main() {
   const radicalLevel = {};   // name -> min level
   let sentenceWordFoldedIn = 0;
 
+  // char -> {on, kun}, for ALL WaniKani kanji regardless of level filter, so
+  // deriveContext() can look up a compound partner's readings even when that
+  // partner is outside 1..MAX_LEVEL.
+  const readingsByChar = {};
+  for (const [ch, v] of Object.entries(wk)) {
+    readingsByChar[ch] = {
+      on: (v.wk_readings_on || []).map(stripMark),
+      kun: (v.wk_readings_kun || []).map(stripMark),
+    };
+  }
+
   for (const [ch, v] of Object.entries(wk)) {
     const lvl = v.wk_level;
     if (!(lvl >= 1 && lvl <= MAX_LEVEL)) continue;
@@ -137,10 +154,24 @@ function main() {
       ? [...exampleWords, { word: sPref.target, reading: sPref.targetReading, gloss: sPref.targetGloss }].slice(0, 5)
       : exampleWords;
 
+    // Whether this kanji can be sensibly asked about on its own: it has a
+    // kun'yomi (so it can carry okurigana / stand alone as a native word) or
+    // one of its example words is just the bare kanji itself. Kanji that are
+    // on'yomi-only bound morphemes (性, 的, 工, ...) fail both and are almost
+    // never read/used in isolation — quizzing them alone teaches a reading
+    // nobody uses standalone.
+    const standalone = kun.length > 0 || examples.some(w => w.word === ch);
+    // Only non-standalone kanji need a display context (compound/okurigana)
+    // for the reading question — standalone kanji are already fine to ask
+    // about in isolation. Uses `examples` (not `exampleWords`) so a
+    // sentence-folded-in word (e.g. 訟, which has no kanji-drill examples of
+    // its own) is available to derive from too.
+    const context = standalone ? null : deriveContext(ch, examples, readingsByChar);
+
     kanji.push({
       char: ch,
       level: lvl,
-      meanings: v.wk_meanings && v.wk_meanings.length ? v.wk_meanings : v.meanings || [],
+      meanings: (v.wk_meanings && v.wk_meanings.length ? v.wk_meanings : v.meanings || []).map(stripMark),
       readingsOn: on,
       readingsKun: kun,
       primaryReadings: primary.length ? primary : allReadings.slice(0, 1),
@@ -148,6 +179,8 @@ function main() {
       radicals: rads,
       examples,
       sentence: sPref ? { sentence: sPref.sentence, translation: sPref.translation } : null,
+      standalone,
+      context,
     });
   }
 
@@ -208,6 +241,10 @@ function main() {
   console.log(`kanji with example words: ${kanji.length - noExamples}/${kanji.length}`);
   console.log(`kanji with a focus-word sentence: ${withSentence}/${kanji.length}`);
   console.log(`sentences whose target word had to be folded into examples: ${sentenceWordFoldedIn}`);
+  const nonStandaloneKanji = kanji.filter(k => !k.standalone);
+  const withContext = nonStandaloneKanji.filter(k => k.context).length;
+  console.log(`kanji flagged non-standalone (no kun, no bare-kanji example word): ${nonStandaloneKanji.length}/${kanji.length}`);
+  console.log(`  of those, resolved a display context (compound/okurigana): ${withContext}/${nonStandaloneKanji.length}`);
   if (zeroL13 > 0) {
     console.error(`\n✗ FAIL: ${zeroL13} L1-3 kanji lost their radical prerequisite: ` +
       zeroRadical.filter(k => k.level <= 3).map(k => k.char).join(''));

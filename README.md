@@ -1,5 +1,8 @@
 # ワニ漢字 — WaniKanji
 
+The goal of this project is to help you learn kanji by typing readings and meanings, *in order to read* rather than just memorize readings/meanings.  
+
+
 A **PC-first, typed-input** WaniKani-style kanji trainer. Unlike its sibling
 apps ([kanji-drill](https://github.com/bagustris/kanji-drill),
 [kotoba](https://github.com/bagustris/kotoba),

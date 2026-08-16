@@ -132,6 +132,19 @@
   }
   function lessonPrev() { if (lessonIdx > 0) { lessonIdx--; renderLessonCard(); } }
 
+  // Kanji with no independent reading (bound on'yomi morphemes like 性, 工)
+  // are shown inside their most common compound/okurigana word instead of
+  // alone, so the learner reads them the way they're actually used. The
+  // OTHER character(s) get furigana (or are already kana); the target
+  // itself is highlighted. Shared by the lesson card (first exposure) and
+  // the reading-quiz glyph.
+  function contextGlyphHTML(context) {
+    return context.segments.map(seg => seg.target
+      ? `<span class="ctx-target">${seg.text}</span>`
+      : (seg.furigana ? `<ruby>${seg.text}<rt>${seg.furigana}</rt></ruby>` : `<span class="ctx-kana">${seg.text}</span>`)
+    ).join('');
+  }
+
   function itemCardHTML(item) {
     const on = item.readingsOn.join('、') || '—';
     const kun = item.readingsKun.join('、') || '—';
@@ -139,8 +152,12 @@
     // just glyph + name, no SRS state of their own.
     const rads = Data.radicalItemsFor(item)
       .map(r => `<span class="rad${r.uncertain ? ' rad-uncertain' : ''}">${r.glyph} ${r.name}</span>`).join('');
+    const glyphHTML = item.context
+      ? `<div class="glyph badge-kanji-glyph quiz-glyph-context">${contextGlyphHTML(item.context)}</div>
+         <p class="quiz-context-caption">in ${item.context.word}${item.context.gloss ? ` · ${item.context.gloss}` : ''}</p>`
+      : `<div class="glyph badge-kanji-glyph">${item.char}</div>`;
     return `<span class="type-badge badge-kanji">Kanji 漢字</span>
-      <div class="glyph badge-kanji-glyph">${item.char}</div>
+      ${glyphHTML}
       <div class="primary-meaning">${item.meanings[0]}</div>
       <div class="readings">on: <b>${on}</b> &nbsp; kun: <b>${kun}</b></div>
       <div class="composition">Made of: ${rads || '—'}</div>
@@ -184,12 +201,27 @@
     const q = quiz.queue[0];
     const item = quiz.perItem[q.id].item;
     $('quiz-progress').textContent = `${quiz.done} / ${quiz.total}`;
+    const isReading = q.qtype === 'reading';
     const glyph = $('quiz-glyph');
-    glyph.textContent = item.glyph;
-    glyph.className = 'quiz-glyph ' + item.type;
+    const caption = $('quiz-context-caption');
+    // The target is still what gets graded, via its own acceptReadings —
+    // the context is presentation only (see contextGlyphHTML above).
+    if (isReading && item.context) {
+      glyph.innerHTML = contextGlyphHTML(item.context);
+      glyph.className = 'quiz-glyph quiz-glyph-context ' + item.type;
+      // Word only, no English gloss: reading and meaning are both quizzed
+      // this session, so showing the gloss here would give away the answer
+      // to this item's meaning question.
+      caption.textContent = `in ${item.context.word}`;
+      caption.classList.remove('hidden');
+    } else {
+      glyph.textContent = item.glyph;
+      glyph.className = 'quiz-glyph ' + item.type;
+      caption.textContent = '';
+      caption.classList.add('hidden');
+    }
     $('quiz-type-badge').textContent = 'Kanji';
     $('quiz-type-badge').className = 'type-badge badge-kanji';
-    const isReading = q.qtype === 'reading';
     const qtypeClass = isReading ? 'qtype-reading' : 'qtype-meaning';
     const label = isReading
       ? `読み方 <b class="${qtypeClass}">Reading</b> (hiragana)`
@@ -325,18 +357,20 @@
   // ============================ ITEM INFO ============================
   function maybeShowItemInfo(item) {
     if (!Progress.settings().showItemInfo) return;
-    const html = itemInfoHTML(item);
+    // Post-answer panel includes meanings/readings (the lesson card already
+    // shows those inline, so itemCardHTML doesn't pass this).
+    const html = itemInfoHTML(item, { withMeta: true });
     if (!html) return;
     $('item-info').innerHTML = html;
     $('item-info').classList.remove('hidden');
   }
 
-  function itemInfoHTML(item) {
+  function itemInfoHTML(item, { withMeta = false } = {}) {
     let html = '';
-    if (item.meanings && item.meanings.length) {
+    if (withMeta && item.meanings && item.meanings.length) {
       html += `<h4>意味 · Meanings</h4><p class="meta-line">${item.meanings.join(', ')}</p>`;
     }
-    if ((item.readingsOn && item.readingsOn.length) || (item.readingsKun && item.readingsKun.length)) {
+    if (withMeta && ((item.readingsOn && item.readingsOn.length) || (item.readingsKun && item.readingsKun.length))) {
       html += '<h4>読み · Readings</h4><p class="meta-line">';
       if (item.readingsOn && item.readingsOn.length) html += `<span class="reading-group">音 On: ${item.readingsOn.join('、')}</span>`;
       if (item.readingsKun && item.readingsKun.length) html += `<span class="reading-group">訓 Kun: ${item.readingsKun.join('、')}</span>`;

@@ -1,10 +1,21 @@
 # Changelog
 
-## v0.4.0 — 2026-08-16
+## v0.5.0 — 2026-08-16
 
-PC-first layout widened, and post-answer item info expanded.
+Non-standalone kanji (bound on'yomi morphemes with no independent reading,
+e.g. 性, 工, 的) are now taught and quizzed inside their most common
+compound/okurigana word instead of in isolation.
 
 ### Added
+- **Compound/okurigana context for non-standalone kanji** — 448 of 2026 kanji
+  have no kun'yomi and no standalone example word (e.g. 研 in 研究, 美 in
+  美しい). For these, the lesson card and reading quiz now show the kanji
+  inside its most common compound (other character furigana'd) or with its
+  okurigana, highlighting the target character. Grading is unaffected — it
+  still checks the target's own accepted readings; the context is
+  presentation only. Resolved for 423/448 (94%) via a build-time
+  reading-matching algorithm (`tools/furigana.js`, rendaku/sokuon-aware);
+  the rest fall back to the plain isolated glyph, unchanged from before.
 - **Meanings + readings in item info** — after answering a lesson/review item,
   the info panel now shows the kanji's meanings and On/Kun readings, in
   addition to the existing example words and example sentence.
@@ -13,6 +24,14 @@ PC-first layout widened, and post-answer item info expanded.
 - **Wider desktop layout** — `--maxw` raised from 560px to 900px. Unlike its
   mobile-first siblings (kanji-drill, kotoba, jlpt), WaniKanji targets PC, so
   the app no longer sits in a narrow centered column on desktop screens.
+
+### Fixed
+- **`^`-marked readings/meanings leaking into grading and display** — the
+  WaniKani source data prefixes uncommon readings/meanings with `^` (e.g.
+  工's second on'yomi is `^く`), separate from the `!` primary-reading marker.
+  Only `!` was being stripped, so a literal `^` landed in `acceptReadings`
+  for 80 kanji — breaking their exact-match reading grading — and in
+  `meanings`, showing raw text like "^Industry" in the UI.
 
 ## v0.3.1 — 2026-08-16
 

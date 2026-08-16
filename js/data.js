@@ -53,6 +53,8 @@
           radicals: k.radicals,           // names
           examples: k.examples || [],
           sentence: k.sentence || null,
+          standalone: k.standalone !== false,
+          context: k.context || null,
           questions: ['meaning', 'reading'],
         };
         this.items.push(item);

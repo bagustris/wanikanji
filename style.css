@@ -150,6 +150,12 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .quiz-glyph-wrap { margin-bottom: 0.5rem; }
 .quiz-glyph { display: block; font-size: 4.5rem; line-height: 1.15; }
 .quiz-glyph.kanji { color: var(--kanji); }
+.quiz-glyph-context { font-size: 3.2rem; }
+.quiz-glyph-context .ctx-target { color: var(--kanji); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 0.12em; }
+.quiz-glyph-context .ctx-kana { color: var(--fg); }
+.quiz-glyph-context ruby { color: var(--fg); }
+.quiz-glyph-context rt { font-size: 1rem; color: var(--muted); font-weight: 400; }
+.quiz-context-caption { font-size: 0.85rem; color: var(--muted); margin: -0.2rem 0 0.4rem; }
 .quiz-prompt { font-size: 0.95rem; color: var(--muted); margin-bottom: 0.8rem; }
 .quiz-prompt b { font-weight: 700; }
 .quiz-prompt b.qtype-reading { color: var(--qtype-reading); }

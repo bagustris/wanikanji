@@ -2,9 +2,10 @@
    existing semantic names (--bg, --accent, etc.) so every rule below still
    works unchanged; only the palette/scale VALUES come from DESIGN.md.
    Category colors map to its "Tiered Progression" scheme: Primary/Radical
-   Blue, Secondary/Kanji Pink, Tertiary/Vocabulary Purple — the last isn't
-   used yet (this app has no vocabulary-SRS track), but is defined for the
-   SRS-stage tiles below, which reuse the same 3-hue family for consistency. */
+   Blue, Secondary/Kanji Pink — kanji glyphs/text use these directly; solid
+   fills (buttons, badges, SRS tiles) use the theme-constant --fill-* tokens
+   below instead, since a fill paired with white text needs a saturated
+   color in BOTH themes, not one that goes pastel-light in dark mode. */
 :root {
   --bg: #f4fafd;            /* background */
   --fg: #161d1f;             /* on-background */
@@ -13,22 +14,33 @@
   --border: #bec7d3;         /* outline-variant */
   --accent: #006398;         /* primary */
   --accent-dark: #004b73;    /* on-primary-fixed-variant */
-  --radical: #006398;        /* primary — "Radical Blue" */
   --kanji: #b10075;          /* secondary — "Kanji Pink" */
-  --vocab: #850aeb;          /* tertiary — "Vocabulary Purple" */
   --correct: #2e9e5b;
   --incorrect: #ba1a1a;      /* error */
-  --apprentice: #b10075;     /* secondary */
-  --guru: #850aeb;           /* tertiary */
-  --master: #006398;         /* primary */
-  --enlightened: #00aaff;    /* primary-container */
-  --burned: #3e4851;         /* on-surface-variant */
   --qtype-reading: #0f9b8e;
   --qtype-meaning: #c2740a;
   --warn-bg: #fff4d6;
   --warn-fg: #7a5c00;
   --danger-bg: #ffdad6;      /* error-container */
   --danger-fg: #93000a;      /* on-error-container */
+
+  /* "Fill" colors: same value in both themes, unlike --accent/--kanji/etc.
+     above which intentionally go pastel-light in dark mode (right for text
+     drawn on the page background, wrong for a solid chip/button/tile that
+     white text sits on — pastel-on-dark and white-on-pastel are opposite
+     needs). Anything pairing a saturated background with white text/icons
+     (badges, buttons, SRS tiles) should use these, not the adaptive tokens.
+     All check at >=4.5:1 contrast against white. */
+  --fill-accent: #006398;
+  --fill-accent-dark: #004b73;
+  --fill-kanji: #b10075;
+  --fill-radical: #006398;
+  --fill-apprentice: #b10075;
+  --fill-guru: #850aeb;
+  --fill-master: #006398;
+  --fill-enlightened: #0077b3;
+  --fill-burned: #434343;
+  --fill-incorrect: #ba1a1a;
 
   /* Shapes: rounded scale */
   --radius-sm: 0.25rem;
@@ -55,14 +67,10 @@
     --border: #3e4851;
     --accent: #93ccff;       /* inverse-primary */
     --accent-dark: #cce5ff;  /* primary-fixed */
-    --radical: #93ccff;
     --kanji: #ffafd2;        /* secondary-fixed-dim */
-    --vocab: #dbb8ff;        /* tertiary-fixed-dim */
-    --apprentice: #ffafd2;
-    --guru: #dbb8ff;
-    --master: #93ccff;
-    --enlightened: #7fd4ff;
-    --burned: #a9b4bd;
+    --incorrect: #ffb4ab;    /* error, dark-mode: was missing an override,
+                                 leaving the light-mode #ba1a1a at ~2.5:1
+                                 contrast against the dark background */
     --qtype-reading: #2dd4c4;
     --qtype-meaning: #e0a53a;
     --warn-bg: #4a3c14;
@@ -135,8 +143,8 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
   border-radius: var(--radius-full);
 }
 /* "thick bottom border" tactile press per DESIGN.md Action Buttons */
-.cta-lessons .cta-action { background: var(--kanji); border-bottom: 2px solid color-mix(in srgb, var(--kanji) 60%, black); }
-.cta-reviews .cta-action { background: var(--accent); border-bottom: 2px solid var(--accent-dark); }
+.cta-lessons .cta-action { background: var(--fill-kanji); border-bottom: 2px solid color-mix(in srgb, var(--fill-kanji) 60%, black); }
+.cta-reviews .cta-action { background: var(--fill-accent); border-bottom: 2px solid var(--fill-accent-dark); }
 .cta-btn:disabled .cta-action { border-bottom-color: transparent; }
 
 .extra-btn { width: 100%; border: 1px dashed var(--border); background: var(--card-bg); color: var(--fg); border-radius: var(--radius-lg); padding: 0.7rem; cursor: pointer; font-size: 0.9rem; margin-bottom: 1rem; }
@@ -152,11 +160,11 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .srs-cell { border-radius: var(--radius-lg); padding: 0.6rem 0.4rem; color: #fff; text-align: center; }
 .srs-cell .n { font-family: var(--font-headline); font-size: 1.4rem; font-weight: 700; display: block; }
 .srs-cell .k { font-family: var(--font-mono); font-size: 0.65rem; opacity: 0.9; }
-.srs-apprentice { background: var(--apprentice); }
-.srs-guru { background: var(--guru); }
-.srs-master { background: var(--master); }
-.srs-enlightened { background: var(--enlightened); }
-.srs-burned { background: var(--burned); }
+.srs-apprentice { background: var(--fill-apprentice); }
+.srs-guru { background: var(--fill-guru); }
+.srs-master { background: var(--fill-master); }
+.srs-enlightened { background: var(--fill-enlightened); }
+.srs-burned { background: var(--fill-burned); }
 
 /* Level progress */
 .level-progress { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -180,18 +188,18 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .session-progress { font-size: 0.85rem; color: var(--muted); }
 .session-actions { display: flex; gap: 0.7rem; justify-content: center; margin-top: 1.2rem; }
 .primary-btn, .secondary-btn, .danger-btn { border-radius: 10px; padding: 0.7rem 1.2rem; font-size: 0.95rem; cursor: pointer; border: none; }
-.primary-btn { background: var(--accent); color: #fff; }
-.primary-btn:hover { background: var(--accent-dark); }
+.primary-btn { background: var(--fill-accent); color: #fff; }
+.primary-btn:hover { background: var(--fill-accent-dark); }
 .primary-btn span, .secondary-btn span { display: block; font-size: 0.68rem; opacity: 0.85; }
 .secondary-btn { background: var(--card-bg); color: var(--fg); border: 1px solid var(--border); }
 .secondary-btn:hover { border-color: var(--accent); }
 .danger-btn { background: transparent; color: var(--incorrect); border: 1px solid var(--incorrect); }
-.danger-btn:hover { background: var(--incorrect); color: #fff; }
+.danger-btn:hover { background: var(--fill-incorrect); color: #fff; }
 .danger-btn span { display: block; font-size: 0.68rem; }
 
 /* Type badge + glyphs */
 .type-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.15rem 0.6rem; border-radius: var(--radius-full); color: #fff; margin-bottom: 0.6rem; }
-.badge-kanji { background: var(--kanji); }
+.badge-kanji { background: var(--fill-kanji); }
 
 /* Item card (lessons) */
 .item-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem; text-align: center; }
@@ -203,7 +211,7 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .item-card .composition { font-size: 0.85rem; color: var(--muted); margin: 0.5rem 0; }
 /* Component radicals: a lightweight visual hint, not a quizzable item —
    small decorative chips, deliberately subordinate to the kanji above. */
-.item-card .composition .rad { display: inline-block; background: var(--radical); color: #fff; border-radius: 6px; padding: 0.05rem 0.4rem; margin: 0.1rem; font-size: 0.8rem; opacity: 0.85; }
+.item-card .composition .rad { display: inline-block; background: var(--fill-radical); color: #fff; border-radius: 6px; padding: 0.05rem 0.4rem; margin: 0.1rem; font-size: 0.8rem; opacity: 0.85; }
 .item-card .composition .rad-uncertain { opacity: 0.6; font-style: italic; }
 .uncertain-flag { color: var(--warn-fg); font-size: 0.75rem; }
 
@@ -232,7 +240,7 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .quiz-input.mode-reading:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--qtype-reading) 35%, transparent); }
 .quiz-input.mode-meaning:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--qtype-meaning) 35%, transparent); }
 .quiz-input.correct { border-color: var(--correct); background: rgba(46,158,91,0.12); }
-.quiz-input.incorrect { border-color: var(--incorrect); background: rgba(208,69,92,0.12); }
+.quiz-input.incorrect { border-color: var(--incorrect); background: rgba(186,26,26,0.12); }
 .quiz-input.shake { animation: shake 0.3s; }
 @keyframes shake { 0%,100%{transform:translateX(0);} 20%,60%{transform:translateX(-7px);} 40%,80%{transform:translateX(7px);} }
 .quiz-feedback { min-height: 1.3rem; margin: 0.6rem 0 0; font-size: 0.9rem; }
@@ -262,7 +270,7 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .summary-stat span { font-size: 0.75rem; color: var(--muted); }
 .summary-items { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; margin: 1rem 0; }
 .summary-chip { padding: 0.3rem 0.6rem; border-radius: 8px; font-size: 1.1rem; border: 1px solid var(--border); }
-.summary-chip.missed { border-color: var(--incorrect); background: rgba(208,69,92,0.1); }
+.summary-chip.missed { border-color: var(--incorrect); background: rgba(186,26,26,0.1); }
 
 /* Settings */
 .settings-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 100; }
@@ -278,11 +286,11 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .switch input { opacity: 0; width: 0; height: 0; }
 .switch-slider { position: absolute; inset: 0; background: var(--border); border-radius: 24px; transition: 0.2s; cursor: pointer; }
 .switch-slider::before { content: ""; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: 0.2s; }
-.switch input:checked + .switch-slider { background: var(--accent); }
+.switch input:checked + .switch-slider { background: var(--fill-accent); }
 .switch input:checked + .switch-slider::before { transform: translateX(20px); }
 .settings-segmented { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
 .segmented-btn { flex: 1; padding: 0.5rem; border: 1px solid var(--border); background: var(--bg); color: var(--fg); border-radius: 8px; cursor: pointer; }
-.segmented-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.segmented-btn.active { background: var(--fill-accent); color: #fff; border-color: var(--fill-accent); }
 .settings-about { border-top: 1px solid var(--border); }
 .about-app { font-size: 0.9rem; margin: 0.3rem 0; }
 .about-version { color: var(--muted); font-size: 0.78rem; }

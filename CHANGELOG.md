@@ -1,5 +1,40 @@
 # Changelog
 
+## v0.6.0 — 2026-08-17
+
+Dashboard restyled around a new "Zenith Kanji" design system (see
+`DESIGN.md`), inspired by a Google Stitch mockup.
+
+### Changed
+- **Dashboard/visual redesign** — new color tokens, radius scale, and
+  typography roles (mono for technical labels/readings, headline font for
+  numbers/glyphs) applied throughout. Lessons/Reviews CTA cards changed from
+  solid gradient fills to white "tonal" cards with a colored status dot and
+  pill-shaped "Start" button. Root font size raised to 19px for PC reading
+  distance. Accessibility pass: `role="radio"`/`aria-checked` on the lesson-
+  batch-size control, `aria-live` on quiz feedback and banners, heading
+  hierarchy fix.
+
+### Fixed
+- **White text unreadable on pastel buttons/tiles in dark mode** — several
+  category colors intentionally go pastel-light in dark mode (correct for
+  text drawn on the dark background), but were also reused as *backgrounds*
+  paired with hardcoded white text (CTA buttons, SRS-stage tiles, primary
+  buttons, radical chips, toggle switches, the active batch-size pill) —
+  nearly invisible in dark mode. Added theme-constant `--fill-*` tokens
+  (≥4.5:1 contrast against white in both themes) for anything pairing a
+  solid color with white text/icons.
+- **`--enlightened` SRS-stage color failed contrast even in light mode**
+  (2.56:1, vs. the 4.5:1 AA minimum) — replaced with a darker blue (4.90:1).
+- **`--incorrect` (wrong-answer red) had no dark-mode override** — stayed at
+  its light-mode value, ~2.5:1 contrast against the dark background for
+  quiz feedback text/borders and the "Reset progress" button.
+- **Stale PWA theme colors** — `manifest.json` and `index.html`'s
+  `theme-color` still referenced the pre-redesign dark background.
+- **Service worker cache version not bumped** despite `style.css`/`app.js`/
+  `index.html` all changing — installed-PWA users would see one stale load
+  before updating.
+
 ## v0.5.0 — 2026-08-16
 
 Non-standalone kanji (bound on'yomi morphemes with no independent reading,

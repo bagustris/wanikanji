@@ -151,7 +151,9 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .quiz-glyph { display: block; font-size: 4.5rem; line-height: 1.15; }
 .quiz-glyph.kanji { color: var(--kanji); }
 .quiz-prompt { font-size: 0.95rem; color: var(--muted); margin-bottom: 0.8rem; }
-.quiz-prompt b { color: var(--fg); }
+.quiz-prompt b { font-weight: 700; }
+.quiz-prompt b.qtype-reading { color: var(--qtype-reading); }
+.quiz-prompt b.qtype-meaning { color: var(--qtype-meaning); }
 .qtype-badge { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
 .qtype-badge.qtype-reading { color: var(--qtype-reading); }
 .qtype-badge.qtype-meaning { color: var(--qtype-meaning); }

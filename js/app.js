@@ -152,18 +152,26 @@
   // mode: 'lesson' | 'review' | 'extra'
   let quiz = null;
 
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
   function startQuiz(items, mode) {
-    const queue = [];
     const perItem = {};
+    const readingQ = [], meaningQ = [];
     for (const it of items) {
       perItem[it.id] = { item: it, incorrect: 0, remaining: new Set(it.questions), erred: false };
-      for (const q of it.questions) queue.push({ id: it.id, qtype: q });
+      for (const q of it.questions) {
+        (q === 'reading' ? readingQ : meaningQ).push({ id: it.id, qtype: q });
+      }
     }
-    // Shuffle so a kanji's meaning and reading questions don't land back-to-back.
-    for (let i = queue.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [queue[i], queue[j]] = [queue[j], queue[i]];
-    }
+    // Blocked, not interleaved: all reading questions (items shuffled among
+    // themselves) come first, then all meaning questions (items shuffled).
+    const queue = [...shuffle(readingQ), ...shuffle(meaningQ)];
     quiz = { queue, perItem, mode, total: queue.length, done: 0, finished: [], answeredCorrect: 0, answeredWrong: 0 };
     show('quiz');
     nextQuestion();
@@ -182,10 +190,13 @@
     $('quiz-type-badge').textContent = 'Kanji';
     $('quiz-type-badge').className = 'type-badge badge-kanji';
     const isReading = q.qtype === 'reading';
-    const label = isReading ? '読み方 <b>Reading</b> (hiragana)' : '意味 <b>Meaning</b>';
+    const qtypeClass = isReading ? 'qtype-reading' : 'qtype-meaning';
+    const label = isReading
+      ? `読み方 <b class="${qtypeClass}">Reading</b> (hiragana)`
+      : `意味 <b class="${qtypeClass}">Meaning</b>`;
     const qtypeLabel = isReading ? 'READING 読み方' : 'MEANING 意味';
     $('quiz-prompt').innerHTML =
-      `<span class="qtype-badge ${isReading ? 'qtype-reading' : 'qtype-meaning'}">${qtypeLabel}</span>${label}`;
+      `<span class="qtype-badge ${qtypeClass}">${qtypeLabel}</span>${label}`;
     const input = $('quiz-input');
     input.value = '';
     input.className = 'quiz-input ' + (isReading ? 'mode-reading' : 'mode-meaning');

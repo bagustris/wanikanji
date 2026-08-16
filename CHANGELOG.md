@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.4.0 — 2026-08-16
+
+PC-first layout widened, and post-answer item info expanded.
+
+### Added
+- **Meanings + readings in item info** — after answering a lesson/review item,
+  the info panel now shows the kanji's meanings and On/Kun readings, in
+  addition to the existing example words and example sentence.
+
+### Changed
+- **Wider desktop layout** — `--maxw` raised from 560px to 900px. Unlike its
+  mobile-first siblings (kanji-drill, kotoba, jlpt), WaniKanji targets PC, so
+  the app no longer sits in a narrow centered column on desktop screens.
+
 ## v0.3.1 — 2026-08-16
 
 ### Fixed

@@ -18,7 +18,7 @@
   --qtype-reading: #0f9b8e;
   --qtype-meaning: #c2740a;
   --radius: 12px;
-  --maxw: 560px;
+  --maxw: 900px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -183,6 +183,9 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .item-info .word .gl { color: var(--muted); flex: 1; text-align: right; }
 .item-info .sentence { font-size: 0.95rem; margin: 0.2rem 0; }
 .item-info .sentence-tr { color: var(--muted); font-size: 0.85rem; }
+.item-info .meta-line { margin: 0; font-size: 0.9rem; }
+.item-info .reading-group { display: block; }
+.item-info .reading-group + .reading-group { margin-top: 0.15rem; }
 
 /* Summary */
 .summary-stats { display: flex; gap: 0.8rem; justify-content: center; margin: 1rem 0; }

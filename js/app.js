@@ -333,6 +333,15 @@
 
   function itemInfoHTML(item) {
     let html = '';
+    if (item.meanings && item.meanings.length) {
+      html += `<h4>意味 · Meanings</h4><p class="meta-line">${item.meanings.join(', ')}</p>`;
+    }
+    if ((item.readingsOn && item.readingsOn.length) || (item.readingsKun && item.readingsKun.length)) {
+      html += '<h4>読み · Readings</h4><p class="meta-line">';
+      if (item.readingsOn && item.readingsOn.length) html += `<span class="reading-group">音 On: ${item.readingsOn.join('、')}</span>`;
+      if (item.readingsKun && item.readingsKun.length) html += `<span class="reading-group">訓 Kun: ${item.readingsKun.join('、')}</span>`;
+      html += '</p>';
+    }
     if (item.examples && item.examples.length) {
       html += '<h4>例の言葉 · Example words</h4><div class="word-list">';
       html += item.examples.map(w =>

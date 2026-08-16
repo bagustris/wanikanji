@@ -438,11 +438,28 @@
       b.addEventListener('click', () => { quiz = null; show('dashboard'); renderDashboard(); }));
   }
 
+  // The About panel's version is read from CHANGELOG.md (the single source of
+  // truth) rather than duplicated here: parse the newest `## vX.Y.Z` heading
+  // and show it. The static v-number in index.html is the offline/pre-fetch
+  // fallback, so a failed fetch just leaves that in place.
+  async function loadAppVersion() {
+    try {
+      const res = await fetch('CHANGELOG.md');
+      if (!res.ok) return;
+      const text = await res.text();
+      const match = text.match(/^##\s*v(\d+\.\d+\.\d+)/m);
+      if (match) $('about-version').textContent = `v${match[1]}`;
+    } catch {
+      // offline / fetch blocked — keep the static fallback from index.html
+    }
+  }
+
   async function main() {
     if (location.protocol === 'file:') { $('file-protocol-warning').classList.remove('hidden'); return; }
     initSettings();
     initInput();
     initButtons();
+    loadAppVersion();
     try {
       await Data.load();
     } catch (err) {

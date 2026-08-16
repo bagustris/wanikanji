@@ -49,9 +49,9 @@
     <div class="settings-row settings-row-column">
       <span class="settings-row-label">レッスン数<span>New items per lesson batch</span></span>
       <div id="setting-batch" class="settings-segmented" role="radiogroup" aria-label="Lesson batch size">
-        <button type="button" class="segmented-btn" data-value="3">3</button>
-        <button type="button" class="segmented-btn active" data-value="5">5</button>
-        <button type="button" class="segmented-btn" data-value="10">10</button>
+        <button type="button" class="segmented-btn" role="radio" aria-checked="false" data-value="3">3</button>
+        <button type="button" class="segmented-btn active" role="radio" aria-checked="true" data-value="5">5</button>
+        <button type="button" class="segmented-btn" role="radio" aria-checked="false" data-value="10">10</button>
       </div>
     </div>
     <div class="settings-row settings-row-column settings-about">
@@ -67,32 +67,34 @@
 </div>
 
 <main id="app">
-  <div id="file-protocol-warning" class="banner-warning hidden">
+  <div id="file-protocol-warning" class="banner-warning hidden" role="status">
     Served over HTTP required (file:// won't load data).<br>
     Run <code>python3 -m http.server 8000</code> then open <code>http://localhost:8000</code>.
   </div>
-  <div id="load-error-banner" class="banner-error hidden"></div>
+  <div id="load-error-banner" class="banner-error hidden" role="alert"></div>
 
   <!-- Dashboard -->
   <section id="screen-dashboard" class="screen">
     <div class="cta-row">
       <button id="btn-lessons" class="cta-btn cta-lessons" disabled>
+        <span class="cta-head"><span class="cta-label">レッスン<span> Lessons available</span></span><span class="cta-dot"></span></span>
         <span class="cta-num" id="num-lessons">0</span>
-        <span class="cta-label">レッスン<span>Lessons · L</span></span>
+        <span class="cta-action">開始<span> Start · L</span></span>
       </button>
       <button id="btn-reviews" class="cta-btn cta-reviews" disabled>
+        <span class="cta-head"><span class="cta-label">復習<span> Reviews pending</span></span><span class="cta-dot"></span></span>
         <span class="cta-num" id="num-reviews">0</span>
-        <span class="cta-label">復習<span>Reviews · R</span></span>
+        <span class="cta-action">開始<span> Start · R</span></span>
       </button>
     </div>
     <button id="btn-extra" class="extra-btn" disabled>
       追加学習<span>Extra Study — practice learned items now (doesn't change SRS) · E</span>
     </button>
 
-    <h3 class="section-heading">SRSステージ<span>SRS stages</span></h3>
+    <h2 class="section-heading">SRSステージ<span>SRS stages</span></h2>
     <div id="srs-distribution" class="srs-distribution"></div>
 
-    <h3 class="section-heading">レベルの進捗<span>Level progress</span></h3>
+    <h2 class="section-heading">レベルの進捗<span>Level progress</span></h2>
     <div id="level-progress" class="level-progress"></div>
 
     <p id="next-review-hint" class="next-review-hint"></p>
@@ -128,7 +130,7 @@
         <input id="quiz-input" class="quiz-input" type="text" autocapitalize="off"
                autocorrect="off" spellcheck="false" aria-label="Answer" />
       </form>
-      <p id="quiz-feedback" class="quiz-feedback"></p>
+      <p id="quiz-feedback" class="quiz-feedback" role="status" aria-live="polite"></p>
       <div id="item-info" class="hidden"></div>
       <p id="quiz-continue" class="quiz-continue hidden">つづける<span>Enter / L / J / →</span></p>
     </div>

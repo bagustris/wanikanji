@@ -1,42 +1,84 @@
+/* "Zenith Kanji" design system (see DESIGN.md) — tokens keep this file's
+   existing semantic names (--bg, --accent, etc.) so every rule below still
+   works unchanged; only the palette/scale VALUES come from DESIGN.md.
+   Category colors map to its "Tiered Progression" scheme: Primary/Radical
+   Blue, Secondary/Kanji Pink, Tertiary/Vocabulary Purple — the last isn't
+   used yet (this app has no vocabulary-SRS track), but is defined for the
+   SRS-stage tiles below, which reuse the same 3-hue family for consistency. */
 :root {
-  --bg: #f3f5f9;
-  --fg: #1e2733;
-  --muted: #6b7787;
-  --card-bg: #ffffff;
-  --border: #dce1ea;
-  --accent: #2b6cb0;
-  --accent-dark: #21528a;
-  --radical: #0a9df4;       /* WaniKani radical blue */
-  --kanji: #e8419a;         /* WaniKani kanji magenta */
+  --bg: #f4fafd;            /* background */
+  --fg: #161d1f;             /* on-background */
+  --muted: #3e4851;          /* on-surface-variant */
+  --card-bg: #ffffff;        /* surface-container-lowest */
+  --border: #bec7d3;         /* outline-variant */
+  --accent: #006398;         /* primary */
+  --accent-dark: #004b73;    /* on-primary-fixed-variant */
+  --radical: #006398;        /* primary — "Radical Blue" */
+  --kanji: #b10075;          /* secondary — "Kanji Pink" */
+  --vocab: #850aeb;          /* tertiary — "Vocabulary Purple" */
   --correct: #2e9e5b;
-  --incorrect: #d0455c;
-  --apprentice: #dd0093;
-  --guru: #882d9e;
-  --master: #294ddb;
-  --enlightened: #0093dd;
-  --burned: #434343;
+  --incorrect: #ba1a1a;      /* error */
+  --apprentice: #b10075;     /* secondary */
+  --guru: #850aeb;           /* tertiary */
+  --master: #006398;         /* primary */
+  --enlightened: #00aaff;    /* primary-container */
+  --burned: #3e4851;         /* on-surface-variant */
   --qtype-reading: #0f9b8e;
   --qtype-meaning: #c2740a;
-  --radius: 12px;
+  --warn-bg: #fff4d6;
+  --warn-fg: #7a5c00;
+  --danger-bg: #ffdad6;      /* error-container */
+  --danger-fg: #93000a;      /* on-error-container */
+
+  /* Shapes: rounded scale */
+  --radius-sm: 0.25rem;
+  --radius: 0.75rem;         /* DEFAULT card radius (was a flat 12px) */
+  --radius-lg: 1rem;         /* kanji tiles */
+  --radius-xl: 1.5rem;       /* capsule chips */
+  --radius-full: 9999px;
+
+  /* Typography: named per DESIGN.md, falling back to system/CJK fonts since
+     this is an offline-first PWA with no external font loading. */
+  --font-headline: "Plus Jakarta Sans", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+  --font-body: "Inter", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
   --maxw: 900px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0a1929;
-    --fg: #e7edf5;
-    --muted: #8a99ab;
-    --card-bg: #12253b;
-    --border: #24405f;
-    --accent: #4b9fe1;
-    --accent-dark: #3a7fbb;
-    --burned: #9aa4af;
+    --bg: #0e1517;
+    --fg: #e2e9ec;
+    --muted: #a9b4bd;
+    --card-bg: #1a2225;
+    --border: #3e4851;
+    --accent: #93ccff;       /* inverse-primary */
+    --accent-dark: #cce5ff;  /* primary-fixed */
+    --radical: #93ccff;
+    --kanji: #ffafd2;        /* secondary-fixed-dim */
+    --vocab: #dbb8ff;        /* tertiary-fixed-dim */
+    --apprentice: #ffafd2;
+    --guru: #dbb8ff;
+    --master: #93ccff;
+    --enlightened: #7fd4ff;
+    --burned: #a9b4bd;
     --qtype-reading: #2dd4c4;
     --qtype-meaning: #e0a53a;
+    --warn-bg: #4a3c14;
+    --warn-fg: #f0cf7a;
+    --danger-bg: #4a1f1f;
+    --danger-fg: #f5b8b8;
   }
 }
 
 * { box-sizing: border-box; }
+html {
+  /* PC-first base size (vs. the 16px browser default) — everything else in
+     this file is sized in rem, so this scales the whole app at once rather
+     than every rule needing its own bump for desktop reading distance. */
+  font-size: 19px;
+}
 html, body {
   margin: 0; padding: 0;
   background: var(--bg); color: var(--fg);
@@ -46,7 +88,7 @@ html, body {
 
 /* Header */
 .app-header { position: relative; max-width: var(--maxw); margin: 0 auto; text-align: center; padding: 1.1rem 1rem 0.4rem; }
-.app-header h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.04em; }
+.app-header h1 { margin: 0; font-size: 1.4rem; font-family: var(--font-headline); font-weight: 700; letter-spacing: 0.04em; }
 .app-header-en { font-size: 0.9rem; color: var(--muted); font-weight: 400; margin-left: 0.3rem; }
 .icon-btn { background: none; border: none; color: var(--fg); cursor: pointer; padding: 0.4rem; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
 .icon-btn:hover, .icon-btn:focus-visible { color: var(--accent); }
@@ -62,35 +104,54 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0.5rem 1rem 3rem; }
 
 /* Banners */
 .banner-warning, .banner-error { border-radius: var(--radius); padding: 0.8rem 1rem; margin: 0.6rem 0; font-size: 0.9rem; line-height: 1.5; }
-.banner-warning { background: #fff4d6; color: #7a5c00; }
-.banner-error { background: #fde2e2; color: #8a1f1f; }
+.banner-warning { background: var(--warn-bg); color: var(--warn-fg); }
+.banner-error { background: var(--danger-bg); color: var(--danger-fg); }
 code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radius: 5px; font-size: 0.9em; }
 
-/* Dashboard CTA */
+/* Dashboard CTA — "Tonal Layers" card: white surface + category-color
+   accent dot/button, rather than a fully saturated gradient fill, per
+   DESIGN.md's Elevation spec (Level 1 white card, Level 2 tinted glow). */
 .cta-row { display: flex; gap: 0.8rem; margin: 0.8rem 0; }
-.cta-btn { flex: 1; border: none; border-radius: var(--radius); color: #fff; padding: 1.1rem 0.8rem; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 0.2rem; transition: transform 0.1s, filter 0.1s; }
-.cta-btn:hover:not(:disabled) { filter: brightness(1.08); }
+.cta-btn {
+  flex: 1; border: 1px solid var(--border); border-radius: var(--radius-lg);
+  background: var(--card-bg); color: var(--fg); padding: 1rem 1rem 0.9rem;
+  cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 0.5rem;
+  transition: transform 0.1s, box-shadow 0.15s;
+}
+.cta-btn:hover:not(:disabled) { box-shadow: 0 0 0 3px var(--cta-glow, transparent); }
 .cta-btn:active:not(:disabled) { transform: translateY(1px); }
 .cta-btn:disabled { opacity: 0.45; cursor: default; }
-.cta-lessons { background: linear-gradient(135deg, var(--radical), #077fd0); }
-.cta-reviews { background: linear-gradient(135deg, var(--apprentice), #a80071); }
-.cta-num { font-size: 2rem; font-weight: 700; line-height: 1; }
-.cta-label { font-size: 0.95rem; }
-.cta-label span { display: block; font-size: 0.72rem; opacity: 0.85; }
+.cta-lessons { --cta-glow: color-mix(in srgb, var(--kanji) 20%, transparent); }
+.cta-reviews { --cta-glow: color-mix(in srgb, var(--accent) 20%, transparent); }
+.cta-head { display: flex; align-items: center; justify-content: space-between; }
+.cta-label { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+.cta-dot { width: 0.6rem; height: 0.6rem; border-radius: var(--radius-full); flex: none; }
+.cta-lessons .cta-dot { background: var(--kanji); }
+.cta-reviews .cta-dot { background: var(--accent); }
+.cta-num { font-family: var(--font-headline); font-size: 2.1rem; font-weight: 700; line-height: 1; }
+.cta-action {
+  display: inline-block; align-self: flex-start; margin-top: 0.2rem;
+  font-size: 0.78rem; font-weight: 700; color: #fff; padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+}
+/* "thick bottom border" tactile press per DESIGN.md Action Buttons */
+.cta-lessons .cta-action { background: var(--kanji); border-bottom: 2px solid color-mix(in srgb, var(--kanji) 60%, black); }
+.cta-reviews .cta-action { background: var(--accent); border-bottom: 2px solid var(--accent-dark); }
+.cta-btn:disabled .cta-action { border-bottom-color: transparent; }
 
-.extra-btn { width: 100%; border: 1px dashed var(--border); background: var(--card-bg); color: var(--fg); border-radius: var(--radius); padding: 0.7rem; cursor: pointer; font-size: 0.9rem; margin-bottom: 1rem; }
+.extra-btn { width: 100%; border: 1px dashed var(--border); background: var(--card-bg); color: var(--fg); border-radius: var(--radius-lg); padding: 0.7rem; cursor: pointer; font-size: 0.9rem; margin-bottom: 1rem; }
 .extra-btn span { display: block; font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
 .extra-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 .extra-btn:disabled { opacity: 0.4; cursor: default; }
 
-.section-heading { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 1.2rem 0 0.5rem; }
+.section-heading { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 1.2rem 0 0.5rem; }
 .section-heading span { text-transform: none; letter-spacing: 0; margin-left: 0.4rem; }
 
 /* SRS distribution */
 .srs-distribution { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
-.srs-cell { border-radius: 10px; padding: 0.6rem 0.4rem; color: #fff; text-align: center; }
-.srs-cell .n { font-size: 1.4rem; font-weight: 700; display: block; }
-.srs-cell .k { font-size: 0.68rem; opacity: 0.9; }
+.srs-cell { border-radius: var(--radius-lg); padding: 0.6rem 0.4rem; color: #fff; text-align: center; }
+.srs-cell .n { font-family: var(--font-headline); font-size: 1.4rem; font-weight: 700; display: block; }
+.srs-cell .k { font-family: var(--font-mono); font-size: 0.65rem; opacity: 0.9; }
 .srs-apprentice { background: var(--apprentice); }
 .srs-guru { background: var(--guru); }
 .srs-master { background: var(--master); }
@@ -99,14 +160,15 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 
 /* Level progress */
 .level-progress { display: flex; flex-direction: column; gap: 0.6rem; }
-.level-row { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.8rem; }
+.level-row { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 0.6rem 0.8rem; }
 .level-row-head { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem; }
+.level-row-head strong { font-family: var(--font-headline); }
 .level-row-head .locked { color: var(--muted); }
 .level-bars { display: flex; gap: 0.4rem; }
 .level-bar { flex: 1; }
-.level-bar-track { height: 8px; background: var(--border); border-radius: 5px; overflow: hidden; }
-.level-bar-fill { height: 100%; border-radius: 5px; }
-.level-bar-label { font-size: 0.65rem; color: var(--muted); margin-top: 0.2rem; display: flex; justify-content: space-between; }
+.level-bar-track { height: 8px; background: var(--border); border-radius: var(--radius-full); overflow: hidden; }
+.level-bar-fill { height: 100%; border-radius: var(--radius-full); }
+.level-bar-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); margin-top: 0.2rem; display: flex; justify-content: space-between; }
 .fill-kanji { background: var(--kanji); }
 .next-review-hint { color: var(--muted); font-size: 0.85rem; text-align: center; margin-top: 1rem; }
 
@@ -128,22 +190,22 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .danger-btn span { display: block; font-size: 0.68rem; }
 
 /* Type badge + glyphs */
-.type-badge { display: inline-block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.15rem 0.6rem; border-radius: 20px; color: #fff; margin-bottom: 0.6rem; }
+.type-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.15rem 0.6rem; border-radius: var(--radius-full); color: #fff; margin-bottom: 0.6rem; }
 .badge-kanji { background: var(--kanji); }
 
 /* Item card (lessons) */
-.item-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.4rem; text-align: center; }
-.item-card .glyph { font-size: 4.5rem; line-height: 1.1; margin: 0.3rem 0; }
+.item-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem; text-align: center; }
+.item-card .glyph { font-family: var(--font-headline); font-size: 4.5rem; line-height: 1.1; margin: 0.3rem 0; }
 .badge-kanji-glyph { color: var(--kanji); }
-.item-card .primary-meaning { font-size: 1.5rem; font-weight: 700; margin: 0.2rem 0; }
-.item-card .readings { color: var(--muted); margin: 0.3rem 0 0.6rem; }
+.item-card .primary-meaning { font-family: var(--font-headline); font-size: 1.5rem; font-weight: 700; margin: 0.2rem 0; }
+.item-card .readings { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); margin: 0.3rem 0 0.6rem; }
 .item-card .readings b { color: var(--fg); }
 .item-card .composition { font-size: 0.85rem; color: var(--muted); margin: 0.5rem 0; }
 /* Component radicals: a lightweight visual hint, not a quizzable item —
    small decorative chips, deliberately subordinate to the kanji above. */
 .item-card .composition .rad { display: inline-block; background: var(--radical); color: #fff; border-radius: 6px; padding: 0.05rem 0.4rem; margin: 0.1rem; font-size: 0.8rem; opacity: 0.85; }
 .item-card .composition .rad-uncertain { opacity: 0.6; font-style: italic; }
-.uncertain-flag { color: #c07a00; font-size: 0.75rem; }
+.uncertain-flag { color: var(--warn-fg); font-size: 0.75rem; }
 
 /* Quiz card */
 .quiz-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }

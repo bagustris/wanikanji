@@ -400,8 +400,11 @@
     $('setting-strict').checked = s.strictReadings;
     $('setting-bypass').checked = s.bypassSchedule;
     $('setting-auto-next').checked = s.autoAdvance;
-    document.querySelectorAll('#setting-batch .segmented-btn').forEach(b =>
-      b.classList.toggle('active', +b.dataset.value === s.batchSize));
+    document.querySelectorAll('#setting-batch .segmented-btn').forEach(b => {
+      const on = +b.dataset.value === s.batchSize;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-checked', on);
+    });
 
     $('setting-item-info').addEventListener('change', e => Progress.setSetting('showItemInfo', e.target.checked));
     $('setting-romaji').addEventListener('change', e => Progress.setSetting('romajiInput', e.target.checked));
@@ -410,8 +413,12 @@
     $('setting-auto-next').addEventListener('change', e => Progress.setSetting('autoAdvance', e.target.checked));
     document.querySelectorAll('#setting-batch .segmented-btn').forEach(b =>
       b.addEventListener('click', () => {
-        document.querySelectorAll('#setting-batch .segmented-btn').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('#setting-batch .segmented-btn').forEach(x => {
+          x.classList.remove('active');
+          x.setAttribute('aria-checked', 'false');
+        });
         b.classList.add('active');
+        b.setAttribute('aria-checked', 'true');
         Progress.setSetting('batchSize', +b.dataset.value);
       }));
 

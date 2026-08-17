@@ -31,6 +31,23 @@
     return katakanaToHiragana((s || '').trim());
   }
 
+  // If a Japanese reading transcript still contains kanji after katakana
+  // normalization, Chrome's ja-JP recognizer guessed the spoken word and
+  // transcribed its kanji spelling instead of transliterating the sound --
+  // common for single-kanji/short-word answers. There's no dictionary here
+  // to recover an arbitrary reading from arbitrary kanji, but if the
+  // transcript IS exactly the quizzed kanji or its example word, the
+  // reading being tested is already known -- swap it in directly instead of
+  // surfacing kanji that can never match the (kana-only) grading check.
+  const KANJI_RE = /[一-龯]/;
+  function resolveReadingTranscript(s, target) {
+    const normalized = katakanaToHiragana((s || '').trim());
+    if (!KANJI_RE.test(normalized)) return normalized;
+    const t = target || {};
+    if (t.reading && (normalized === t.char || normalized === t.word)) return t.reading;
+    return normalized; // leave as-is; surfaced to the learner to see/correct
+  }
+
   function supported() {
     return typeof self !== 'undefined' && !!(self.SpeechRecognition || self.webkitSpeechRecognition);
   }
@@ -60,5 +77,5 @@
     return rec;
   }
 
-  return { katakanaToHiragana, normalizeReadingTranscript, supported, createRecognizer };
+  return { katakanaToHiragana, normalizeReadingTranscript, resolveReadingTranscript, supported, createRecognizer };
 });

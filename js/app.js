@@ -487,6 +487,14 @@
     $('quiz-form').addEventListener('submit', e => { e.preventDefault(); submitAnswer(); });
 
     document.addEventListener('keydown', e => {
+      // Alt+M toggles the mic from the keyboard, same as clicking it — a
+      // plain 'm' can't be used since it's a valid romaji/English answer
+      // character and would get eaten by the quiz input while typing.
+      if (e.altKey && !e.ctrlKey && !e.metaKey && e.key.toLowerCase() === 'm') {
+        const micBtn = $('quiz-mic');
+        if (!micBtn.classList.contains('hidden') && !micBtn.disabled) { micBtn.click(); e.preventDefault(); }
+        return;
+      }
       if (e.ctrlKey || e.metaKey || e.altKey) return;
       if (e.key === 'Escape') {
         if (!$('settings-overlay').classList.contains('hidden')) { $('settings-overlay').classList.add('hidden'); return; }
@@ -589,6 +597,7 @@
       if (micRecognizer) { stopMic(); return; } // toggle off if already listening
       if (!quiz || quiz.awaitingContinue) return;
       const q = quiz.queue[0];
+      const item = quiz.perItem[q.id].item;
       const isReading = q.qtype === 'reading';
       const lang = isReading ? 'ja-JP' : 'en-US';
       const input = $('quiz-input');
@@ -604,7 +613,13 @@
             return;
           }
           const trimmed = transcript.trim();
-          input.value = isReading ? Speech.normalizeReadingTranscript(trimmed) : trimmed;
+          input.value = isReading
+            ? Speech.resolveReadingTranscript(trimmed, {
+                char: item.char,
+                word: item.context && item.context.word,
+                reading: (item.primaryReadings && item.primaryReadings[0]) || (item.acceptReadings && item.acceptReadings[0]),
+              })
+            : trimmed;
           input.dispatchEvent(new Event('input'));
           setMicStatus(`Heard "${trimmed}" — review, then press Enter`);
           input.focus();

@@ -1,5 +1,24 @@
 # Changelog
 
+## v0.8.3 — 2026-08-17
+
+### Fixed
+- **Japanese ASR could transcribe kanji instead of hiragana for a reading
+  answer** — Chrome's `ja-JP` recognizer sometimes guesses a short spoken
+  word and returns its kanji spelling rather than transliterating the
+  sound, which could never match the kana-only grading check. When the
+  transcript (after katakana normalization) still contains kanji and
+  exactly matches the quizzed kanji or its example word, it's now resolved
+  to the item's own known reading instead of being left ungradeable; any
+  other kanji transcript is still surfaced as-is (no dictionary, so no
+  guessing).
+
+### Added
+- **`Alt+M` keyboard shortcut to toggle the mic**, in addition to clicking
+  it — consistent with the app's typing-first, keyboard-driven design.
+  Listed in the Settings keyboard-shortcuts reference and the mic button's
+  tooltip.
+
 ## v0.8.2 — 2026-08-17
 
 ### Fixed

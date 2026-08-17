@@ -115,6 +115,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0.5rem 1rem 3rem; }
 .banner-warning { background: var(--warn-bg); color: var(--warn-fg); }
 .banner-error { background: var(--danger-bg); color: var(--danger-fg); }
 code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radius: 5px; font-size: 0.9em; }
+kbd { font-family: var(--font-mono); background: var(--bg); border: 1px solid var(--border); border-bottom-width: 2px; border-radius: var(--radius-sm); padding: 0.05rem 0.35rem; font-size: 0.85em; }
 
 /* Dashboard CTA — "Tonal Layers" card: white surface + category-color
    accent dot/button, rather than a fully saturated gradient fill, per
@@ -159,7 +160,8 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .srs-distribution { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
 .srs-cell { border-radius: var(--radius-lg); padding: 0.6rem 0.4rem; color: #fff; text-align: center; }
 .srs-cell .n { font-family: var(--font-headline); font-size: 1.4rem; font-weight: 700; display: block; }
-.srs-cell .k { font-family: var(--font-mono); font-size: 0.65rem; opacity: 0.9; }
+.srs-cell .k { font-family: var(--font-mono); font-size: 0.6rem; opacity: 0.95; display: block; letter-spacing: 0.02em; }
+.srs-cell .nx { font-size: 0.58rem; opacity: 0.8; display: block; margin-top: 0.15rem; line-height: 1.25; }
 .srs-apprentice { background: var(--fill-apprentice); }
 .srs-guru { background: var(--fill-guru); }
 .srs-master { background: var(--fill-master); }
@@ -230,9 +232,6 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .quiz-prompt b { font-weight: 700; }
 .quiz-prompt b.qtype-reading { color: var(--qtype-reading); }
 .quiz-prompt b.qtype-meaning { color: var(--qtype-meaning); }
-.qtype-badge { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
-.qtype-badge.qtype-reading { color: var(--qtype-reading); }
-.qtype-badge.qtype-meaning { color: var(--qtype-meaning); }
 .quiz-input { width: 100%; max-width: 340px; font-size: 1.5rem; text-align: center; padding: 0.6rem 0.8rem; border-radius: 10px; border: 2px solid var(--border); background: var(--bg); color: var(--fg); }
 .quiz-input.mode-reading { border-color: var(--qtype-reading); }
 .quiz-input.mode-meaning { border-color: var(--qtype-meaning); }
@@ -254,7 +253,7 @@ code { background: rgba(128,128,128,0.18); padding: 0.05rem 0.35rem; border-radi
 .item-info h4 { margin: 0.6rem 0 0.3rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
 .item-info .word-list { display: flex; flex-direction: column; gap: 0.3rem; }
 .item-info .word { display: flex; justify-content: space-between; gap: 0.6rem; font-size: 0.9rem; }
-.item-info .word .jp { font-weight: 700; font-size: 1.05rem; color: var(--fg); }
+.item-info .word .jp { font-size: 1.05rem; color: var(--fg); }
 .item-info .word .rd { color: var(--accent); font-weight: 500; }
 .item-info .word .gl { color: var(--muted); flex: 1; text-align: right; }
 .item-info .sentence { font-size: 0.95rem; margin: 0.2rem 0; }

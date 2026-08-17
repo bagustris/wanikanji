@@ -12,7 +12,7 @@
 <body>
 
 <header class="app-header">
-  <button id="btn-settings" type="button" class="icon-btn settings-btn" aria-haspopup="dialog" aria-label="設定 Settings">
+  <button id="btn-settings" type="button" class="icon-btn settings-btn" aria-haspopup="dialog" aria-label="設定 Settings" title="Settings · S">
     <span class="hamburger-icon"><span></span><span></span><span></span></span>
   </button>
   <h1>ワニ漢字 <span class="app-header-en">WaniKanji</span></h1>
@@ -53,6 +53,15 @@
         <button type="button" class="segmented-btn active" role="radio" aria-checked="true" data-value="5">5</button>
         <button type="button" class="segmented-btn" role="radio" aria-checked="false" data-value="10">10</button>
       </div>
+    </div>
+    <div class="settings-row settings-row-column settings-about">
+      <span class="settings-row-label">キーボード操作<span>Keyboard shortcuts</span></span>
+      <p class="about-note">
+        <kbd>D</kbd> Dashboard (from anywhere) · <kbd>S</kbd> Settings ·
+        <kbd>L</kbd> Lessons · <kbd>R</kbd> Reviews · <kbd>E</kbd> Extra study ·
+        <kbd>Q</kbd> Quit session · <kbd>Esc</kbd> Reveal answer / close ·
+        <kbd>Enter</kbd> Submit / Continue
+      </p>
     </div>
     <div class="settings-row settings-row-column settings-about">
       <span class="settings-row-label">危険地帯<span>Danger zone</span></span>
@@ -142,7 +151,7 @@
     <div id="summary-stats" class="summary-stats"></div>
     <div id="summary-items" class="summary-items"></div>
     <div class="session-actions">
-      <button id="btn-summary-home" class="primary-btn">ダッシュボードへ<span>Back to dashboard</span></button>
+      <button id="btn-summary-home" class="primary-btn">ダッシュボードへ<span>Back to dashboard · D / Enter</span></button>
     </div>
   </section>
 </main>

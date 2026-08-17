@@ -56,10 +56,15 @@
     // SRS distribution
     const cats = { apprentice: 0, guru: 0, master: 0, enlightened: 0, burned: 0 };
     for (const i of Data.items) { const s = stateOf(i.id); if (s) cats[SRS.category(s.stage)]++; }
-    const labels = { apprentice: '見習', guru: '達人', master: '師範', enlightened: '悟り', burned: '燃' };
-    const en = { apprentice: 'Appr.', guru: 'Guru', master: 'Master', enlightened: 'Enlt.', burned: 'Burned' };
+    const en = { apprentice: 'Apprentice', guru: 'Guru', master: 'Master', enlightened: 'Enlightened', burned: 'Burned' };
+    // How many correct-in-a-row reviews move an item from the START of this
+    // category into the next one (best case, no incorrect answers) — e.g.
+    // a freshly-lessoned item enters Apprentice at stage 1 and needs 4
+    // correct reviews to reach Guru (stage 5). Answers "how many reviews
+    // until this kanji levels up?", which the tiles alone don't convey.
+    const toNext = { apprentice: '4 correct to Guru', guru: '2 correct to Master', master: '1 correct to Enlightened', enlightened: '1 correct to Burned', burned: 'Max stage' };
     $('srs-distribution').innerHTML = Object.keys(cats).map(c =>
-      `<div class="srs-cell srs-${c}"><span class="n">${cats[c]}</span><span class="k">${en[c]}</span></div>`
+      `<div class="srs-cell srs-${c}"><span class="n">${cats[c]}</span><span class="k">${en[c]}</span><span class="nx">${toNext[c]}</span></div>`
     ).join('');
 
     // Level progress — show only unlocked levels plus the first locked one
@@ -226,9 +231,7 @@
     const label = isReading
       ? `読み方 <b class="${qtypeClass}">Reading</b> (hiragana)`
       : `意味 <b class="${qtypeClass}">Meaning</b>`;
-    const qtypeLabel = isReading ? 'READING 読み方' : 'MEANING 意味';
-    $('quiz-prompt').innerHTML =
-      `<span class="qtype-badge ${qtypeClass}">${qtypeLabel}</span>${label}`;
+    $('quiz-prompt').innerHTML = label;
     const input = $('quiz-input');
     input.value = '';
     input.className = 'quiz-input ' + (isReading ? 'mode-reading' : 'mode-meaning');
@@ -400,7 +403,14 @@
     $('setting-strict').checked = s.strictReadings;
     $('setting-bypass').checked = s.bypassSchedule;
     $('setting-auto-next').checked = s.autoAdvance;
-    document.querySelectorAll('#setting-batch .segmented-btn').forEach(b => {
+    const batchBtns = [...document.querySelectorAll('#setting-batch .segmented-btn')];
+    function selectBatch(btn) {
+      batchBtns.forEach(x => { x.classList.remove('active'); x.setAttribute('aria-checked', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-checked', 'true');
+      Progress.setSetting('batchSize', +btn.dataset.value);
+    }
+    batchBtns.forEach(b => {
       const on = +b.dataset.value === s.batchSize;
       b.classList.toggle('active', on);
       b.setAttribute('aria-checked', on);
@@ -411,16 +421,20 @@
     $('setting-strict').addEventListener('change', e => Progress.setSetting('strictReadings', e.target.checked));
     $('setting-bypass').addEventListener('change', e => { Progress.setSetting('bypassSchedule', e.target.checked); renderDashboard(); });
     $('setting-auto-next').addEventListener('change', e => Progress.setSetting('autoAdvance', e.target.checked));
-    document.querySelectorAll('#setting-batch .segmented-btn').forEach(b =>
-      b.addEventListener('click', () => {
-        document.querySelectorAll('#setting-batch .segmented-btn').forEach(x => {
-          x.classList.remove('active');
-          x.setAttribute('aria-checked', 'false');
-        });
-        b.classList.add('active');
-        b.setAttribute('aria-checked', 'true');
-        Progress.setSetting('batchSize', +b.dataset.value);
-      }));
+    batchBtns.forEach(b => b.addEventListener('click', () => selectBatch(b)));
+    // Arrow keys move focus AND selection between options, matching native
+    // radiogroup behavior — this app is typing-first, so every control
+    // should be reachable/operable without a mouse.
+    $('setting-batch').addEventListener('keydown', e => {
+      if (!['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'].includes(e.key)) return;
+      e.preventDefault();
+      const idx = batchBtns.indexOf(document.activeElement);
+      if (idx === -1) return;
+      const dir = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1;
+      const next = batchBtns[(idx + dir + batchBtns.length) % batchBtns.length];
+      next.focus();
+      selectBatch(next);
+    });
 
     $('btn-settings').addEventListener('click', () => $('settings-overlay').classList.remove('hidden'));
     $('btn-settings-close').addEventListener('click', () => $('settings-overlay').classList.add('hidden'));
@@ -472,6 +486,23 @@
       if (!$('screen-quiz').classList.contains('hidden') && quiz && quiz.awaitingContinue) {
         if (e.key === 'Enter' || e.key === 'ArrowRight' || e.key === ' ' || key === 'l' || key === 'j') { advance(); e.preventDefault(); return; }
         if (key === 'q') { document.querySelector('#screen-quiz .btn-quit-session').click(); e.preventDefault(); return; }
+      }
+      // summary: Enter/Space/D go back to the dashboard (no text input on this screen)
+      if (!$('screen-summary').classList.contains('hidden')) {
+        if (e.key === 'Enter' || e.key === ' ' || key === 'd') { $('btn-summary-home').click(); e.preventDefault(); return; }
+      }
+
+      // Global, app-wide shortcuts — D (dashboard) and S (settings) work from
+      // any screen, since this is a typing-first app and the mouse-only path
+      // (clicking the hamburger icon, clicking "Back to dashboard") shouldn't
+      // be the only way to reach them. Suppressed while the settings dialog
+      // is open (Escape closes it) or while actively typing a quiz answer
+      // (the reading/meaning input is enabled and would eat the letter).
+      const settingsOpen = !$('settings-overlay').classList.contains('hidden');
+      const activelyTyping = !$('screen-quiz').classList.contains('hidden') && quiz && !quiz.awaitingContinue;
+      if (!settingsOpen && !activelyTyping) {
+        if (key === 'd') { quiz = null; show('dashboard'); renderDashboard(); e.preventDefault(); return; }
+        if (key === 's') { $('settings-overlay').classList.remove('hidden'); e.preventDefault(); return; }
       }
     });
   }

@@ -1,5 +1,37 @@
 # Changelog
 
+## v0.7.0 — 2026-08-17
+
+Keyboard-navigation pass (this app is typing-first — every control should be
+reachable without a mouse) plus clearer SRS-stage info.
+
+### Added
+- **`D` (dashboard) and `S` (settings) shortcuts** — work from any screen,
+  including the session summary screen, which previously had no keyboard
+  shortcut at all (mouse-only "Back to dashboard" button). Suppressed while
+  actively typing a quiz answer, so a `d`/`s` reading/meaning never gets
+  eaten. A "Keyboard shortcuts" reference row was added to Settings listing
+  every binding.
+- **Arrow-key navigation for the lesson-batch-size selector** (3/5/10) —
+  `←`/`→`/`↑`/`↓` move focus and selection between options (wraps at the
+  ends), matching native radiogroup behavior; previously mouse/click-only.
+- **"Reviews needed to level up" on each SRS-stage tile** — e.g. Apprentice
+  now shows "4 correct to Guru", Guru shows "2 correct to Master", etc.
+  Learners previously had no way to know how many correct reviews move a
+  kanji from one SRS stage to the next.
+
+### Changed
+- **Full SRS-stage names instead of abbreviations** — "Appr." → "Apprentice",
+  "Enlt." → "Enlightened" on the dashboard's SRS-stage tiles.
+
+### Fixed
+- **Reading/meaning question type shown twice** — the quiz prompt showed a
+  redundant badge (e.g. "MEANING 意味") directly above the identical
+  "意味 Meaning" label. Removed the duplicate badge and its now-dead CSS.
+- **Bold example words unreadable for some kanji** — `.item-info .word .jp`
+  no longer forces `font-weight: 700`; bold strokes were clipping/merging on
+  visually dense kanji.
+
 ## v0.6.0 — 2026-08-17
 
 Dashboard restyled around a new "Zenith Kanji" design system (see

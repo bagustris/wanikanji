@@ -37,6 +37,7 @@
   // ---- screen switching ----
   const SCREENS = ['dashboard', 'lesson', 'quiz', 'summary'];
   function show(name) {
+    stopMic(); // every screen change interrupts any active question
     SCREENS.forEach(s => $('screen-' + s).classList.toggle('hidden', s !== name));
   }
 
@@ -201,7 +202,16 @@
 
   function currentItem() { return quiz.perItem[quiz.queue[0].id].item; }
 
+  // The answer input and mic button always enable/disable together (no mic
+  // input once an answer is locked in) — one place to pair them so a future
+  // terminal state can't forget one half.
+  function setAnswerInputEnabled(enabled) {
+    $('quiz-input').disabled = !enabled;
+    $('quiz-mic').disabled = !enabled;
+  }
+
   function nextQuestion() {
+    stopMic();
     if (quiz.queue.length === 0) return finishQuiz();
     const q = quiz.queue[0];
     const item = quiz.perItem[q.id].item;
@@ -235,7 +245,7 @@
     const input = $('quiz-input');
     input.value = '';
     input.className = 'quiz-input ' + (isReading ? 'mode-reading' : 'mode-meaning');
-    input.disabled = false;
+    setAnswerInputEnabled(true);
     input.lang = isReading ? 'ja' : 'en';
     input.placeholder = isReading ? 'reading (hiragana)…' : 'meaning (English)…';
     $('quiz-feedback').textContent = '';
@@ -271,9 +281,10 @@
     }
 
     if (result.correct) {
+      stopMic();
       input.value = val;
       input.className = 'quiz-input correct';
-      input.disabled = true;
+      setAnswerInputEnabled(false);
       $('quiz-feedback').textContent = result.exact === false ? '正解！ (close enough)' : '正解！ Correct';
       $('quiz-feedback').className = 'quiz-feedback correct';
       quiz.answeredCorrect++;
@@ -287,6 +298,7 @@
       quiz.awaitingContinue = true;
       if (Progress.settings().autoAdvance) setTimeout(() => { if (quiz && quiz.awaitingContinue) advance(); }, 700);
     } else {
+      stopMic(); // don't let a stale in-flight result overwrite the retry
       input.className = 'quiz-input incorrect shake';
       $('quiz-feedback').textContent = 'ちがう… try again (or press Esc to reveal)';
       $('quiz-feedback').className = 'quiz-feedback incorrect';
@@ -302,6 +314,7 @@
   // Reveal answer & skip this question (counts as incorrect, clears it).
   function revealSkip() {
     if (quiz.awaitingContinue) return;
+    stopMic();
     const q = quiz.queue[0];
     const rec = quiz.perItem[q.id];
     const item = rec.item;
@@ -312,7 +325,7 @@
     const input = $('quiz-input');
     input.value = answer;
     input.className = 'quiz-input incorrect';
-    input.disabled = true;
+    setAnswerInputEnabled(false);
     rec.erred = true;
     rec.incorrect = Math.max(rec.incorrect, 1);
     $('quiz-feedback').textContent = `Answer: ${answer}`;
@@ -396,6 +409,17 @@
   }
 
   // ============================ SETTINGS ============================
+  // Shared by the gear-icon click and the 's' keyboard shortcut, so opening
+  // settings always stops any in-flight mic recognition first — the
+  // settings overlay layers on top of the quiz screen rather than hiding
+  // it (so show() doesn't run), and a stray voice result landing while
+  // (or after) settings is open would otherwise overwrite #quiz-input out
+  // from under the learner.
+  function openSettings() {
+    stopMic();
+    $('settings-overlay').classList.remove('hidden');
+  }
+
   function initSettings() {
     const s = Progress.settings();
     $('setting-item-info').checked = s.showItemInfo;
@@ -436,7 +460,7 @@
       selectBatch(next);
     });
 
-    $('btn-settings').addEventListener('click', () => $('settings-overlay').classList.remove('hidden'));
+    $('btn-settings').addEventListener('click', openSettings);
     $('btn-settings-close').addEventListener('click', () => $('settings-overlay').classList.add('hidden'));
     $('settings-overlay').addEventListener('click', e => { if (e.target === $('settings-overlay')) $('settings-overlay').classList.add('hidden'); });
     $('btn-reset').addEventListener('click', () => {
@@ -502,7 +526,121 @@
       const activelyTyping = !$('screen-quiz').classList.contains('hidden') && quiz && !quiz.awaitingContinue;
       if (!settingsOpen && !activelyTyping) {
         if (key === 'd') { quiz = null; show('dashboard'); renderDashboard(); e.preventDefault(); return; }
-        if (key === 's') { $('settings-overlay').classList.remove('hidden'); e.preventDefault(); return; }
+        if (key === 's') { openSettings(); e.preventDefault(); return; }
+      }
+    });
+  }
+
+  // ============================ VOICE INPUT (optional) ============================
+  // Progressive enhancement on top of typed input via the Web Speech API —
+  // absent entirely (button stays hidden) in browsers that don't support
+  // it. English ASR for meaning questions, Japanese ASR for reading
+  // questions; never auto-submits, so a mishearing is always caught by the
+  // learner before it's graded. See js/speech.js for the recognizer +
+  // katakana-to-hiragana normalization.
+  // Single source of truth for "is a recognizer active" — callbacks below
+  // compare their own captured `rec` against this by identity to ignore
+  // stale events (e.g. a result arriving after the question changed),
+  // instead of a separately-incremented generation counter that could
+  // drift out of sync with it.
+  let micRecognizer = null;
+  // Snapshot of #quiz-input's value when listening started, so a result
+  // doesn't clobber text the learner has since typed by hand instead.
+  let micValueAtStart = '';
+
+  const MIC_LABEL_IDLE = 'Speak your answer';
+  const MIC_LABEL_LISTENING = 'Stop listening';
+
+  // Resets the button/status back to idle without touching #quiz-input —
+  // shared by every path that ends a recognition (stopMic, a result, an
+  // error, and a natural 'end'), so there's exactly one place that defines
+  // what "done listening" looks like.
+  function resetMicUI() {
+    micRecognizer = null;
+    const btn = $('quiz-mic');
+    if (btn) { btn.classList.remove('listening'); btn.setAttribute('aria-label', MIC_LABEL_IDLE); }
+  }
+
+  // Called from every place a question or screen is interrupted or left, so
+  // a stray recognizer never keeps listening (and possibly overwriting a
+  // later, unrelated input) after the moment it was started for has
+  // passed. A safe no-op when nothing is listening.
+  function stopMic() {
+    if (micRecognizer) { try { micRecognizer.abort(); } catch (e) { /* already stopped */ } }
+    resetMicUI();
+    $('quiz-mic-status').classList.add('hidden');
+  }
+
+  // aria-live="polite" only reliably announces a mutation on a node that's
+  // already in the accessibility tree — #quiz-mic-status is `display:none`
+  // via .hidden, which removes it entirely, so unhide it BEFORE writing new
+  // text rather than after.
+  function setMicStatus(text) {
+    const status = $('quiz-mic-status');
+    status.classList.remove('hidden');
+    status.textContent = text;
+  }
+
+  function initMic() {
+    const btn = $('quiz-mic');
+    if (!Speech.supported()) return; // stays hidden per its default class
+    btn.classList.remove('hidden');
+    btn.addEventListener('click', () => {
+      if (micRecognizer) { stopMic(); return; } // toggle off if already listening
+      if (!quiz || quiz.awaitingContinue) return;
+      const q = quiz.queue[0];
+      const isReading = q.qtype === 'reading';
+      const lang = isReading ? 'ja-JP' : 'en-US';
+      const input = $('quiz-input');
+      micValueAtStart = input.value;
+      const rec = Speech.createRecognizer(lang, {
+        onResult: (transcript) => {
+          if (rec !== micRecognizer) return;
+          resetMicUI(); // a result ends the recognition; don't wait for 'end'
+          if (input.value !== micValueAtStart) {
+            // Learner started typing a manual answer while we were
+            // listening — respect that instead of overwriting it.
+            setMicStatus(`Heard "${transcript.trim()}", but you'd already started typing — click the mic again to use it.`);
+            return;
+          }
+          const trimmed = transcript.trim();
+          input.value = isReading ? Speech.normalizeReadingTranscript(trimmed) : trimmed;
+          input.dispatchEvent(new Event('input'));
+          setMicStatus(`Heard "${trimmed}" — review, then press Enter`);
+          input.focus();
+        },
+        onError: (err) => {
+          if (rec !== micRecognizer) return;
+          resetMicUI();
+          setMicStatus(err === 'not-allowed' ? 'Microphone permission denied.'
+            : err === 'no-speech' ? 'No speech detected — try again.'
+            : `Voice input error: ${err}`);
+        },
+        onEnd: () => {
+          // Not guarded by rec !== micRecognizer: onResult already resets
+          // (and nulls micRecognizer) before 'end' fires, so this only
+          // still applies when recognition ended with no result/error at
+          // all — clear the now-stale "Listening…" status for that case.
+          if (rec !== micRecognizer) return;
+          resetMicUI();
+          $('quiz-mic-status').classList.add('hidden');
+        },
+      });
+      if (!rec) { setMicStatus('Voice input unavailable in this browser.'); return; }
+      micRecognizer = rec;
+      btn.classList.add('listening');
+      btn.setAttribute('aria-label', MIC_LABEL_LISTENING);
+      setMicStatus('Listening…');
+      // A browser can expose SpeechRecognition but still refuse to actually
+      // run it (restrictive Permissions-Policy, some embedded webviews) --
+      // start() then throws synchronously instead of firing 'error'. Catch
+      // that so the click always ends in the same visible failure state
+      // rather than doing nothing with no feedback.
+      try {
+        rec.start();
+      } catch (e) {
+        resetMicUI();
+        setMicStatus('Voice input unavailable in this browser.');
       }
     });
   }
@@ -540,6 +678,11 @@
     initSettings();
     initInput();
     initButtons();
+    // Voice input is optional progressive enhancement — if js/speech.js
+    // failed to load or execute for any reason, initMic() would throw on
+    // the undefined `Speech` global. Isolate that from the rest of startup
+    // (Data.load, renderDashboard, ...) rather than let it abort main().
+    try { initMic(); } catch (e) { /* voice input unavailable; typed input still works */ }
     loadAppVersion();
     try {
       await Data.load();

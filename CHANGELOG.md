@@ -1,5 +1,89 @@
 # Changelog
 
+## v0.8.2 — 2026-08-17
+
+### Fixed
+- **Voice-input result could still overwrite a manually-typed answer** — the
+  previous fix stopped a *stale* recognizer from overwriting a retry, but a
+  *still-active* one (question unchanged) would unconditionally overwrite
+  the input even if the learner started typing by hand while it was
+  listening. Now compares the input's value at recognition-start time
+  against its current value, and if they differ, shows the transcript in
+  the status line instead of overwriting.
+- **A `js/speech.js` load failure could silently hang the whole app** —
+  `initMic()` referenced the `Speech` global with no guard; if the script
+  failed to load (blocked extension, bad cache entry, etc.), the resulting
+  `ReferenceError` was unhandled inside `main()`, so `Data.load()` and
+  `renderDashboard()` never ran and nothing indicated why. `initMic()` is
+  now called inside a try/catch, isolated from the rest of startup.
+- **"Listening…" status could get stuck** after a recognizer ended with no
+  result and no error (e.g. the user stopped it via the browser's own mic
+  indicator) — `onEnd` now clears the status line, not just the button.
+- **Mic pulse-ring animation (added last round) never actually appeared** —
+  its 50% keyframe was fully transparent, so it only flickered a tight glow
+  on/off instead of pulsing outward. Fixed to the standard sonar-ping
+  pattern (visible-and-tight → expand-while-fading).
+
+### Changed
+- **Deduplicated the mic UI-reset logic** (repeated across `onError`,
+  `onEnd`, and the `start()` failure branch) into one `resetMicUI()`
+  helper, and the answer-input/mic-button disable pairing into one
+  `setAnswerInputEnabled()` helper — both were flagged as duplication that
+  a future terminal state could easily forget one half of.
+- **Clicking the mic again immediately after a result now starts a new
+  recording** instead of requiring a second click to "stop" the
+  already-finished previous one first.
+- **`#quiz-mic-status` now unhidden before its text is set**, not after —
+  `aria-live` only reliably announces mutations on a node already in the
+  accessibility tree, and `.hidden` (`display:none`) removes it entirely.
+
+## v0.8.1 — 2026-08-17
+
+### Fixed
+- **Stale voice-input result could overwrite a manually-retyped wrong answer**
+  — if the mic was tapped and a recognition was still pending when the
+  learner instead typed and submitted an incorrect answer, an in-flight
+  recognizer wasn't stopped; a later result could silently overwrite the
+  retry input and yank focus mid-retype.
+- **Opening Settings while the mic was listening didn't stop it** — the
+  gear-icon click bypassed the guard the `S` keyboard shortcut had; a
+  result arriving while (or after) the settings dialog was open could
+  overwrite the quiz input from underneath it. Both entry points now go
+  through one `openSettings()` helper.
+- **Silent failure if a browser exposes `SpeechRecognition` but refuses to
+  run it** (e.g. a restrictive microphone Permissions-Policy) — construction
+  and `start()` weren't guarded, so the exception could propagate out of the
+  click handler with no visible feedback. Both are now caught and surfaced
+  as the same "Voice input unavailable" status message other failures show.
+
+### Changed
+- **Mic lifecycle centralized into `show()`** (the single choke point every
+  screen transition already goes through) instead of being hand-called at
+  five separate sites — the two bugs above were exactly this kind of gap.
+  Simplified the stale-callback guard from a separately-incremented counter
+  to comparing each callback's own recognizer against the current one by
+  identity, removing a second piece of state that could drift out of sync
+  with it.
+- **Mic button now disables alongside the answer input** after a correct
+  answer or reveal/skip, instead of staying clickable but silently
+  no-opping; its `aria-label` also switches to "Stop listening" while active.
+
+## v0.8.0 — 2026-08-17
+
+### Added
+- **Optional voice input** — a mic button next to the answer field lets you
+  speak instead of type, via the Web Speech API (`js/speech.js`). English
+  ASR (`en-US`) for meaning questions, Japanese ASR (`ja-JP`) for reading
+  questions. Feature-detected: the button is simply absent in browsers
+  without `SpeechRecognition` support (Firefox, most Safari). A result only
+  fills the input — it never auto-submits, so a mishearing is always
+  caught before grading. Katakana transcripts (common for isolated-word
+  Japanese ASR) are converted to hiragana automatically; kanji
+  transcriptions are left as-is and shown to the user rather than guessed
+  at, since there's no dictionary here to recover a reading from them.
+  Note: unlike the rest of this offline-first PWA, voice input needs an
+  internet connection in most browsers (the ASR itself runs server-side).
+
 ## v0.7.2 — 2026-08-17
 
 ### Changed

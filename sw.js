@@ -1,7 +1,7 @@
-const CACHE_VERSION = 'wanikanji-v5';
+const CACHE_VERSION = 'wanikanji-v6';
 const CORE_ASSETS = [
   '.', 'index.html', 'style.css', 'manifest.json', 'icon.svg',
-  'js/kana.js', 'js/grading.js', 'js/srs.js',
+  'js/kana.js', 'js/grading.js', 'js/srs.js', 'js/speech.js',
   'js/progress.js', 'js/data.js', 'js/app.js',
   'data/kanji.json', 'data/radicals.json',
 ];

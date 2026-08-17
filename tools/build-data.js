@@ -145,14 +145,29 @@ function main() {
     // list, so the sentence never introduces vocabulary the learner hasn't
     // seen; if every candidate sentence's target word is new, fold that
     // word into the example list instead of teaching it silently.
+    //
+    // Matching is done modulo a trailing な (na-adjective inflection) so a
+    // sentence targeting "丁寧" doesn't get folded in as a "new" word next
+    // to the already-present "丁寧な" — same vocabulary, different surface
+    // form. When that happens, the example-list entry is swapped to the
+    // form actually used in the sentence rather than carrying both.
+    const stripNa = w => w.replace(/な$/, '');
     const exampleWords = (words[ch] || []).slice(0, 4);
     const sList = sents[ch] || [];
-    const sPref = sList.find(s => exampleWords.some(w => w.word === s.target)) || sList[0] || null;
-    const sentenceIntroducesNewWord = sPref && !exampleWords.some(w => w.word === sPref.target);
-    if (sentenceIntroducesNewWord) sentenceWordFoldedIn++;
-    const examples = sentenceIntroducesNewWord
-      ? [...exampleWords, { word: sPref.target, reading: sPref.targetReading, gloss: sPref.targetGloss }].slice(0, 5)
-      : exampleWords;
+    const sPref = sList.find(s => exampleWords.some(w => stripNa(w.word) === stripNa(s.target))) || sList[0] || null;
+    const matchIdx = sPref ? exampleWords.findIndex(w => stripNa(w.word) === stripNa(sPref.target)) : -1;
+    let examples;
+    if (sPref && matchIdx !== -1 && exampleWords[matchIdx].word !== sPref.target) {
+      examples = exampleWords.map((w, i) => i === matchIdx
+        ? { word: sPref.target, reading: sPref.targetReading, gloss: sPref.targetGloss }
+        : w);
+    } else {
+      const sentenceIntroducesNewWord = sPref && matchIdx === -1;
+      if (sentenceIntroducesNewWord) sentenceWordFoldedIn++;
+      examples = sentenceIntroducesNewWord
+        ? [...exampleWords, { word: sPref.target, reading: sPref.targetReading, gloss: sPref.targetGloss }].slice(0, 5)
+        : exampleWords;
+    }
 
     // Whether this kanji can be sensibly asked about on its own: it has a
     // kun'yomi (so it can carry okurigana / stand alone as a native word) or

@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.7.1 — 2026-08-17
+
+### Fixed
+- **Near-duplicate example words** (e.g. 丁寧な *and* 丁寧, 幸せな *and* 幸せ) —
+  the build pipeline's sentence-word-folding step matched by exact string, so
+  a sentence targeting a na-adjective's bare stem ("丁寧") wasn't recognized
+  as the same word as the already-listed inflected form ("丁寧な") and got
+  folded in as a spurious 5th entry. 11 kanji affected. Fixed by matching
+  modulo a trailing な, and — when a match is found — keeping the surface
+  form the example *sentence* actually uses instead of carrying both.
+  (kanji-drill's source only lists 4 example words per kanji, so there was
+  no other distinct word to substitute in; the fix dedupes to the 4
+  original words rather than inventing a fake 5th.)
+
 ## v0.7.0 — 2026-08-17
 
 Keyboard-navigation pass (this app is typing-first — every control should be

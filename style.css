@@ -223,7 +223,7 @@ kbd { font-family: var(--font-mono); background: var(--bg); border: 1px solid va
 .quiz-glyph { display: block; font-size: 4.5rem; line-height: 1.15; }
 .quiz-glyph.kanji { color: var(--kanji); }
 .quiz-glyph-context { font-size: 3.2rem; }
-.quiz-glyph-context .ctx-target { color: var(--kanji); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 0.12em; }
+.quiz-glyph-context .ctx-target { color: var(--kanji); background: color-mix(in srgb, var(--kanji) 14%, transparent); border-radius: var(--radius-sm); padding: 0 0.12em; }
 .quiz-glyph-context .ctx-kana { color: var(--fg); }
 .quiz-glyph-context ruby { color: var(--fg); }
 .quiz-glyph-context rt { font-size: 1rem; color: var(--muted); font-weight: 400; }

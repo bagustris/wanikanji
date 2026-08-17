@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.7.2 — 2026-08-17
+
+### Changed
+- **Compound-context target kanji: highlight box instead of underline** — an
+  underline under a kanji glyph can visually merge with its bottom strokes;
+  a tinted background box around the character reads more clearly as "this
+  is the one to answer" without touching the glyph itself.
+
 ## v0.7.1 — 2026-08-17
 
 ### Fixed

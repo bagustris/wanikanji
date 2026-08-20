@@ -160,7 +160,7 @@
       .map(r => `<span class="rad${r.uncertain ? ' rad-uncertain' : ''}">${r.glyph} ${r.name}</span>`).join('');
     const glyphHTML = item.context
       ? `<div class="glyph badge-kanji-glyph quiz-glyph-context">${contextGlyphHTML(item.context)}</div>
-         <p class="quiz-context-caption">in ${item.context.word}${item.context.gloss ? ` · ${item.context.gloss}` : ''}</p>`
+         ${item.context.gloss ? `<p class="quiz-context-caption">${item.context.gloss}</p>` : ''}`
       : `<div class="glyph badge-kanji-glyph">${item.char}</div>`;
     return `<span class="type-badge badge-kanji">Kanji 漢字</span>
       ${glyphHTML}
@@ -220,21 +220,19 @@
     const glyph = $('quiz-glyph');
     const caption = $('quiz-context-caption');
     // The target is still what gets graded, via its own acceptReadings —
-    // the context is presentation only (see contextGlyphHTML above).
+    // the context is presentation only (see contextGlyphHTML above). No
+    // caption here: contextGlyphHTML already renders the full context word,
+    // and no gloss is shown (reading and meaning are both quizzed this
+    // session, so a gloss would give away the meaning answer).
     if (isReading && item.context) {
       glyph.innerHTML = contextGlyphHTML(item.context);
       glyph.className = 'quiz-glyph quiz-glyph-context ' + item.type;
-      // Word only, no English gloss: reading and meaning are both quizzed
-      // this session, so showing the gloss here would give away the answer
-      // to this item's meaning question.
-      caption.textContent = `in ${item.context.word}`;
-      caption.classList.remove('hidden');
     } else {
       glyph.textContent = item.glyph;
       glyph.className = 'quiz-glyph ' + item.type;
-      caption.textContent = '';
-      caption.classList.add('hidden');
     }
+    caption.textContent = '';
+    caption.classList.add('hidden');
     $('quiz-type-badge').textContent = 'Kanji';
     $('quiz-type-badge').className = 'type-badge badge-kanji';
     const qtypeClass = isReading ? 'qtype-reading' : 'qtype-meaning';

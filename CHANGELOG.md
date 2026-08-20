@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.8.4 — 2026-08-20
+
+### Fixed
+- The duplicate-word bug in js/app.js 
+
 ## v0.8.3 — 2026-08-17
 
 ### Fixed

@@ -6,8 +6,6 @@
 (function (root) {
   'use strict';
 
-  const MAX_LEVEL = 3;
-
   const Data = {
     radicals: [],       // raw radical records (component lookup only)
     kanji: [],          // raw kanji records
@@ -73,8 +71,6 @@
     radicalItemsFor(kanjiItem) {
       return (kanjiItem.radicals || []).map(n => this.radicalByName[n]).filter(Boolean);
     },
-
-    MAX_LEVEL,
   };
 
   root.Data = Data;

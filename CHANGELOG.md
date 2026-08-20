@@ -3,7 +3,38 @@
 ## v0.8.4 — 2026-08-20
 
 ### Fixed
-- The duplicate-word bug in js/app.js 
+- The duplicate-word bug in js/app.js. Also fix duplicate word in context 
+  display (from earlier this session, already
+  committed to the working tree) — the reading-context glyph and its caption
+  both rendered the same word.
+- SRS penalty under-counted on reveal/skip (js/app.js:328) — revealSkip() set
+  rec.incorrect = Math.max(rec.incorrect, 1) instead of incrementing. Per
+  the design ("incorrect answers on either [reading/meaning] accumulate"),
+  every failed subject should add one strike — submitAnswer()'s wrong-answer
+  path already does rec.incorrect++, but revealSkip() only floored to 1.
+  Concretely: fail the reading via bad submits (incorrect=2), then
+  reveal-skip the meaning too → should be 3 strikes, but the bug left it at
+  2, giving a smaller SRS stage-drop than deserved. Fixed to rec.incorrect++.
+- Caret jump during romaji→hiragana conversion (js/app.js in initInput) —
+  every live conversion reassigned input.value, which unconditionally snaps
+  the cursor to the end. Editing a typo in the middle of a reading answer was
+  broken: any keystroke there bounced the caret to the end. Now the caret
+  position is preserved (shifted by the conversion's length delta).
+- Stale auto-advance timer could clip the next question (js/app.js,
+  submitAnswer/nextQuestion) — with "Auto-advance" on, a correct answer
+  schedules a 700ms timer to auto-continue. It only checked
+  quiz.awaitingContinue, not which question that was for — a fast run of
+  correct answers could let an old timer fire after the learner had already
+  moved to (and correctly answered) a later question, cutting its feedback
+  display short. Added a per-question qToken that the timer checks before
+  firing.
+
+### Removed 
+- Removed the dead, misleading MAX_LEVEL = 3 constant from js/data.js — a
+  leftover from the original Level 1–3 MVP, unused anywhere, and now flatly
+  wrong since the app covers all 60 levels (Data.levels() already derives the
+  range dynamically from loaded items).
+
 
 ## v0.8.3 — 2026-08-17
 

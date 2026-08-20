@@ -195,7 +195,7 @@
     // Blocked, not interleaved: all reading questions (items shuffled among
     // themselves) come first, then all meaning questions (items shuffled).
     const queue = [...shuffle(readingQ), ...shuffle(meaningQ)];
-    quiz = { queue, perItem, mode, total: queue.length, done: 0, finished: [], answeredCorrect: 0, answeredWrong: 0 };
+    quiz = { queue, perItem, mode, total: queue.length, done: 0, finished: [], answeredCorrect: 0, answeredWrong: 0, qToken: 0 };
     show('quiz');
     nextQuestion();
   }
@@ -212,6 +212,7 @@
 
   function nextQuestion() {
     stopMic();
+    quiz.qToken++; // invalidates any stale auto-advance timer from the previous question
     if (quiz.queue.length === 0) return finishQuiz();
     const q = quiz.queue[0];
     const item = quiz.perItem[q.id].item;
@@ -294,7 +295,14 @@
       maybeShowItemInfo(item);
       $('quiz-continue').classList.remove('hidden');
       quiz.awaitingContinue = true;
-      if (Progress.settings().autoAdvance) setTimeout(() => { if (quiz && quiz.awaitingContinue) advance(); }, 700);
+      // Guarded by qToken (not just awaitingContinue): a fast run of correct
+      // answers with Auto-advance on could otherwise let this timer fire
+      // after the learner has already moved on to a *later* question, and
+      // cut that question's own feedback display short.
+      if (Progress.settings().autoAdvance) {
+        const token = quiz.qToken;
+        setTimeout(() => { if (quiz && quiz.awaitingContinue && quiz.qToken === token) advance(); }, 700);
+      }
     } else {
       stopMic(); // don't let a stale in-flight result overwrite the retry
       input.className = 'quiz-input incorrect shake';
@@ -325,7 +333,7 @@
     input.className = 'quiz-input incorrect';
     setAnswerInputEnabled(false);
     rec.erred = true;
-    rec.incorrect = Math.max(rec.incorrect, 1);
+    rec.incorrect++;
     $('quiz-feedback').textContent = `Answer: ${answer}`;
     $('quiz-feedback').className = 'quiz-feedback incorrect';
     rec.remaining.delete(q.qtype);
@@ -477,10 +485,20 @@
       const q = quiz.queue[0];
       if (!q || q.qtype !== 'reading' || !Progress.settings().romajiInput) return;
       const v = input.value;
+      const caret = input.selectionStart;
       let conv;
       if (/n$/i.test(v) && !/nn$/i.test(v)) conv = Kana.toHiragana(v.slice(0, -1)) + v.slice(-1);
       else conv = Kana.toHiragana(v);
-      if (conv !== v) input.value = conv;
+      if (conv !== v) {
+        input.value = conv;
+        // Reassigning .value always moves the caret to the end — restore it
+        // (shifted by however much the conversion changed the length before
+        // it) so fixing a typo mid-string doesn't bounce the cursor away.
+        if (caret !== null) {
+          const newCaret = Math.max(0, Math.min(conv.length, caret + (conv.length - v.length)));
+          input.setSelectionRange(newCaret, newCaret);
+        }
+      }
     });
     $('quiz-form').addEventListener('submit', e => { e.preventDefault(); submitAnswer(); });
 

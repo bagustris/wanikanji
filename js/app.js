@@ -167,7 +167,7 @@
       <div class="primary-meaning">${item.meanings[0]}</div>
       <div class="readings">on: <b>${on}</b> &nbsp; kun: <b>${kun}</b></div>
       <div class="composition">Made of: ${rads || '—'}</div>
-      ${itemInfoHTML(item)}`;
+      ${itemInfoHTML(item).html}`;
   }
 
   // ============================ QUIZ ENGINE ============================
@@ -291,8 +291,9 @@
       rec.remaining.delete(q.qtype);
       quiz.queue.shift();
       quiz.done++;
-      if (rec.remaining.size === 0) resolveItem(rec);
-      maybeShowItemInfo(item);
+      const itemResolved = rec.remaining.size === 0;
+      if (itemResolved) resolveItem(rec);
+      const infoShown = maybeShowItemInfo(item, q.qtype, itemResolved);
       $('quiz-continue').classList.remove('hidden');
       quiz.awaitingContinue = true;
       // Guarded by qToken (not just awaitingContinue): a fast run of correct
@@ -300,8 +301,9 @@
       // after the learner has already moved on to a *later* question, and
       // cut that question's own feedback display short.
       if (Progress.settings().autoAdvance) {
-        // Longer hold when item info is showing too, so it's readable before advancing.
-        const delay = Progress.settings().showItemInfo ? 5000 : 700;
+        // Longer hold when item info actually rendered something to read —
+        // not just because the setting is on (a placeholder needs no hold).
+        const delay = infoShown ? 5000 : 700;
         const token = quiz.qToken;
         setTimeout(() => { if (quiz && quiz.awaitingContinue && quiz.qToken === token) advance(); }, delay);
       }
@@ -341,8 +343,9 @@
     rec.remaining.delete(q.qtype);
     quiz.queue.shift();
     quiz.done++;
-    if (rec.remaining.size === 0) resolveItem(rec);
-    maybeShowItemInfo(item);
+    const itemResolved = rec.remaining.size === 0;
+    if (itemResolved) resolveItem(rec);
+    maybeShowItemInfo(item, q.qtype, itemResolved);
     $('quiz-continue').classList.remove('hidden');
     quiz.awaitingContinue = true;
   }
@@ -363,6 +366,13 @@
     nextQuestion();
   }
 
+  // Items missed in the most recently finished session, offered back for
+  // an immediate redrill (see btn-summary-redrill below) — retrieval
+  // practice right after a miss is one of the more effective uses of a
+  // typed-input trainer, and doesn't need to wait for the SRS to re-queue
+  // the item hours/days later.
+  let lastMissedItems = [];
+
   function finishQuiz() {
     const missed = quiz.finished.filter(r => r.erred);
     const correctItems = quiz.finished.filter(r => !r.erred);
@@ -375,45 +385,59 @@
        <div class="summary-stat"><strong style="color:var(--incorrect)">${missed.length}</strong><span>Had errors</span></div>`;
     $('summary-items').innerHTML = quiz.finished.map(r =>
       `<span class="summary-chip ${r.erred ? 'missed' : ''}">${r.item.glyph}</span>`).join('');
+    lastMissedItems = missed.map(r => r.item);
+    $('btn-summary-redrill').classList.toggle('hidden', lastMissedItems.length === 0);
     quiz = null;
   }
 
   // ============================ ITEM INFO ============================
-  function maybeShowItemInfo(item) {
-    if (!Progress.settings().showItemInfo) return;
-    // Post-answer panel includes meanings/readings (the lesson card already
-    // shows those inline, so itemCardHTML doesn't pass this).
-    const html = itemInfoHTML(item, { withMeta: true });
-    if (!html) return;
+  // `qtype` is the question just answered, `resolved` means both the
+  // item's reading and meaning questions are now answered this session.
+  // Meanings/readings are shown only for the side just tested (plus the
+  // other side once resolved) — reading and meaning questions for the
+  // same item land in different queue blocks (see startQuiz), so showing
+  // the meaning right after a correct *reading* answer would hand the
+  // learner that item's still-pending meaning question, and vice versa.
+  // Returns whether the panel ended up with real content (vs. just the
+  // "no examples" placeholder), so callers can size a hold time around it.
+  function maybeShowItemInfo(item, qtype, resolved) {
+    if (!Progress.settings().showItemInfo) return false;
+    const { html, hasContent } = itemInfoHTML(item, {
+      showMeanings: qtype === 'meaning' || resolved,
+      showReadings: qtype === 'reading' || resolved,
+    });
     $('item-info').innerHTML = html;
     $('item-info').classList.remove('hidden');
+    return hasContent;
   }
 
-  function itemInfoHTML(item, { withMeta = false } = {}) {
-    let html = '';
-    if (withMeta && item.meanings && item.meanings.length) {
-      html += `<h4>意味 · Meanings</h4><p class="meta-line">${item.meanings.join(', ')}</p>`;
+  function itemInfoHTML(item, { showMeanings = false, showReadings = false } = {}) {
+    let meta = '';
+    if (showMeanings && item.meanings && item.meanings.length) {
+      meta += `<h4>意味 · Meanings</h4><p class="meta-line">${item.meanings.join(', ')}</p>`;
     }
-    if (withMeta && ((item.readingsOn && item.readingsOn.length) || (item.readingsKun && item.readingsKun.length))) {
-      html += '<h4>読み · Readings</h4><p class="meta-line">';
-      if (item.readingsOn && item.readingsOn.length) html += `<span class="reading-group">音 On: ${item.readingsOn.join('、')}</span>`;
-      if (item.readingsKun && item.readingsKun.length) html += `<span class="reading-group">訓 Kun: ${item.readingsKun.join('、')}</span>`;
-      html += '</p>';
+    if (showReadings && ((item.readingsOn && item.readingsOn.length) || (item.readingsKun && item.readingsKun.length))) {
+      meta += '<h4>読み · Readings</h4><p class="meta-line">';
+      if (item.readingsOn && item.readingsOn.length) meta += `<span class="reading-group">音 On: ${item.readingsOn.join('、')}</span>`;
+      if (item.readingsKun && item.readingsKun.length) meta += `<span class="reading-group">訓 Kun: ${item.readingsKun.join('、')}</span>`;
+      meta += '</p>';
     }
+    let examples = '';
     if (item.examples && item.examples.length) {
-      html += '<h4>例の言葉 · Example words</h4><div class="word-list">';
-      html += item.examples.map(w =>
+      examples += '<h4>例の言葉 · Example words</h4><div class="word-list">';
+      examples += item.examples.map(w =>
         `<div class="word"><span class="jp">${w.word}</span><span class="rd">${w.reading}</span><span class="gl">${w.gloss}</span></div>`
       ).join('');
-      html += '</div>';
+      examples += '</div>';
     }
     if (item.sentence) {
-      html += '<h4>例文 · Example sentence</h4>';
-      html += `<p class="sentence">${item.sentence.sentence}</p>`;
-      if (item.sentence.translation) html += `<p class="sentence-tr">${item.sentence.translation}</p>`;
+      examples += '<h4>例文 · Example sentence</h4>';
+      examples += `<p class="sentence">${item.sentence.sentence}</p>`;
+      if (item.sentence.translation) examples += `<p class="sentence-tr">${item.sentence.translation}</p>`;
     }
-    if (!html) html = '<p class="sentence-tr">No example words available.</p>';
-    return `<div class="item-info">${html}</div>`;
+    const hasContent = !!(meta || examples);
+    const body = meta + (examples || '<p class="sentence-tr">No example words available.</p>');
+    return { html: `<div class="item-info">${body}</div>`, hasContent };
   }
 
   // ============================ SETTINGS ============================
@@ -537,9 +561,10 @@
         if (e.key === 'Enter' || e.key === 'ArrowRight' || e.key === ' ' || key === 'l' || key === 'j') { advance(); e.preventDefault(); return; }
         if (key === 'q') { document.querySelector('#screen-quiz .btn-quit-session').click(); e.preventDefault(); return; }
       }
-      // summary: Enter/Space/D go back to the dashboard (no text input on this screen)
+      // summary: Enter/Space/D go back to the dashboard, R redrills misses (no text input on this screen)
       if (!$('screen-summary').classList.contains('hidden')) {
         if (e.key === 'Enter' || e.key === ' ' || key === 'd') { $('btn-summary-home').click(); e.preventDefault(); return; }
+        if (key === 'r' && !$('btn-summary-redrill').classList.contains('hidden')) { $('btn-summary-redrill').click(); e.preventDefault(); return; }
       }
 
       // Global, app-wide shortcuts — D (dashboard) and S (settings) work from
@@ -686,6 +711,9 @@
     $('btn-lesson-next').addEventListener('click', lessonNext);
     $('btn-lesson-prev').addEventListener('click', lessonPrev);
     $('btn-summary-home').addEventListener('click', () => { show('dashboard'); renderDashboard(); });
+    $('btn-summary-redrill').addEventListener('click', () => {
+      if (lastMissedItems.length) startQuiz(lastMissedItems, 'extra');
+    });
     document.querySelectorAll('.btn-quit-session').forEach(b =>
       b.addEventListener('click', () => { quiz = null; show('dashboard'); renderDashboard(); }));
   }

@@ -17,6 +17,27 @@
 
 - Add 5 seconds hold if both show item info and autoadvace are on
 
+### Fixed
+- Item info panel leaked answers: reading and meaning questions for the
+  same kanji are queued in separate blocks of a session (all readings
+  first, then all meanings — see `startQuiz`), but the post-answer item
+  info panel always showed the full meanings *and* on/kun readings, so a
+  correct reading answer handed you that kanji's still-pending meaning
+  answer (and vice versa). The 5-second auto-advance hold above made this
+  far more visible. Now `itemInfoHTML`/`maybeShowItemInfo` (js/app.js)
+  gate meanings/readings on which question was just answered, only
+  showing both once the item is fully resolved.
+- The new auto-advance hold used a flat 5s whenever "Show item info" was
+  on, even for items with no example words/sentence (where the panel was
+  just a placeholder). The hold now depends on whether the panel actually
+  rendered content.
+
+### Added
+- "Redrill misses" button (and `R` shortcut) on the session-summary
+  screen — immediately restart an Extra Study session over just the
+  items missed that session, instead of waiting for the SRS to re-queue
+  them hours/days later.
+
 ## v0.8.4 — 2026-08-20
 
 ### Fixed

@@ -43,12 +43,13 @@ Regenerate `data/*.json` after touching the data pipeline:
 node tools/build-data.js
 ```
 
-**Note:** `tools/build-data.js` reads example words/sentences from a sibling
-checkout at `../kanji-drill/data` (relative to this repo's parent directory).
-That data isn't in this repo — the script (and `tools/furigana.js`, which it
-calls) won't run without a local `kanji-drill` checkout next to `wanikanji`.
+**Note:** `tools/build-data.js` reads example words/sentences from
+`vendor/kanji-data` (git submodule, https://github.com/bagustris/kanji-data),
+under `kanji-drill/data/`. Run `git submodule update --init` after cloning —
+the script (and `tools/furigana.js`, which it calls) won't run without it.
 `data/kanji.json` / `data/radicals.json` are themselves committed, so this
-only matters when regenerating them.
+only matters when regenerating them; the live site fetches those committed
+files directly and never touches the submodule at runtime.
 
 ## Architecture
 
@@ -97,8 +98,9 @@ own; `data.js` keeps them in a separate `radicalByName` lookup, never in
 **Data pipeline:** `data/kanji.json` and `data/radicals.json` are generated
 (via `tools/build-data.js`) from `kanji-wanikani.json` (WaniKani metadata:
 levels, meanings, on'yomi/kun'yomi readings with `!` marking the preferred
-reading, and radical *names*) plus the `kanji-drill` sibling repo (example
-words/sentences). Radical *glyphs* aren't in the source data, so
+reading, and radical *names*) plus the `vendor/kanji-data` submodule's
+`kanji-drill/data/` (example words/sentences, sourced from the kanji-drill
+app's own dataset). Radical *glyphs* aren't in the source data, so
 `build-data.js` resolves `name -> glyph` by a precedence chain documented at
 the top of that file and in `README.md` (hand override > WaniKani's real
 Unicode glyph from `tools/wk-radicals-source.json` > single-radical kanji

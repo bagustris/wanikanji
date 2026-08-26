@@ -3,16 +3,16 @@
 // Node built-ins only. Not part of the served runtime.
 //
 // Sources:
-//   ../kanji-wanikani.json                  (WK levels, meanings, readings, radicals)
-//   ../../kanji-drill/data/grade*.json       (per-kanji example WORDS)
-//   ../../kanji-drill/data/sentences*.json    (example SENTENCES)
+//   ../kanji-wanikani.json                             (WK levels, meanings, readings, radicals)
+//   vendor/kanji-data/kanji-drill/data/grade*.json      (per-kanji example WORDS)
+//   vendor/kanji-data/kanji-drill/data/sentences*.json  (example SENTENCES)
 
 const fs = require('fs');
 const path = require('path');
 const { deriveContext } = require('./furigana.js');
 
 const ROOT = path.join(__dirname, '..');
-const KD = path.join(ROOT, '..', 'kanji-drill', 'data');
+const KD = path.join(ROOT, 'vendor', 'kanji-data', 'kanji-drill', 'data');
 const OUT = path.join(ROOT, 'data');
 const MAX_LEVEL = 60;
 

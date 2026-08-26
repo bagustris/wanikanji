@@ -45,8 +45,11 @@ node tools/build-data.js
 
 **Note:** `tools/build-data.js` reads example words/sentences from
 `vendor/kanji-data` (git submodule, https://github.com/bagustris/kanji-data),
-under `kanji-drill/data/`. Run `git submodule update --init` after cloning —
-the script (and `tools/furigana.js`, which it calls) won't run without it.
+which organizes by data domain rather than by app — grade files (for
+example words) are under `kanji/kyoiku-grade*.json`, sentence files under
+`sentences/kyoiku-sentences*.json` (see `KD_KANJI`/`KD_SENTENCES` in
+`build-data.js`). Run `git submodule update --init` after cloning — the
+script (and `tools/furigana.js`, which it calls) won't run without it.
 `data/kanji.json` / `data/radicals.json` are themselves committed, so this
 only matters when regenerating them; the live site fetches those committed
 files directly and never touches the submodule at runtime.
@@ -99,8 +102,9 @@ own; `data.js` keeps them in a separate `radicalByName` lookup, never in
 (via `tools/build-data.js`) from `kanji-wanikani.json` (WaniKani metadata:
 levels, meanings, on'yomi/kun'yomi readings with `!` marking the preferred
 reading, and radical *names*) plus the `vendor/kanji-data` submodule's
-`kanji-drill/data/` (example words/sentences, sourced from the kanji-drill
-app's own dataset). Radical *glyphs* aren't in the source data, so
+`kanji/kyoiku-grade*.json` + `sentences/kyoiku-sentences*.json` (example
+words/sentences, sourced from the kanji-drill app's own dataset). Radical
+*glyphs* aren't in the source data, so
 `build-data.js` resolves `name -> glyph` by a precedence chain documented at
 the top of that file and in `README.md` (hand override > WaniKani's real
 Unicode glyph from `tools/wk-radicals-source.json` > single-radical kanji

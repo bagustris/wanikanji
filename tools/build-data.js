@@ -3,16 +3,21 @@
 // Node built-ins only. Not part of the served runtime.
 //
 // Sources:
-//   ../kanji-wanikani.json                             (WK levels, meanings, readings, radicals)
-//   vendor/kanji-data/kanji-drill/data/grade*.json      (per-kanji example WORDS)
-//   vendor/kanji-data/kanji-drill/data/sentences*.json  (example SENTENCES)
+//   ../kanji-wanikani.json                                    (WK levels, meanings, readings, radicals)
+//   vendor/kanji-data/kanji/kyoiku-grade*.json                (per-kanji example WORDS)
+//   vendor/kanji-data/sentences/kyoiku-sentences*.json        (example SENTENCES)
+//
+// kanji-data organizes by data domain, not by app, so these two now live
+// under different top-level directories there (kanji/, sentences/) with a
+// kyoiku- prefix — see KD_KANJI/KD_SENTENCES below.
 
 const fs = require('fs');
 const path = require('path');
 const { deriveContext } = require('./furigana.js');
 
 const ROOT = path.join(__dirname, '..');
-const KD = path.join(ROOT, 'vendor', 'kanji-data', 'kanji-drill', 'data');
+const KD_KANJI = path.join(ROOT, 'vendor', 'kanji-data', 'kanji');
+const KD_SENTENCES = path.join(ROOT, 'vendor', 'kanji-data', 'sentences');
 const OUT = path.join(ROOT, 'data');
 const MAX_LEVEL = 60;
 
@@ -69,13 +74,13 @@ function buildKanjiDrillIndex() {
   const words = {};   // char -> [{word, reading, gloss}]
   const sents = {};   // char -> [{sentence, reading, translation}]
   for (let g = 1; g <= 9; g++) {
-    const gf = path.join(KD, `grade${g}.json`);
+    const gf = path.join(KD_KANJI, `kyoiku-grade${g}.json`);
     if (fs.existsSync(gf)) {
       for (const e of readJSON(gf)) {
         if (e.kanji && Array.isArray(e.examples)) words[e.kanji] = e.examples;
       }
     }
-    const sf = path.join(KD, `sentences${g}.json`);
+    const sf = path.join(KD_SENTENCES, `kyoiku-sentences${g}.json`);
     if (fs.existsSync(sf)) {
       for (const s of readJSON(sf)) {
         // Attach a sentence to a kanji only when it is part of the sentence's

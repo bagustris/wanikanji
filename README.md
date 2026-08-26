@@ -68,7 +68,9 @@ node js/srs/__tests__/run-tests.js        # SRS stages / intervals / penalty
 `data/kanji.json` and `data/radicals.json` are generated from
 `kanji-wanikani.json` (WaniKani metadata) plus example words/sentences from
 the [kanji-data](https://github.com/bagustris/kanji-data) submodule's
-`kanji-drill/data/` (kanji-drill's own dataset), by:
+`kanji/kyoiku-grade*.json` and `sentences/kyoiku-sentences*.json`
+(kanji-drill's own dataset, organized there by data domain rather than by
+app), by:
 
 ```bash
 git submodule update --init   # first time only

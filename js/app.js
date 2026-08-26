@@ -300,8 +300,10 @@
       // after the learner has already moved on to a *later* question, and
       // cut that question's own feedback display short.
       if (Progress.settings().autoAdvance) {
+        // Longer hold when item info is showing too, so it's readable before advancing.
+        const delay = Progress.settings().showItemInfo ? 5000 : 700;
         const token = quiz.qToken;
-        setTimeout(() => { if (quiz && quiz.awaitingContinue && quiz.qToken === token) advance(); }, 700);
+        setTimeout(() => { if (quiz && quiz.awaitingContinue && quiz.qToken === token) advance(); }, delay);
       }
     } else {
       stopMic(); // don't let a stale in-flight result overwrite the retry

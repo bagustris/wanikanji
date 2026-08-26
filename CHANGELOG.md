@@ -15,6 +15,8 @@
   The live site is unaffected either way — it fetches its own committed
   `data/kanji.json`/`data/radicals.json`, never the submodule.
 
+- Add 5 seconds hold if both show item info and autoadvace are on
+
 ## v0.8.4 — 2026-08-20
 
 ### Fixed

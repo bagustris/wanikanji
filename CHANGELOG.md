@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.8.5 — 2026-08-26
+
+### Changed
+- `tools/build-data.js`'s example-word/sentence source repointed from a
+  fragile `../kanji-drill` sibling-checkout assumption (broke for anyone
+  who didn't clone both repos side by side, and couldn't work in CI) to
+  the `vendor/kanji-data` submodule — first `kanji-drill/data/`
+  (single directory), then split into `kanji/kyoiku-grade*.json` +
+  `sentences/kyoiku-sentences*.json` when kanji-data reorganized by data
+  domain. No data changed either time — regenerated `data/kanji.json`/
+  `data/radicals.json` verified byte-identical (aside from one legitimate
+  upstream fix: 基's example word corrected from 基/もとい to 基本/きほん).
+  The live site is unaffected either way — it fetches its own committed
+  `data/kanji.json`/`data/radicals.json`, never the submodule.
+
 ## v0.8.4 — 2026-08-20
 
 ### Fixed

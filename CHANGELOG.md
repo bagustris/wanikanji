@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.8.6 — 2026-08-27
+
+### Changed
+- Center the reading in each example-word row, with the Japanese word kept
+  left-aligned and its English gloss right-aligned for easier scanning.
+
+### Fixed
+- Settings now consumes application keyboard shortcuts while its modal is
+  open, so `L`, `R`, `E`, and `Alt+M` cannot start lessons, reviews, extra
+  study, or voice input behind the dialog.
+- Resetting progress no longer re-runs settings initialization and attaches
+  duplicate event listeners after each reset.
+- Bump the service-worker cache for the updated stylesheet and controller,
+  so installed PWA clients do not retain a stale version after upgrading.
+
 ## v0.8.5 — 2026-08-26
 
 ### Changed

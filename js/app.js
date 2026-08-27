@@ -452,7 +452,7 @@
     $('settings-overlay').classList.remove('hidden');
   }
 
-  function initSettings() {
+  function syncSettings() {
     const s = Progress.settings();
     $('setting-item-info').checked = s.showItemInfo;
     $('setting-romaji').checked = s.romajiInput;
@@ -460,17 +460,22 @@
     $('setting-bypass').checked = s.bypassSchedule;
     $('setting-auto-next').checked = s.autoAdvance;
     const batchBtns = [...document.querySelectorAll('#setting-batch .segmented-btn')];
+    batchBtns.forEach(b => {
+      const on = +b.dataset.value === s.batchSize;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-checked', on);
+    });
+  }
+
+  function initSettings() {
+    syncSettings();
+    const batchBtns = [...document.querySelectorAll('#setting-batch .segmented-btn')];
     function selectBatch(btn) {
       batchBtns.forEach(x => { x.classList.remove('active'); x.setAttribute('aria-checked', 'false'); });
       btn.classList.add('active');
       btn.setAttribute('aria-checked', 'true');
       Progress.setSetting('batchSize', +btn.dataset.value);
     }
-    batchBtns.forEach(b => {
-      const on = +b.dataset.value === s.batchSize;
-      b.classList.toggle('active', on);
-      b.setAttribute('aria-checked', on);
-    });
 
     $('setting-item-info').addEventListener('change', e => Progress.setSetting('showItemInfo', e.target.checked));
     $('setting-romaji').addEventListener('change', e => Progress.setSetting('romajiInput', e.target.checked));
@@ -497,7 +502,7 @@
     $('settings-overlay').addEventListener('click', e => { if (e.target === $('settings-overlay')) $('settings-overlay').classList.add('hidden'); });
     $('btn-reset').addEventListener('click', () => {
       if (confirm('Reset all progress? This cannot be undone.')) {
-        Progress.reset(); initSettings(); $('settings-overlay').classList.add('hidden'); renderDashboard();
+        Progress.reset(); syncSettings(); $('settings-overlay').classList.add('hidden'); renderDashboard();
       }
     });
   }
@@ -529,6 +534,11 @@
     $('quiz-form').addEventListener('submit', e => { e.preventDefault(); submitAnswer(); });
 
     document.addEventListener('keydown', e => {
+      const settingsOpen = !$('settings-overlay').classList.contains('hidden');
+      if (settingsOpen) {
+        if (e.key === 'Escape') $('settings-overlay').classList.add('hidden');
+        return;
+      }
       // Alt+M toggles the mic from the keyboard, same as clicking it — a
       // plain 'm' can't be used since it's a valid romaji/English answer
       // character and would get eaten by the quiz input while typing.
@@ -573,7 +583,6 @@
       // be the only way to reach them. Suppressed while the settings dialog
       // is open (Escape closes it) or while actively typing a quiz answer
       // (the reading/meaning input is enabled and would eat the letter).
-      const settingsOpen = !$('settings-overlay').classList.contains('hidden');
       const activelyTyping = !$('screen-quiz').classList.contains('hidden') && quiz && !quiz.awaitingContinue;
       if (!settingsOpen && !activelyTyping) {
         if (key === 'd') { quiz = null; show('dashboard'); renderDashboard(); e.preventDefault(); return; }

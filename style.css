@@ -272,9 +272,9 @@ kbd { font-family: var(--font-mono); background: var(--bg); border: 1px solid va
 .item-info { text-align: left; margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 0.8rem; }
 .item-info h4 { margin: 0.6rem 0 0.3rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
 .item-info .word-list { display: flex; flex-direction: column; gap: 0.3rem; }
-.item-info .word { display: flex; justify-content: space-between; gap: 0.6rem; font-size: 0.9rem; }
-.item-info .word .jp { font-size: 1.05rem; color: var(--fg); }
-.item-info .word .rd { color: var(--accent); font-weight: 500; }
+.item-info .word { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: baseline; gap: 0.6rem; font-size: 0.9rem; }
+.item-info .word .jp { font-size: 1.05rem; color: var(--fg); justify-self: start; }
+.item-info .word .rd { color: var(--accent); font-weight: 500; justify-self: center; }
 .item-info .word .gl { color: var(--muted); flex: 1; text-align: right; }
 .item-info .sentence { font-size: 0.95rem; margin: 0.2rem 0; }
 .item-info .sentence-tr { color: var(--muted); font-size: 0.85rem; }

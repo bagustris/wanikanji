@@ -1,6 +1,6 @@
 # ワニ漢字 — WaniKanji
 
-The goal of this project is to help you learn kanji by typing readings and meanings, *in order to read* rather than just memorize readings/meanings.  
+The goal of this project is to help you learn kanji by typing readings and meanings, *in order to read* rather than just memorize readings/meanings. In addition to isolated kanji, vocabulary reading + meaning is also the central learning objective.
 
 
 A **PC-first, typed-input** WaniKani-style kanji trainer. Unlike its sibling

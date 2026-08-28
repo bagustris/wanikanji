@@ -202,11 +202,13 @@ kbd { font-family: var(--font-mono); background: var(--bg); border: 1px solid va
 /* Type badge + glyphs */
 .type-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.15rem 0.6rem; border-radius: var(--radius-full); color: #fff; margin-bottom: 0.6rem; }
 .badge-kanji { background: var(--fill-kanji); }
+.badge-vocab { background: var(--fill-accent); }
 
 /* Item card (lessons) */
 .item-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem; text-align: center; }
 .item-card .glyph { font-family: var(--font-headline); font-size: 4.5rem; line-height: 1.1; margin: 0.3rem 0; }
 .badge-kanji-glyph { color: var(--kanji); }
+.item-card .badge-vocab-glyph { color: var(--accent); font-size: 2rem; } /* words are multi-char, scale down from single-kanji size */
 .item-card .primary-meaning { font-family: var(--font-headline); font-size: 1.5rem; font-weight: 700; margin: 0.2rem 0; }
 .item-card .readings { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); margin: 0.3rem 0 0.6rem; }
 .item-card .readings b { color: var(--fg); }
@@ -222,6 +224,7 @@ kbd { font-family: var(--font-mono); background: var(--bg); border: 1px solid va
 .quiz-glyph-wrap { margin-bottom: 0.5rem; }
 .quiz-glyph { display: block; font-size: 4.5rem; line-height: 1.15; }
 .quiz-glyph.kanji { color: var(--kanji); }
+.quiz-glyph.vocab { color: var(--accent); font-size: 3rem; } /* multi-char words need the room */
 .quiz-glyph-context { font-size: 3.2rem; }
 .quiz-glyph-context .ctx-target { color: var(--kanji); background: color-mix(in srgb, var(--kanji) 14%, transparent); border-radius: var(--radius-sm); padding: 0 0.12em; }
 .quiz-glyph-context .ctx-kana { color: var(--fg); }
@@ -281,6 +284,20 @@ kbd { font-family: var(--font-mono); background: var(--bg); border: 1px solid va
 .item-info .meta-line { margin: 0; font-size: 0.9rem; }
 .item-info .reading-group { display: block; }
 .item-info .reading-group + .reading-group { margin-top: 0.15rem; }
+
+/* Color-coded sections so meaning/reading/words/sentence are each
+   instantly identifiable at a glance, not just by their heading text. */
+.item-info .info-section { border-left: 3px solid transparent; padding-left: 0.6rem; margin-top: 0.6rem; }
+.item-info .info-section:first-child { margin-top: 0; }
+.item-info .info-section h4 { margin-top: 0; }
+.item-info .info-meaning { border-color: var(--qtype-meaning); }
+.item-info .info-meaning h4 { color: var(--qtype-meaning); }
+.item-info .info-reading { border-color: var(--qtype-reading); }
+.item-info .info-reading h4 { color: var(--qtype-reading); }
+.item-info .info-words { border-color: var(--kanji); }
+.item-info .info-words h4 { color: var(--kanji); }
+.item-info .info-sentence { border-color: var(--accent); }
+.item-info .info-sentence h4 { color: var(--accent); }
 
 /* Summary */
 .summary-stats { display: flex; gap: 0.8rem; justify-content: center; margin: 1rem 0; }

@@ -1,5 +1,26 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- Color-code the item-info panel's sections (meanings, readings, example
+  words, example sentence) with a left accent border and matching heading
+  color, so each is identifiable at a glance instead of by heading text alone.
+
+### Added
+- Vocabulary is now a first-class SRS item, quizzed for reading + meaning
+  alongside isolated kanji in the same Lessons/Reviews/Extra Study queues.
+  Vocab items are derived from each kanji's example words (`examples[]`,
+  ~4,800 deduped words) and unlock once every kanji in the word has been
+  learned. Kanji glyphs read correctly in isolation, but a reading learned
+  in isolation doesn't reliably transfer to real text — drilling the same
+  kanji inside actual words closes that gap.
+
+### Fixed
+- Redrill misses now only re-asks the side(s) actually missed (reading or
+  meaning) instead of always re-asking both, avoiding an unnecessary double
+  drill of an already-known side.
+
 ## v0.8.6 — 2026-08-27
 
 ### Changed

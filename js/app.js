@@ -18,7 +18,11 @@
   }
   function levelUnlocked(lvl) { return lvl === 1 || levelPassed(lvl - 1); }
 
-  function prereqMet(item) { return levelUnlocked(item.level); }
+  function prereqMet(item) {
+    if (!levelUnlocked(item.level)) return false;
+    if (item.type === 'vocab') return item.componentKanji.every(ch => isLearned('k:' + ch));
+    return true;
+  }
   function availableLessons() {
     return Data.items
       .filter(i => !isLearned(i.id) && prereqMet(i))
@@ -152,6 +156,12 @@
   }
 
   function itemCardHTML(item) {
+    if (item.type === 'vocab') {
+      return `<span class="type-badge badge-vocab">Vocab 単語</span>
+        <div class="glyph badge-vocab-glyph">${item.glyph}</div>
+        <div class="primary-meaning">${item.meanings[0]}</div>
+        <div class="readings">reading: <b>${item.primaryReadings.join('、')}</b></div>`;
+    }
     const on = item.readingsOn.join('、') || '—';
     const kun = item.readingsKun.join('、') || '—';
     // Radicals are a lightweight visual hint here, not a quizzable item:
@@ -187,7 +197,7 @@
     const perItem = {};
     const readingQ = [], meaningQ = [];
     for (const it of items) {
-      perItem[it.id] = { item: it, incorrect: 0, remaining: new Set(it.questions), erred: false };
+      perItem[it.id] = { item: it, incorrect: 0, remaining: new Set(it.questions), erred: false, erredTypes: new Set() };
       for (const q of it.questions) {
         (q === 'reading' ? readingQ : meaningQ).push({ id: it.id, qtype: q });
       }
@@ -234,8 +244,8 @@
     }
     caption.textContent = '';
     caption.classList.add('hidden');
-    $('quiz-type-badge').textContent = 'Kanji';
-    $('quiz-type-badge').className = 'type-badge badge-kanji';
+    $('quiz-type-badge').textContent = item.type === 'vocab' ? 'Vocab' : 'Kanji';
+    $('quiz-type-badge').className = 'type-badge badge-' + item.type;
     const qtypeClass = isReading ? 'qtype-reading' : 'qtype-meaning';
     const label = isReading
       ? `読み方 <b class="${qtypeClass}">Reading</b> (hiragana)`
@@ -314,6 +324,7 @@
       $('quiz-feedback').className = 'quiz-feedback incorrect';
       rec.incorrect++;
       rec.erred = true;
+      rec.erredTypes.add(q.qtype);
       quiz.answeredWrong++;
       if (quiz.mode !== 'extra') Progress.recordAnswer(false);
       setTimeout(() => input.classList.remove('shake'), 300);
@@ -337,6 +348,7 @@
     input.className = 'quiz-input incorrect';
     setAnswerInputEnabled(false);
     rec.erred = true;
+    rec.erredTypes.add(q.qtype);
     rec.incorrect++;
     $('quiz-feedback').textContent = `Answer: ${answer}`;
     $('quiz-feedback').className = 'quiz-feedback incorrect';
@@ -385,7 +397,10 @@
        <div class="summary-stat"><strong style="color:var(--incorrect)">${missed.length}</strong><span>Had errors</span></div>`;
     $('summary-items').innerHTML = quiz.finished.map(r =>
       `<span class="summary-chip ${r.erred ? 'missed' : ''}">${r.item.glyph}</span>`).join('');
-    lastMissedItems = missed.map(r => r.item);
+    // Redrill only the side(s) actually missed — an item erred on reading
+    // shouldn't force a meaning question back into the redrill queue (and
+    // vice versa), since that's a needless double drill of an already-known side.
+    lastMissedItems = missed.map(r => ({ ...r.item, questions: [...r.erredTypes] }));
     $('btn-summary-redrill').classList.toggle('hidden', lastMissedItems.length === 0);
     quiz = null;
   }
@@ -414,26 +429,29 @@
   function itemInfoHTML(item, { showMeanings = false, showReadings = false } = {}) {
     let meta = '';
     if (showMeanings && item.meanings && item.meanings.length) {
-      meta += `<h4>意味 · Meanings</h4><p class="meta-line">${item.meanings.join(', ')}</p>`;
+      meta += `<div class="info-section info-meaning"><h4>意味 · Meanings</h4><p class="meta-line">${item.meanings.join(', ')}</p></div>`;
     }
-    if (showReadings && ((item.readingsOn && item.readingsOn.length) || (item.readingsKun && item.readingsKun.length))) {
-      meta += '<h4>読み · Readings</h4><p class="meta-line">';
+    if (showReadings && item.type === 'vocab' && item.primaryReadings && item.primaryReadings.length) {
+      meta += `<div class="info-section info-reading"><h4>読み · Reading</h4><p class="meta-line">${item.primaryReadings.join('、')}</p></div>`;
+    } else if (showReadings && ((item.readingsOn && item.readingsOn.length) || (item.readingsKun && item.readingsKun.length))) {
+      meta += '<div class="info-section info-reading"><h4>読み · Readings</h4><p class="meta-line">';
       if (item.readingsOn && item.readingsOn.length) meta += `<span class="reading-group">音 On: ${item.readingsOn.join('、')}</span>`;
       if (item.readingsKun && item.readingsKun.length) meta += `<span class="reading-group">訓 Kun: ${item.readingsKun.join('、')}</span>`;
-      meta += '</p>';
+      meta += '</p></div>';
     }
     let examples = '';
     if (item.examples && item.examples.length) {
-      examples += '<h4>例の言葉 · Example words</h4><div class="word-list">';
+      examples += '<div class="info-section info-words"><h4>例の言葉 · Example words</h4><div class="word-list">';
       examples += item.examples.map(w =>
         `<div class="word"><span class="jp">${w.word}</span><span class="rd">${w.reading}</span><span class="gl">${w.gloss}</span></div>`
       ).join('');
-      examples += '</div>';
+      examples += '</div></div>';
     }
     if (item.sentence) {
-      examples += '<h4>例文 · Example sentence</h4>';
+      examples += '<div class="info-section info-sentence"><h4>例文 · Example sentence</h4>';
       examples += `<p class="sentence">${item.sentence.sentence}</p>`;
       if (item.sentence.translation) examples += `<p class="sentence-tr">${item.sentence.translation}</p>`;
+      examples += '</div>';
     }
     const hasContent = !!(meta || examples);
     const body = meta + (examples || '<p class="sentence-tr">No example words available.</p>');

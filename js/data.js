@@ -21,6 +21,7 @@
       this.radicals = rads;
       this.kanji = kanji;
       this._buildItems();
+      this._buildVocabItems();
       return this;
     },
 
@@ -57,6 +58,47 @@
         };
         this.items.push(item);
         this.byId[item.id] = item;
+      }
+    },
+
+    // Vocab items are derived from kanji example words (`k.examples`), not
+    // sourced separately — real words built from kanji already in the
+    // curriculum, so a word's level is the highest level among its
+    // component kanji and it unlocks once those kanji are learned (see
+    // prereqMet in app.js). Deduped by word text since the same word can
+    // appear as an example under more than one of its component kanji.
+    _buildVocabItems() {
+      const stripTag = s => s.replace(/\s*\[[^\]]*\]\s*$/, '').trim();
+      const seen = new Set();
+      for (const k of this.kanji) {
+        for (const w of k.examples || []) {
+          // A leading "*" in the source data flags an irregular/jukujikun
+          // reading word — it's a data marker, not part of the word itself.
+          const word = w.word.replace(/^\*/, '');
+          if (seen.has(word) || word.length < 2) continue;
+          seen.add(word);
+          const componentKanji = [...new Set(word.split(''))]
+            .filter(ch => this.byId['k:' + ch]);
+          if (!componentKanji.length) continue;
+          const level = Math.max(...componentKanji.map(ch => this.byId['k:' + ch].level));
+          const meanings = w.gloss.split(',').map(stripTag).filter(Boolean);
+          if (!meanings.length) continue;
+          const item = {
+            id: 'v:' + word,
+            type: 'vocab',
+            level,
+            glyph: word,
+            meanings,
+            acceptReadings: [w.reading],
+            primaryReadings: [w.reading],
+            readingsOn: [],
+            readingsKun: [],
+            componentKanji,
+            questions: ['meaning', 'reading'],
+          };
+          this.items.push(item);
+          this.byId[item.id] = item;
+        }
       }
     },
 

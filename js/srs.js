@@ -46,23 +46,37 @@
     return Math.max(current - drop, MIN_STAGE);
   }
 
-  // Given a new stage and the current time (ms), return the next due timestamp.
-  // Burned items return null (never scheduled again).
-  function nextDueAt(stage, nowMs) {
-    const s = STAGES[stage];
-    if (!s || s.interval == null) return null;
-    return nowMs + s.interval;
+  // Adaptive pacing: a streak of consecutive fully-correct reviews (no
+  // incorrect answers on either subject) compresses the wait before the
+  // next review, so consistently-known items reach Guru/Burn sooner than
+  // WaniKani's fixed ladder — 10% shorter per streak review, floored at
+  // 50% of the normal interval (never so fast it undermines retention).
+  // A single incorrect review resets the streak to 0 (back to the normal
+  // interval) — the existing stage-drop penalty in nextStage already
+  // makes a miss slower, so this only needs to handle the speed-up side.
+  function streakMultiplier(streak) {
+    return Math.max(0.5, 1 - (streak || 0) * 0.1);
   }
 
-  // Apply a review result to an item state {stage, dueAt, correct, incorrect}.
-  // Returns a new state object.
+  // Given a new stage and the current time (ms), return the next due timestamp.
+  // Burned items return null (never scheduled again).
+  function nextDueAt(stage, nowMs, streak) {
+    const s = STAGES[stage];
+    if (!s || s.interval == null) return null;
+    return nowMs + s.interval * streakMultiplier(streak);
+  }
+
+  // Apply a review result to an item state
+  // {stage, dueAt, correct, incorrect, streak}. Returns a new state object.
   function applyReview(state, incorrect, nowMs) {
     const cur = state.stage || 1;
     const ns = nextStage(cur, incorrect);
+    const streak = incorrect <= 0 ? (state.streak || 0) + 1 : 0;
     return {
       ...state,
       stage: ns,
-      dueAt: nextDueAt(ns, nowMs),
+      streak,
+      dueAt: nextDueAt(ns, nowMs, streak),
       correct: (state.correct || 0) + (incorrect <= 0 ? 1 : 0),
       incorrect: (state.incorrect || 0) + (incorrect > 0 ? 1 : 0),
       burnedAt: isBurned(ns) ? nowMs : state.burnedAt || null,
@@ -71,7 +85,7 @@
 
   // Fresh state for a newly-learned item.
   function newItem(nowMs) {
-    return { stage: 1, dueAt: nextDueAt(1, nowMs), correct: 0, incorrect: 0, burnedAt: null };
+    return { stage: 1, dueAt: nextDueAt(1, nowMs, 0), correct: 0, incorrect: 0, streak: 0, burnedAt: null };
   }
 
   function isDue(state, nowMs) {
@@ -81,6 +95,6 @@
   return {
     STAGES, GURU, MAX_STAGE, MIN_STAGE,
     stageName, isGuru, isBurned, category,
-    nextStage, nextDueAt, applyReview, newItem, isDue,
+    nextStage, nextDueAt, streakMultiplier, applyReview, newItem, isDue,
   };
 });

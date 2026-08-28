@@ -59,5 +59,20 @@ eq('advance to burned', burned.stage, 9);
 ok('burnedAt set', burned.burnedAt === now);
 ok('burned not due', !SRS.isDue(burned, now + 999 * 3600 * 1000));
 
+// adaptive streak pacing
+eq('no streak = full interval', SRS.streakMultiplier(0), 1);
+eq('streak 1 = 90%', SRS.streakMultiplier(1), 0.9);
+eq('streak floors at 50%', SRS.streakMultiplier(5), 0.5);
+eq('streak floors at 50%, never below', SRS.streakMultiplier(20), 0.5);
+eq('nextDueAt honors streak', SRS.nextDueAt(1, now, 1), now + 4 * 3600 * 1000 * 0.9);
+
+const s0 = SRS.newItem(now);
+eq('newItem starts with streak 0', s0.streak, 0);
+const s1 = SRS.applyReview(s0, 0, s0.dueAt);
+eq('correct review builds streak', s1.streak, 1);
+eq('stage-2 interval compressed by streak 1', s1.dueAt, s0.dueAt + 8 * 3600 * 1000 * 0.9);
+const s2 = SRS.applyReview(s1, 2, s1.dueAt); // incorrect resets streak
+eq('incorrect resets streak', s2.streak, 0);
+
 console.log(`srs: ${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

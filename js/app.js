@@ -193,18 +193,27 @@
     return arr;
   }
 
+  // Blocked, not interleaved, by priority tier — reading before meaning for
+  // the same type (a fresh reading shouldn't be spoiled by having just
+  // typed the meaning), and vocab before kanji within each (reading real
+  // words transfers to actual text more directly than isolated-glyph
+  // drilling, so it's reinforced first): vocab reading, vocab meaning,
+  // kanji meaning, kanji reading. Each tier is shuffled internally.
+  function priorityTier(item, qtype) {
+    if (item.type === 'vocab') return qtype === 'reading' ? 0 : 1;
+    return qtype === 'meaning' ? 2 : 3;
+  }
+
   function startQuiz(items, mode) {
     const perItem = {};
-    const readingQ = [], meaningQ = [];
+    const tiers = [[], [], [], []];
     for (const it of items) {
       perItem[it.id] = { item: it, incorrect: 0, remaining: new Set(it.questions), erred: false, erredTypes: new Set() };
       for (const q of it.questions) {
-        (q === 'reading' ? readingQ : meaningQ).push({ id: it.id, qtype: q });
+        tiers[priorityTier(it, q)].push({ id: it.id, qtype: q });
       }
     }
-    // Blocked, not interleaved: all reading questions (items shuffled among
-    // themselves) come first, then all meaning questions (items shuffled).
-    const queue = [...shuffle(readingQ), ...shuffle(meaningQ)];
+    const queue = tiers.flatMap(shuffle);
     quiz = { queue, perItem, mode, total: queue.length, done: 0, finished: [], answeredCorrect: 0, answeredWrong: 0, qToken: 0 };
     show('quiz');
     nextQuestion();

@@ -122,12 +122,20 @@ furigana on the rest, derived at build time by `tools/furigana.js`.
 ### SRS model
 
 9 stages: Apprentice 1–4 → Guru 1–2 → Master → Enlightened → Burned, with
-WaniKani's intervals (4h, 8h, 1d, 2d, 1w, 2w, 1mo, 4mo) and incorrect-answer
-penalty (`ceil(incorrect/2) * penalty`, penalty 2 at/above Guru else 1).
-Kanji have two subjects per review (meaning + reading) and only advance once
-both are cleared in that session. Progression: a level is passed (unlocking
-the next level's kanji) once 90% of its kanji reach Guru — no radical
-prerequisite gates anything.
+WaniKani's base intervals (4h, 8h, 1d, 2d, 1w, 2w, 1mo, 4mo) and incorrect-answer
+penalty (`ceil(incorrect/2) * penalty`, penalty 2 at/above Guru else 1). Kanji
+and vocab items both have two subjects per review (meaning + reading) and
+only advance once both are cleared in that session. Progression: a level is
+passed (unlocking the next level's kanji) once 90% of its kanji reach Guru —
+vocab and radicals don't gate it.
+
+**Adaptive pacing** (deviates from stock WaniKani): each item tracks a
+`streak` of consecutive fully-correct reviews. `SRS.streakMultiplier(streak)`
+shrinks the next-review interval 10% per streak review, floored at 50% of
+the base interval — a well-known item reaches Guru/Burn faster than the
+fixed ladder. Any incorrect answer resets the streak to 0 (and the existing
+stage-drop penalty above already makes a miss slower, so streak reset is the
+only "wrong answer" lever needed).
 
 ### Grading
 

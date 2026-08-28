@@ -2,6 +2,25 @@
 
 ## Unreleased
 
+### Added
+- Adaptive SRS pacing: a streak of consecutive fully-correct reviews now
+  compresses the wait before an item's next review (10% shorter per streak
+  review, floored at 50% of the normal interval), so well-known items reach
+  Guru/Burn faster than WaniKani's fixed ladder. Any miss resets the streak
+  (the existing stage-drop penalty already makes a miss slower on its own).
+- Quiz queue is now ordered by priority tier — vocab reading, then vocab
+  meaning, then kanji meaning, then kanji reading (shuffled within each
+  tier) — instead of a flat reading-then-meaning split, so the
+  highest-value skill (reading real vocabulary) is drilled first.
+
+### Fixed
+- Bumped the service-worker cache version (`sw.js`) — it hadn't been bumped
+  since v0.8.6, so installed PWA clients/open tabs kept serving a stale
+  `js/app.js` and could still exhibit already-fixed bugs (e.g. redrill
+  re-asking both sides) until a hard refresh.
+
+## v0.8.7 -- 2026-08-28
+
 ### Changed
 - Color-code the item-info panel's sections (meanings, readings, example
   words, example sentence) with a left accent border and matching heading

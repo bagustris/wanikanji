@@ -5,6 +5,19 @@
   const $ = (id) => document.getElementById(id);
   const now = () => Date.now();
 
+  // Explicit sentence playback is an on-demand aid, independent of voice
+  // input and of the automatic-advance preference.
+  function canSpeakJapanese() {
+    return typeof window !== 'undefined' && !!window.speechSynthesis;
+  }
+  function speakJapanese(text) {
+    if (!text || !canSpeakJapanese()) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ja-JP';
+    window.speechSynthesis.speak(utterance);
+  }
+
   // ---- unlock / progress helpers ----
   const stateOf = (id) => Progress.getItem(id);
   const isLearned = (id) => Progress.hasItem(id);
@@ -432,6 +445,11 @@
     });
     $('item-info').innerHTML = html;
     $('item-info').classList.remove('hidden');
+    const sentence = $('item-info').querySelector('.sentence-play');
+    if (sentence && item.sentence && canSpeakJapanese()) {
+      sentence.classList.add('is-playable');
+      sentence.addEventListener('click', () => speakJapanese(item.sentence.sentence));
+    }
     return hasContent;
   }
 
@@ -458,7 +476,7 @@
     }
     if (item.sentence) {
       examples += '<div class="info-section info-sentence"><h4>例文 · Example sentence</h4>';
-      examples += `<p class="sentence">${item.sentence.sentence}</p>`;
+      examples += `<button type="button" class="sentence sentence-play" aria-label="例文を読み上げる Play example sentence">${item.sentence.sentence}</button>`;
       if (item.sentence.translation) examples += `<p class="sentence-tr">${item.sentence.translation}</p>`;
       examples += '</div>';
     }
@@ -746,6 +764,8 @@
     $('btn-extra').addEventListener('click', () => startQuiz(learnedActive(), 'extra'));
     $('btn-lesson-next').addEventListener('click', lessonNext);
     $('btn-lesson-prev').addEventListener('click', lessonPrev);
+    $('btn-home-title').addEventListener('click', () => { quiz = null; show('dashboard'); renderDashboard(); });
+    $('quiz-continue').addEventListener('click', () => { if (quiz && quiz.awaitingContinue) advance(); });
     $('btn-summary-home').addEventListener('click', () => { show('dashboard'); renderDashboard(); });
     $('btn-summary-redrill').addEventListener('click', () => {
       if (lastMissedItems.length) startQuiz(lastMissedItems, 'extra');

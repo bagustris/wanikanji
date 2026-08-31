@@ -15,6 +15,12 @@ ok('typo1 tolerated', G.gradeMeaning('watter', ['Water']).correct);       // dis
 ok('short no fuzz', !G.gradeMeaning('an', ['One']).correct);              // "one" len3 -> dist0 only
 ok('comma alt accepted', G.gradeMeaning('below', ['below; under']).correct);
 ok('slash alt accepted', G.gradeMeaning('under', ['below/under']).correct);
+ok('number accepts singular countable form', G.gradeMeaning('one thing', ['one (thing)']).correct);
+ok('number accepts plural countable form', G.gradeMeaning('seven things', ['seven']).correct);
+ok('parenthetical pieces accepts bare number', G.gradeMeaning('two', ['two (pieces)']).correct);
+ok('parenthetical pieces accepts thing form', G.gradeMeaning('two things', ['two (pieces)']).correct);
+ok('parenthetical pieces accepts plural piece form', G.gradeMeaning('two pieces', ['two (pieces)']).correct);
+ok('non-number does not accept countable suffix', !G.gradeMeaning('dog thing', ['dog']).correct);
 ok('wrong meaning', !G.gradeMeaning('cat', ['Dog']).correct);
 ok('exact flag set', G.gradeMeaning('dog', ['Dog']).exact === true);
 ok('fuzzy flag clear', G.gradeMeaning('watter', ['Water']).exact === false);

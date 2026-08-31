@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2026.08.31
 
 ### Added
 - Adaptive SRS pacing: a streak of consecutive fully-correct reviews now
@@ -18,6 +18,15 @@
   since v0.8.6, so installed PWA clients/open tabs kept serving a stale
   `js/app.js` and could still exhibit already-fixed bugs (e.g. redrill
   re-asking both sides) until a hard refresh.
+
+- Parenthetical source glosses such as  one (thing)  and  two (pieces)
+  now accept the bare number plus all natural  thing(s)  and  piece(s)
+  forms. This also makes  seven things  valid for  seven .            
+- Revealing an answer now records an incorrect attempt in lifetime  
+  statistics, consistent with typed incorrect answers.               
+- Added regression cases for parenthetical piece/thing variants and   
+  verified the full existing test suite: 125 passed. The final targeted     
+  grading suite also passed: 26 passed. 
 
 ## v0.8.7 -- 2026-08-28
 

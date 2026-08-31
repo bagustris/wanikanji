@@ -372,6 +372,7 @@
     rec.erred = true;
     rec.erredTypes.add(q.qtype);
     rec.incorrect++;
+    if (quiz.mode !== 'extra') Progress.recordAnswer(false);
     $('quiz-feedback').textContent = `Answer: ${answer}`;
     $('quiz-feedback').className = 'quiz-feedback incorrect';
     rec.remaining.delete(q.qtype);

@@ -6,6 +6,13 @@
 (function (root) {
   'use strict';
 
+  // Common number-word variants. The first reading in a source record remains
+  // primary for Strict readings; these are accepted alternatives otherwise.
+  const VOCAB_READING_ALIASES = {
+    '十四': ['じゅうよん', 'じゅうし'],
+    '十七': ['じゅうなな', 'じゅうしち'],
+  };
+
   const Data = {
     radicals: [],       // raw radical records (component lookup only)
     kanji: [],          // raw kanji records
@@ -89,7 +96,7 @@
             level,
             glyph: word,
             meanings,
-            acceptReadings: [w.reading],
+            acceptReadings: [...new Set([w.reading, ...(VOCAB_READING_ALIASES[word] || [])])],
             primaryReadings: [w.reading],
             readingsOn: [],
             readingsKun: [],

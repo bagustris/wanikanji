@@ -776,16 +776,16 @@
   }
 
   // The About panel's version is read from CHANGELOG.md (the single source of
-  // truth) rather than duplicated here: parse the newest `## vX.Y.Z` heading
-  // and show it. The static v-number in index.html is the offline/pre-fetch
-  // fallback, so a failed fetch just leaves that in place.
+  // truth) rather than duplicated here: parse the newest CalVer (`YYYY.MM.DD`)
+  // or legacy SemVer (`vX.Y.Z`) heading and show it. The static value in
+  // index.html is the offline/pre-fetch fallback.
   async function loadAppVersion() {
     try {
       const res = await fetch('CHANGELOG.md');
       if (!res.ok) return;
       const text = await res.text();
-      const match = text.match(/^##\s*v(\d+\.\d+\.\d+)/m);
-      if (match) $('about-version').textContent = `v${match[1]}`;
+      const match = text.match(/^##\s*((?:v)?(?:\d{4}\.\d{2}\.\d{2}|\d+\.\d+\.\d+))(?:\s|$)/m);
+      if (match) $('about-version').textContent = match[1];
     } catch {
       // offline / fetch blocked — keep the static fallback from index.html
     }

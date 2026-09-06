@@ -714,7 +714,7 @@
           input.value = isReading
             ? Speech.resolveReadingTranscript(trimmed, {
                 char: item.char,
-                word: item.context && item.context.word,
+                word: (item.context && item.context.word) || item.glyph,
                 reading: (item.primaryReadings && item.primaryReadings[0]) || (item.acceptReadings && item.acceptReadings[0]),
               })
             : trimmed;

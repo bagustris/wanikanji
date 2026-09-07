@@ -13,6 +13,12 @@
     '十七': ['じゅうなな', 'じゅうしち'],
   };
 
+  // Extra accepted meanings beyond the source gloss (e.g. plural/singular
+  // phrasing the grader's fuzz matching won't bridge on its own).
+  const VOCAB_MEANING_ALIASES = {
+    '三人': ['three people', 'three persons'],
+  };
+
   const Data = {
     radicals: [],       // raw radical records (component lookup only)
     kanji: [],          // raw kanji records
@@ -89,7 +95,10 @@
             .filter(ch => this.byId['k:' + ch]);
           if (!componentKanji.length) continue;
           const level = Math.max(...componentKanji.map(ch => this.byId['k:' + ch].level));
-          const meanings = w.gloss.split(',').map(stripTag).filter(Boolean);
+          const meanings = [...new Set([
+            ...w.gloss.split(',').map(stripTag).filter(Boolean),
+            ...(VOCAB_MEANING_ALIASES[word] || []),
+          ])];
           if (!meanings.length) continue;
           const item = {
             id: 'v:' + word,

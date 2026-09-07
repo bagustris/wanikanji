@@ -54,6 +54,7 @@
           meanings: k.meanings,
           readingsOn: k.readingsOn,
           readingsKun: k.readingsKun,
+          kunForms: k.kunForms || {},
           primaryReadings: k.primaryReadings,
           acceptReadings: k.acceptReadings,
           radicals: k.radicals,           // names
@@ -100,6 +101,7 @@
             primaryReadings: [w.reading],
             readingsOn: [],
             readingsKun: [],
+            kunForms: {},
             componentKanji,
             questions: ['meaning', 'reading'],
           };

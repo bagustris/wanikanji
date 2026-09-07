@@ -16,6 +16,13 @@
 // If nothing matches, the word is skipped — no guessed/incorrect furigana is
 // ever shown. Three-plus-kanji cores and internal (non-edge) kana are out of
 // scope for now.
+//
+// Each context also carries `targetReading`: the reading the TARGET kanji has
+// in this particular word (うつく for 美 in 美しい, せい for 性 in 可能性),
+// surface form included — rendaku and sokuon as actually pronounced. The quiz
+// grades a context prompt against exactly that, because "how is 性 read?" has
+// one answer once you're shown 可能性. It is null when it can't be isolated
+// cleanly; nothing is ever guessed.
 
 const HIRAGANA_RE = /^[ぁ-ゖゝゞー]+$/; // ぁ-ゖ, ゝゞ, ー
 
@@ -96,16 +103,26 @@ function deriveContext(char, exampleWords, readingsByChar) {
         word: ex.word,
         gloss: ex.gloss || '',
         targetIndex: idx,
+        targetReading: coreReading || null,
         segments: wrap([{ text: coreChars[0], target: true }]),
       };
     }
 
     // (a2) core is target + all-kana others: nothing left to derive.
     if (others.length > 0 && others.every(isKana)) {
+      // The kana sit inside the core (they didn't match literally, or the
+      // strip above would have taken them), so peel them off the reading's
+      // matching edge to isolate the target's own reading.
+      let tr = coreReading;
+      const kanaBefore = coreChars.slice(0, coreIdx).join('');
+      const kanaAfter = coreChars.slice(coreIdx + 1).join('');
+      if (kanaBefore) tr = tr.startsWith(kanaBefore) ? tr.slice(kanaBefore.length) : null;
+      if (tr && kanaAfter) tr = tr.endsWith(kanaAfter) ? tr.slice(0, -kanaAfter.length) : null;
       return {
         word: ex.word,
         gloss: ex.gloss || '',
         targetIndex: idx,
+        targetReading: tr || null,
         segments: wrap(coreChars.map((c, i) => ({ text: c, target: i === coreIdx }))),
       };
     }
@@ -121,10 +138,16 @@ function deriveContext(char, exampleWords, readingsByChar) {
       const edge = otherIdx === 0 ? 'start' : 'end';
       const matched = matchEdge(coreReading, candidates, edge);
       if (matched) {
+        // What's left of the core reading once the other kanji's part is
+        // removed from its edge is the target's reading in this word.
+        const tr = otherIdx === 0
+          ? coreReading.slice(matched.length)
+          : coreReading.slice(0, coreReading.length - matched.length);
         return {
           word: ex.word,
           gloss: ex.gloss || '',
           targetIndex: idx,
+          targetReading: tr || null,
           segments: wrap(coreChars.map((c, i) => i === coreIdx
             ? { text: c, target: true }
             : { text: c, target: false, furigana: matched })),

@@ -14,6 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 const { deriveContext } = require('./furigana.js');
+const { deriveReadings } = require('./kun-readings.js');
 
 const ROOT = path.join(__dirname, '..');
 const KD_KANJI = path.join(ROOT, 'vendor', 'kanji-data', 'kanji');
@@ -66,8 +67,8 @@ const CURATED = {
 // use (grading, display) — "^" is not carried through anywhere else, so a
 // left-in "^" broke exact-match reading grading and showed literal carets
 // in the UI (e.g. 工's second meaning rendered as "^Industry").
+// ("!" handling for readings lives in tools/kun-readings.js.)
 function stripMark(r) { return r.replace(/^[!^]/, ''); }
-function isPrimary(r) { return r.startsWith('!'); }
 
 // --- Build example WORDS and SENTENCES indexes keyed by kanji char ---
 function buildKanjiDrillIndex() {
@@ -129,14 +130,10 @@ function main() {
     const lvl = v.wk_level;
     if (!(lvl >= 1 && lvl <= MAX_LEVEL)) continue;
 
-    const on = (v.wk_readings_on || []).map(stripMark);
-    const kun = (v.wk_readings_kun || []).map(stripMark);
-    const marked = [...(v.wk_readings_on || []), ...(v.wk_readings_kun || [])]
-      .filter(isPrimary).map(stripMark);
-    const allReadings = [...new Set([...on, ...kun])];
-    // "primary" reading used by the optional Strict-readings mode: the
-    // "!"-marked reading(s) if present, else all on'yomi, else kun.
-    const primary = marked.length ? marked : (on.length ? on : kun);
+    // on'yomi, kun STEMS, the stems' full okurigana forms (kunForms), and
+    // the strict-mode primary reading — see tools/kun-readings.js for why a
+    // bare kun stem (正 -> ただ) is neither shown nor demanded on its own.
+    const { on, kun, kunForms, acceptReadings, primaryReadings } = deriveReadings(v);
 
     const rads = v.wk_radicals || [];
     for (const r of rads) {
@@ -194,8 +191,9 @@ function main() {
       meanings: (v.wk_meanings && v.wk_meanings.length ? v.wk_meanings : v.meanings || []).map(stripMark),
       readingsOn: on,
       readingsKun: kun,
-      primaryReadings: primary.length ? primary : allReadings.slice(0, 1),
-      acceptReadings: allReadings.length ? allReadings : [],
+      kunForms,
+      primaryReadings,
+      acceptReadings,
       radicals: rads,
       examples,
       sentence: sPref ? { sentence: sPref.sentence, translation: sPref.translation } : null,

@@ -168,6 +168,23 @@
     ).join('');
   }
 
+  // Kun'yomi are stored as bare STEMS (正 -> ただ), which is not a word on its
+  // own -- ただ only surfaces as 正しい / 正す. `kunForms` carries the
+  // okurigana the stem needs, so render them dictionary-style with "・" at the
+  // okurigana boundary (ただ・しい) and never teach a naked stem. `perStem`
+  // caps how many forms of one stem to show: 1 for the compact card line, more
+  // where there's room.
+  function kunReadingList(item, perStem = 1) {
+    const forms = item.kunForms || {};
+    const out = [];
+    for (const stem of item.readingsKun || []) {
+      const f = forms[stem];
+      if (f && f.length) out.push(...f.slice(0, perStem).map(x => x.replace('.', '・')));
+      else out.push(stem);
+    }
+    return out;
+  }
+
   function itemCardHTML(item) {
     if (item.type === 'vocab') {
       return `<span class="type-badge badge-vocab">Vocab 単語</span>
@@ -176,7 +193,7 @@
         <div class="readings">reading: <b>${item.primaryReadings.join('、')}</b></div>`;
     }
     const on = item.readingsOn.join('、') || '—';
-    const kun = item.readingsKun.join('、') || '—';
+    const kun = kunReadingList(item).join('、') || '—';
     // Radicals are a lightweight visual hint here, not a quizzable item:
     // just glyph + name, no SRS state of their own.
     const rads = Data.radicalItemsFor(item)
@@ -185,10 +202,18 @@
       ? `<div class="glyph badge-kanji-glyph quiz-glyph-context">${contextGlyphHTML(item.context)}</div>
          ${item.context.gloss ? `<p class="quiz-context-caption">${item.context.gloss}</p>` : ''}`
       : `<div class="glyph badge-kanji-glyph">${item.char}</div>`;
+    // A context kanji is quizzed on the reading it has in THAT word (see
+    // readingPrompt), so the lesson card has to say which of its readings
+    // that is — otherwise the card teaches せい、しょう and the quiz then
+    // accepts only one of them.
+    const ctxReading = item.context && item.context.targetReading
+      ? `<div class="readings">in <b>${item.context.word}</b>, ${item.char} is <b>${item.context.targetReading}</b></div>`
+      : '';
     return `<span class="type-badge badge-kanji">Kanji 漢字</span>
       ${glyphHTML}
       <div class="primary-meaning">${item.meanings[0]}</div>
       <div class="readings">on: <b>${on}</b> &nbsp; kun: <b>${kun}</b></div>
+      ${ctxReading}
       <div class="composition">Made of: ${rads || '—'}</div>
       ${itemInfoHTML(item).html}`;
   }
@@ -252,11 +277,11 @@
     const isReading = q.qtype === 'reading';
     const glyph = $('quiz-glyph');
     const caption = $('quiz-context-caption');
-    // The target is still what gets graded, via its own acceptReadings —
-    // the context is presentation only (see contextGlyphHTML above). No
-    // caption here: contextGlyphHTML already renders the full context word,
-    // and no gloss is shown (reading and meaning are both quizzed this
-    // session, so a gloss would give away the meaning answer).
+    // The context is what gets graded, not just displayed: showing 可能性
+    // makes せい the only answer for 性 (see readingPrompt). No caption
+    // here: contextGlyphHTML already renders the full context word, and no
+    // gloss is shown (reading and meaning are both quizzed this session, so
+    // a gloss would give away the meaning answer).
     if (isReading && item.context) {
       glyph.innerHTML = contextGlyphHTML(item.context);
       glyph.className = 'quiz-glyph quiz-glyph-context ' + item.type;
@@ -287,11 +312,55 @@
     input.focus();
   }
 
-  function acceptedFor(item, qtype) {
-    if (qtype === 'reading') {
-      // Strict mode: only the primary reading (the WaniKani-taught one).
-      return Progress.settings().strictReadings ? item.primaryReadings : item.acceptReadings;
+  // What a reading question accepts depends on WHAT THE PROMPT SHOWS.
+  //
+  //   context prompt (可能性 with 性 highlighted) — the question has exactly
+  //     one answer, the reading the target has in THAT word. Accepting 性's
+  //     other on'yomi here taught nothing: the word on screen decides.
+  //   bare glyph (正) — "how is this kanji read on its own", so a bound kun
+  //     stem is not an answer to it: ただ only exists as 正しい / 正す. The
+  //     keys of `kunForms` ARE the bound stems, and each form's okurigana
+  //     rebuilds the word it lives in (ただ.しい -> 正しい) for the nudge.
+  //
+  // Readings that are valid for the character but not for this prompt come
+  // back as `others`: answering one is a misread of the question, not a
+  // mistake to penalise, so the caller nudges instead of marking it wrong.
+  function readingPrompt(item) {
+    const all = item.acceptReadings || [];
+    if (item.type !== 'kanji') return { accept: all, others: [], note: () => '' };
+    const ctx = item.context;
+    if (ctx && ctx.targetReading) {
+      return {
+        accept: [ctx.targetReading],
+        others: all,
+        note: (r) => `${r} is a reading of ${item.char}, but in ${ctx.word} it's ${ctx.targetReading}.`,
+      };
     }
+    const bound = item.kunForms || {};
+    let accept = Progress.settings().strictReadings
+      ? (item.primaryReadings || [])
+      : all.filter(r => !bound[r]);
+    if (!accept.length) accept = all;                 // never leave a question unanswerable
+    const others = all.filter(r => !accept.includes(r));
+    return {
+      accept,
+      others,
+      note: (r) => bound[r]
+        ? `${r} is how ${item.char} is read in ${stemWords(item, r).join('・')} — this card asks for ${item.char} on its own.`
+        : `${r} is a reading of ${item.char}, but this card is looking for ${accept.slice(0, 3).join('、')}.`,
+    };
+  }
+
+  // 正 + the okurigana of ただ.しい / ただ.す -> ["正しい", "正す"]. Two is
+  // enough to make the point; 直's third form (直き) is just noise.
+  function stemWords(item, stem) {
+    return ((item.kunForms || {})[stem] || [])
+      .slice(0, 2)
+      .map(f => item.char + (f.split('.')[1] || ''));
+  }
+
+  function acceptedFor(item, qtype) {
+    if (qtype === 'reading') return readingPrompt(item).accept;
     return item.meanings;
   }
 
@@ -306,7 +375,22 @@
     let result;
     if (q.qtype === 'reading') {
       val = Kana.toHiragana(val);
-      result = Grading.gradeReading(val, acceptedFor(item, 'reading'));
+      const prompt = readingPrompt(item);
+      const verdict = Grading.classifyReading(val, prompt.accept, prompt.others);
+      // A real reading of the character, just not the one this prompt asks
+      // for: say which and let them answer again. No SRS effect, no stat —
+      // penalising this would teach that the reading itself is wrong.
+      if (verdict === 'off-prompt') {
+        stopMic();
+        input.value = val;
+        input.className = 'quiz-input mode-reading nudge shake';
+        $('quiz-feedback').textContent = prompt.note(Grading.stripReading(val));
+        $('quiz-feedback').className = 'quiz-feedback nudge';
+        setTimeout(() => input.classList.remove('shake'), 300);
+        input.select();
+        return;
+      }
+      result = { correct: verdict === 'correct', exact: true };
     } else {
       result = Grading.gradeMeaning(val, acceptedFor(item, 'meaning'));
     }
@@ -354,6 +438,14 @@
     }
   }
 
+  const REVEAL_READING_CAP = 6;
+  function revealReadings(item) {
+    const accepted = readingPrompt(item).accept.map(Grading.stripReading);
+    const primary = (item.primaryReadings || []).map(Grading.stripReading).filter(r => accepted.includes(r));
+    const ordered = [...new Set([...primary, ...accepted])];
+    return ordered.slice(0, REVEAL_READING_CAP).join('、') + (ordered.length > REVEAL_READING_CAP ? '、…' : '');
+  }
+
   // Reveal answer & skip this question (counts as incorrect, clears it).
   function revealSkip() {
     if (quiz.awaitingContinue) return;
@@ -361,9 +453,12 @@
     const q = quiz.queue[0];
     const rec = quiz.perItem[q.id];
     const item = rec.item;
-    // Reveal exactly what grading would accept (respects Strict-readings mode).
+    // Reveal what grading would accept (respects Strict-readings mode), with
+    // the primary reading(s) first and the tail capped -- the accepted list
+    // includes every kun stem plus its okurigana forms, which for a kanji like
+    // 下 runs to a dozen entries nobody reads off a feedback line.
     const answer = q.qtype === 'reading'
-      ? acceptedFor(item, 'reading').map(Grading.stripReading).join('、')
+      ? revealReadings(item)
       : item.meanings.join(', ');
     const input = $('quiz-input');
     input.value = answer;
@@ -464,7 +559,7 @@
     } else if (showReadings && ((item.readingsOn && item.readingsOn.length) || (item.readingsKun && item.readingsKun.length))) {
       meta += '<div class="info-section info-reading"><h4>読み · Readings</h4><p class="meta-line">';
       if (item.readingsOn && item.readingsOn.length) meta += `<span class="reading-group">音 On: ${item.readingsOn.join('、')}</span>`;
-      if (item.readingsKun && item.readingsKun.length) meta += `<span class="reading-group">訓 Kun: ${item.readingsKun.join('、')}</span>`;
+      if (item.readingsKun && item.readingsKun.length) meta += `<span class="reading-group">訓 Kun: ${kunReadingList(item, 3).join('、')}</span>`;
       meta += '</p></div>';
     }
     let examples = '';
@@ -715,7 +810,7 @@
             ? Speech.resolveReadingTranscript(trimmed, {
                 char: item.char,
                 word: item.context && item.context.word,
-                reading: (item.primaryReadings && item.primaryReadings[0]) || (item.acceptReadings && item.acceptReadings[0]),
+                reading: readingPrompt(item).accept[0],
               })
             : trimmed;
           input.dispatchEvent(new Event('input'));

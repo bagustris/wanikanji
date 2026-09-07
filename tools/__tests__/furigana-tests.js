@@ -17,6 +17,7 @@ function check(name, got, expected) {
     { text: 'し', target: false },
     { text: 'い', target: false },
   ]);
+  check('okurigana target reading', ctx.targetReading, 'うつく');
 }
 
 // (b) two-kanji compound, target first, other char's on'yomi matches the tail.
@@ -27,6 +28,7 @@ function check(name, got, expected) {
     { text: '研', target: true },
     { text: '究', target: false, furigana: 'きゅう' },
   ]);
+  check('compound target-first reading', ctx.targetReading, 'けん');
 }
 
 // (b) two-kanji compound, target second, other char's reading matches the head.
@@ -37,6 +39,7 @@ function check(name, got, expected) {
     { text: '大', target: false, furigana: 'だい' },
     { text: '学', target: true },
   ]);
+  check('compound target-second reading', ctx.targetReading, 'がく');
 }
 
 // rendaku: other char's own on'yomi is unvoiced, but the compound voices it.
@@ -47,6 +50,9 @@ function check(name, got, expected) {
     { text: '花', target: false, furigana: 'はな' },
     { text: '火', target: true },
   ]);
+  // The target's own reading is voiced here (ひ -> び): the surface form is
+  // what the learner has to say when reading 花火, so that's what's stored.
+  check('rendaku target keeps its surface reading', ctx.targetReading, 'び');
 }
 
 // trailing する suffix stripped, then the 2-kanji core matches (対する).
@@ -72,6 +78,7 @@ function check(name, got, expected) {
     { text: 'れ', target: false },
     { text: 'る', target: false },
   ]);
+  check('target-alone-after-strip reading', ctx.targetReading, 'な');
 }
 
 // sokuon gemination: other char's own reading is いち, but the compound
@@ -83,6 +90,15 @@ function check(name, got, expected) {
     { text: '一', target: false, furigana: 'いっ' },
     { text: '課', target: true },
   ]);
+  check('sokuon target reading', ctx.targetReading, 'か');
+}
+
+// core kana that did NOT match literally (irregular reading): the kana is
+// peeled off the reading's edge when it lines up, and the target reading is
+// left null rather than guessed when it doesn't.
+{
+  const ctx = deriveContext('人', [{ word: '一人', reading: 'ひとり', gloss: 'one person' }], {});
+  check('unresolvable other kanji -> null', ctx, null);
 }
 
 // no usable example -> null (three-plus-kanji compound is out of scope for now).

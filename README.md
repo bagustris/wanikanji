@@ -37,9 +37,21 @@ Live: https://bagustris.github.io/wanikanji
   Toggleable.
 - **Progression gating:** a level is passed (unlocking the next) once 90% of
   its kanji reach Guru — no radical prerequisite.
-- **Typed grading:** readings match any accepted reading (kana), or only the
-  primary reading if **Strict readings** is enabled in Settings; meanings are
-  case/space-insensitive with small-typo tolerance (Levenshtein ≤ 1–2).
+- **The prompt decides the reading.** Shown a bare 正, the question is how 正
+  reads alone, so せい counts and the bound stem ただ doesn't; shown 可能性
+  with 性 highlighted, せい is the only answer. A reading that's genuinely the
+  character's but not what the prompt asked for is neither accepted nor
+  marked wrong — you get a nudge explaining the mismatch and answer again,
+  with no SRS penalty.
+- **Typed grading:** readings match any accepted reading (kana) — including a
+  kun'yomi written out with its okurigana (正 → ただしい as well as ただ) — or
+  only the primary reading if **Strict readings** is enabled in Settings;
+  meanings are case/space-insensitive with small-typo tolerance (Levenshtein
+  ≤ 1–2) and treat spelled-out numbers and digits alike ("seventeen" = "17").
+- **Kun'yomi are shown as words, not stems:** the source data gives kun
+  readings as bare stems (正 → ただ), which is not a word — the card shows
+  ただ・しい、ただ・す instead, and a bound stem is never the answer Strict
+  mode demands for a kanji shown alone (正 → せい, not ただ).
 - Keyboard-first: **Enter** submits and advances, **Esc** reveals the answer,
   **←/→** navigate lesson cards.
 - Installable PWA, offline-capable, light/dark theme.

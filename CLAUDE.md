@@ -30,6 +30,7 @@ node js/grading/__tests__/run-tests.js    # reading + meaning matching
 node js/srs/__tests__/run-tests.js        # SRS stages / intervals / penalty
 node js/speech/__tests__/run-tests.js     # ASR transcript normalization
 node tools/__tests__/furigana-tests.js    # build-time context/furigana derivation
+node tools/__tests__/kun-readings-tests.js  # kun okurigana / primary readings
 ```
 
 There is no `npm test` / single aggregate runner — run each `run-tests.js`
@@ -65,7 +66,8 @@ js/
   kana.js       toHiragana()          — romaji -> hiragana (IME-style: sokuon,
                                          youon, ん-handling)  [pure, tested]
   grading.js    gradeMeaning/Reading  — meaning: normalize + Levenshtein
-                                         fuzz; reading: exact kana match
+                                         fuzz + number-word/digit equivalence;
+                                         reading: exact kana match
                                          [pure, tested]
   srs.js        applyReview/newItem   — WaniKani's 9-stage engine (stage,
                                          interval, incorrect-penalty)
@@ -112,12 +114,16 @@ inference > curated Kangxi fallback flagged `uncertain: true`); glyphs that
 can't be resolved cleanly are omitted rather than faked, and the affected
 radical chip simply doesn't render — this never blocks lessons/reviews since
 radicals don't gate anything themselves (kanji unlocking is level-gated, see
-below).
+below). Reading derivation (kun okurigana, accepted + primary readings) is
+split out into `tools/kun-readings.js` — see **Grading** below.
 
 **Non-standalone kanji** (bound morphemes with no independent reading, e.g.
 性, 工) are shown/quizzed inside a compound word instead of alone; `context`
 + `contextGlyphHTML()` in `app.js` render the target kanji highlighted with
-furigana on the rest, derived at build time by `tools/furigana.js`.
+furigana on the rest, derived at build time by `tools/furigana.js`. The
+context is **graded, not just displayed**: `context.targetReading` is the
+reading the target kanji has in that specific word (surface form, rendaku
+included) and is the only accepted answer for that prompt — see **Grading**.
 
 ### SRS model
 
@@ -139,12 +145,50 @@ only "wrong answer" lever needed).
 
 ### Grading
 
-Meanings: case/space-insensitive, comma/slash-split accepted-answer list,
-Levenshtein-tolerant (distance 0 for ≤3 chars, 1 for >3, 2 for ≥8 — see
-`allowedDistance()` in `grading.js`). Readings: exact hiragana match against
-the accepted-reading list (or only the primary/`!`-marked reading if
-**Strict readings** is on in Settings); romaji is converted via `kana.js`
-before grading.
+Meanings: case/space-insensitive, and Levenshtein-tolerant (distance 0 for ≤3
+chars, 1 for >3, 2 for ≥8 — see `allowedDistance()` in `grading.js`). The
+accepted-answer list is split on `/`, `;` and commas — but *not* a comma
+between digits, which is a thousands separator ("100,000 yen" is one answer,
+not "100" and "000 yen"). Spelled-out numbers and digits are interchangeable
+("seventeen" = "17", "seven times" = "7 times", "third" = "3rd") because the
+glosses use both forms inconsistently; typo tolerance deliberately stops at
+the numbers themselves, so "9 hours" is not accepted for "8 hours".
+
+Readings: exact hiragana match (romaji is converted via `kana.js` first)
+against a list **the prompt decides** — see `readingPrompt()` in `app.js`:
+
+| prompt | accepts |
+| --- | --- |
+| bare glyph (正) | `acceptReadings` minus the bound kun stems, or `primaryReadings` under **Strict readings** |
+| context word (可能性 with 性 highlighted) | only `context.targetReading` — the reading the target has *in that word* |
+| vocab | the word's own reading(s) |
+
+`Grading.classifyReading()` returns three verdicts, not two:
+`correct` / `off-prompt` / `wrong`. **off-prompt** is a reading that really is
+the character's but isn't what this prompt asked for (ただ under a bare 正,
+もん under 文章). It is not a mistake to penalise — it's a misread of the
+question — so the quiz shows an amber nudge naming the mismatch and lets the
+learner answer again, with no SRS effect and no stat recorded. Anything that
+narrows the accepted set (the two rows above) relies on this: without the
+third verdict, narrowing would just turn valid knowledge into wrong answers.
+
+**Kun'yomi are stems in the source data** — WaniKani exports 正's kun reading
+as `!ただ`, which is not a word (ただ only surfaces as 正しい / 正す).
+`tools/kun-readings.js` (pure, tested) recovers the okurigana from the same
+entry's KANJIDIC-style `readings_kun` (`ただ.しい`, where `.` is the stem
+boundary and a leading/trailing `-` marks prefix/suffix position) and emits:
+
+- `kunForms` — stem -> okurigana form(s), **only for bound stems**. The UI
+  renders these dictionary-style (`ただ・しい`) instead of a naked stem;
+  a free-standing kun reading (一's `ひと`, marked `ひと-` = prefix position,
+  so the reading itself is complete) gets no entry and is shown as-is.
+- `acceptReadings` — on'yomi + kun stems + *every* okurigana form, so both
+  ただ and ただしい grade correct.
+- `primaryReadings` (what Strict mode demands) — a `!`-marked on'yomi wins;
+  otherwise the on'yomi plus any free-standing marked kun reading, because a
+  bound stem is not a valid answer for a kanji shown alone (正 -> せい/しょう/
+  まさ, never ただ). Kanji with no on'yomi fall back to the stem's full word
+  form (込 -> こむ, 咲 -> さく), never the naked stem.
 
 ## Design reference
 

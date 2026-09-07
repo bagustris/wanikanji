@@ -9,7 +9,9 @@
     return (s || '')
       .toLowerCase()
       .trim()
-      .replace(/[.,!?;:'"()\-]/g, '')
+      .replace(/([0-9]),(?=[0-9])/g, '$1')
+      .replace(/[.,!?;:'"()]/g, '')
+      .replace(/[-\u2013\u2014]/g, ' ')
       .replace(/\s+/g, ' ');
   }
 
@@ -37,6 +39,84 @@
     if (len >= 8) return 2;
     if (len > 3) return 1;
     return 0;
+  }
+
+  // --- number words <-> digits --------------------------------------------
+  // Glosses come from mixed sources: some spell numbers out ("Seven"), some
+  // use digits ("17", "8 hours"). Canonicalize spelled-out numbers to digits
+  // on both sides so "seventeen" matches "17" and vice versa.
+  const CARDINALS = {
+    zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6,
+    seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
+    thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17,
+    eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40,
+    fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90
+  };
+  const SCALES = { hundred: 100, thousand: 1000, million: 1000000, billion: 1000000000 };
+  const ORDINALS = {
+    first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6,
+    seventh: 7, eighth: 8, ninth: 9, tenth: 10, eleventh: 11, twelfth: 12,
+    thirteenth: 13, fourteenth: 14, fifteenth: 15, sixteenth: 16,
+    seventeenth: 17, eighteenth: 18, nineteenth: 19, twentieth: 20,
+    thirtieth: 30, fortieth: 40, fiftieth: 50, sixtieth: 60,
+    seventieth: 70, eightieth: 80, ninetieth: 90, hundredth: 100,
+    thousandth: 1000, millionth: 1000000
+  };
+
+  function ordinalDigits(n) {
+    const tens = n % 100, ones = n % 10;
+    let suffix = 'th';
+    if (tens < 11 || tens > 13) {
+      if (ones === 1) suffix = 'st';
+      else if (ones === 2) suffix = 'nd';
+      else if (ones === 3) suffix = 'rd';
+    }
+    return `${n}${suffix}`;
+  }
+
+  // Rewrite spelled-out number runs in an already-normalized string as digits.
+  function numbersToDigits(s) {
+    const words = (s || '').split(' ');
+    const out = [];
+    let i = 0;
+    while (i < words.length) {
+      const w = words[i];
+      const isCardinal = CARDINALS[w] !== undefined || SCALES[w] !== undefined;
+      if (!isCardinal) {
+        if (ORDINALS[w] !== undefined) out.push(ordinalDigits(ORDINALS[w]));
+        else out.push(w);
+        i++;
+        continue;
+      }
+      let total = 0, cur = 0, ordinalTail = false;
+      while (i < words.length) {
+        const t = words[i];
+        if (CARDINALS[t] !== undefined) { cur += CARDINALS[t]; i++; }
+        else if (SCALES[t] !== undefined) {
+          const sc = SCALES[t];
+          if (sc >= 1000) { total += (cur || 1) * sc; cur = 0; }
+          else { cur = (cur || 1) * sc; }
+          i++;
+        } else if (ORDINALS[t] !== undefined) { cur += ORDINALS[t]; ordinalTail = true; i++; break; }
+        else break;
+      }
+      const n = total + cur;
+      out.push(ordinalTail ? ordinalDigits(n) : String(n));
+    }
+    return out.join(' ');
+  }
+
+  function digitSignature(s) {
+    return ((s || '').match(/[0-9]+/g) || []).join(',');
+  }
+
+  // Split an accepted-meaning string on its alternative separators, without
+  // breaking a comma that groups digits ("100,000 yen").
+  function splitAccepted(a) {
+    return String(a)
+      .split(/\s*[/;]\s*|,(?![0-9])/)
+      .map((p) => p.trim())
+      .filter(Boolean);
   }
 
   const COUNTABLE_NUMBER_MEANINGS = new Set([
@@ -68,22 +148,27 @@
   function gradeMeaning(input, accepted) {
     const g = normalizeMeaning(input);
     if (!g) return { correct: false, exact: false };
+    const gd = numbersToDigits(g);
+    const variants = [];
     for (const a of accepted || []) {
-      // an accepted entry like "one (thing)" -> also compare each comma part
-      const parts = String(a).split(/[,/;]/);
-      for (const p of parts) {
-        for (const variant of meaningVariants(p)) {
-          if (g === variant) return { correct: true, exact: true };
-        }
+      for (const p of splitAccepted(a)) {
+        for (const v of meaningVariants(p)) variants.push(v);
       }
     }
-    // fuzzy pass
-    for (const a of accepted || []) {
-      for (const p of String(a).split(/[,/;]/)) {
-        for (const variant of meaningVariants(p)) {
-          if (levenshtein(g, variant) <= allowedDistance(variant.length)) {
-            return { correct: true, exact: false };
-          }
+    // exact pass (raw or number-canonical)
+    for (const v of variants) {
+      if (g === v || gd === numbersToDigits(v)) return { correct: true, exact: true };
+    }
+    // Fuzzy pass, on the raw pair AND the number-canonical pair: raw keeps
+    // typo tolerance for a spelled-out number ("sevn" -> "seven"), canonical
+    // keeps it for a phrase around one ("8 hurs" -> "8 hours"). Neither is
+    // allowed to fuzz across a difference in the numbers themselves, so
+    // "9 hours" is not accepted for "8 hours".
+    for (const v of variants) {
+      for (const [a, b] of [[g, v], [gd, numbersToDigits(v)]]) {
+        if (digitSignature(a) !== digitSignature(b)) continue;
+        if (levenshtein(a, b) <= allowedDistance(b.length)) {
+          return { correct: true, exact: false };
         }
       }
     }
@@ -105,7 +190,20 @@
     return { correct: false };
   }
 
+  // Three-way verdict for a reading question. `accepted` is what THIS prompt
+  // asks for; `others` are readings that are valid for the character but not
+  // for this prompt (正's ただ when 正 is shown alone; 文's もん when the
+  // prompt shows 文章). Answering one of those isn't a mistake to punish —
+  // it's a misread of the question — so it gets its own verdict and the
+  // caller can nudge instead of marking it wrong.
+  function classifyReading(input, accepted, others) {
+    if (gradeReading(input, accepted).correct) return 'correct';
+    if (gradeReading(input, others || []).correct) return 'off-prompt';
+    return 'wrong';
+  }
+
   return {
-    normalizeMeaning, levenshtein, gradeMeaning, gradeReading, stripReading
+    normalizeMeaning, levenshtein, gradeMeaning, gradeReading, stripReading,
+    numbersToDigits, splitAccepted, classifyReading
   };
 });

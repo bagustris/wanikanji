@@ -266,11 +266,15 @@ kbd { font-family: var(--font-mono); background: var(--bg); border: 1px solid va
 .quiz-input.mode-meaning:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--qtype-meaning) 35%, transparent); }
 .quiz-input.correct { border-color: var(--correct); background: rgba(46,158,91,0.12); }
 .quiz-input.incorrect { border-color: var(--incorrect); background: rgba(186,26,26,0.12); }
+.quiz-input.nudge { border-color: var(--warn-fg); background: color-mix(in srgb, var(--warn-bg) 60%, transparent); }
 .quiz-input.shake { animation: shake 0.3s; }
 @keyframes shake { 0%,100%{transform:translateX(0);} 20%,60%{transform:translateX(-7px);} 40%,80%{transform:translateX(7px);} }
 .quiz-feedback { min-height: 1.3rem; margin: 0.6rem 0 0; font-size: 0.9rem; }
 .quiz-feedback.correct { color: var(--correct); }
 .quiz-feedback.incorrect { color: var(--incorrect); }
+/* A real reading of the character, just not the one the prompt asks for:
+   neither red nor green — it costs nothing, it just isn't the answer. */
+.quiz-feedback.nudge { color: var(--warn-fg); }
 .quiz-continue { background: none; border: 0; color: var(--muted); cursor: pointer; display: block; font-size: 0.85rem; margin-top: 0.4rem; padding: 0; text-align: left; }
 .quiz-continue span { color: var(--accent); margin-left: 0.3rem; }
 

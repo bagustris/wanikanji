@@ -1,5 +1,57 @@
 # Changelog
 
+## 2026.09.07
+
+### Added
+- **The prompt now decides which reading is correct.** A reading question
+  shown as a bare kanji (正) asks how that kanji reads *on its own*, so a
+  bound kun stem is no longer accepted there — ただ only exists as 正しい /
+  正す. A question shown in context (可能性 with 性 highlighted) has exactly
+  one answer, the reading the target has *in that word* (`targetReading`, new
+  in `tools/furigana.js`); 性's other on'yomi しょう is no longer accepted
+  under a word that doesn't use it.
+- A third answer outcome to go with it: a reading that is genuinely the
+  character's but not what the prompt asks for is neither accepted nor
+  counted wrong. It gets an amber nudge naming the mismatch — "ただ is how 正
+  is read in 正しい・正す — this card asks for 正 on its own", "もん is a
+  reading of 文, but in 文章 it's ぶん" — and you answer again with no SRS
+  penalty and no hit to your stats. Penalising it would teach that the
+  reading itself is wrong (`Grading.classifyReading`).
+
+### Changed
+- Kun'yomi are now taught as words instead of stems. The source data gives
+  them as bare stems (正 → ただ), which is not something you can say: ただ
+  only surfaces as 正しい / 正す. Cards now show ただ・しい、ただ・す, taken
+  from the okurigana that was already in the source data and being discarded
+  at build time (new `tools/kun-readings.js`, `kunForms` in
+  `data/kanji.json`). Free-standing kun readings (一's ひと) are unchanged.
+
+### Fixed
+- **Strict readings** no longer demands a bound kun stem for a kanji shown
+  alone, and no longer rejects the on'yomi: 正 now expects せい/しょう/まさ
+  rather than ただ, 一 expects いち/いつ rather than ひと. Kanji with no
+  on'yomi fall back to the whole word (込 → こむ, 咲 → さく) instead of the
+  naked stem — this also covers kanji whose readings carry no preferred-mark
+  at all (込, 拾, 刈), which previously fell through to the stem.
+- Reading answers written out with okurigana are now accepted: ただしい for
+  正, ひとつ for 一, こむ for 込 — previously only the bare stem graded.
+- Revealing a reading answer (Esc) no longer prints a dozen readings on one
+  line: the primary reading(s) come first and the list is capped.
+- Meaning grading now treats spelled-out numbers and digits as the same
+  answer, so "seventeen" is accepted for 十七 ("17"), "seven times" for
+  "7 times", "one hundred thousand yen" for "100,000 yen", and ordinals
+  match either way ("third" / "3rd"). Previously only the form the gloss
+  happened to use was accepted.
+- A comma grouping digits in a gloss is no longer mistaken for an
+  alternative-answer separator — "100,000 yen" used to split into "100" and
+  "000 yen", so a bare "100" was accepted while the real answer was not.
+- Typo tolerance no longer bridges a difference in the numbers themselves:
+  "9 hours" is no longer accepted for "8 hours".
+- Hyphens in meanings are now treated as word breaks rather than deleted,
+  so "twenty-one" and "twenty one" grade alike.
+- Bumped the service-worker cache version so installed clients pick up the
+  fixed grading code.
+
 ## 2026.08.31
 
 ### Added

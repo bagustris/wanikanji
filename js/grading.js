@@ -181,11 +181,16 @@
   function stripReading(r) {
     return (r || '').replace(/[.\-]/g, '').trim();
   }
+  // Vocab readings keep katakana for loanword parts (ローマじ, バスてい) but
+  // the learner types hiragana, so compare with katakana folded to hiragana.
+  function foldKana(r) {
+    return stripReading(r).replace(/[ァ-ヶ]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0x60));
+  }
   function gradeReading(input, accepted) {
-    const g = stripReading(input);
+    const g = foldKana(input);
     if (!g) return { correct: false };
     for (const a of accepted || []) {
-      if (g === stripReading(a)) return { correct: true };
+      if (g === foldKana(a)) return { correct: true };
     }
     return { correct: false };
   }

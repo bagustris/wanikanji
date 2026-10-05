@@ -89,14 +89,14 @@
           // A leading "*" in the source data flags an irregular/jukujikun
           // reading word — it's a data marker, not part of the word itself.
           const word = w.word.replace(/^\*/, '');
-          if (seen.has(word) || word.length < 2) continue;
+          if (seen.has(word) || [...word].length < 2) continue;
           seen.add(word);
-          const componentKanji = [...new Set(word.split(''))]
+          const componentKanji = [...new Set([...word])]
             .filter(ch => this.byId['k:' + ch]);
           if (!componentKanji.length) continue;
           const level = Math.max(...componentKanji.map(ch => this.byId['k:' + ch].level));
           const meanings = [...new Set([
-            ...w.gloss.split(',').map(stripTag).filter(Boolean),
+            ...w.gloss.split(/,(?![0-9])/).map(stripTag).filter(Boolean),
             ...(VOCAB_MEANING_ALIASES[word] || []),
           ])];
           if (!meanings.length) continue;

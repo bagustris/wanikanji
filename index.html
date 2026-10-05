@@ -96,6 +96,10 @@
         <span class="cta-action">開始<span> Start · R</span></span>
       </button>
     </div>
+    <p id="lesson-focus" class="lesson-focus hidden">
+      <span id="lesson-focus-label"></span>
+      <button id="lesson-focus-clear" type="button" class="link-btn" aria-label="Clear lesson focus">&times;</button>
+    </p>
     <button id="btn-extra" class="extra-btn" disabled>
       追加学習<span>Extra Study — practice learned items now (doesn't change SRS) · E</span>
     </button>
@@ -104,6 +108,12 @@
     <div id="srs-distribution" class="srs-distribution"></div>
 
     <h2 class="section-heading">レベルの進捗<span>Level progress</span></h2>
+    <form id="level-jump-form" class="level-jump" autocomplete="off">
+      <label for="level-jump-input">レベルへ移動<span>Jump to level</span></label>
+      <input id="level-jump-input" type="number" min="1" max="60" step="1" inputmode="numeric" placeholder="1–60">
+      <button type="submit" class="secondary-btn">Unlock</button>
+    </form>
+    <p id="level-jump-msg" class="level-jump-msg" role="status" aria-live="polite"></p>
     <div id="level-progress" class="level-progress"></div>
 
     <p id="next-review-hint" class="next-review-hint"></p>

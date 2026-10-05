@@ -133,7 +133,9 @@ penalty (`ceil(incorrect/2) * penalty`, penalty 2 at/above Guru else 1). Kanji
 and vocab items both have two subjects per review (meaning + reading) and
 only advance once both are cleared in that session. Progression: a level is
 passed (unlocking the next level's kanji) once 90% of its kanji reach Guru —
-vocab and radicals don't gate it.
+vocab and radicals don't gate it. The dashboard can also jump ahead
+(`unlockedLevel` setting: levels up to it are open without passing the previous
+one, no SRS state faked) and focus lessons on one level (`lessonLevel`).
 
 **Adaptive pacing** (deviates from stock WaniKani): each item tracks a
 `streak` of consecutive fully-correct reviews. `SRS.streakMultiplier(streak)`

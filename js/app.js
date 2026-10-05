@@ -29,7 +29,11 @@
     const guru = ks.filter(k => stageOf(k.id) >= SRS.GURU).length;
     return guru / ks.length >= 0.9;
   }
-  function levelUnlocked(lvl) { return lvl === 1 || levelPassed(lvl - 1); }
+  // A level is open if it was jumped to (unlockedLevel) or the previous one
+  // is passed; jumping never fakes SRS state for the skipped levels.
+  function levelUnlocked(lvl) {
+    return lvl === 1 || lvl <= Progress.settings().unlockedLevel || levelPassed(lvl - 1);
+  }
 
   function prereqMet(item) {
     if (!levelUnlocked(item.level)) return false;
@@ -37,8 +41,9 @@
     return true;
   }
   function availableLessons() {
+    const focus = Progress.settings().lessonLevel;
     return Data.items
-      .filter(i => !isLearned(i.id) && prereqMet(i))
+      .filter(i => !isLearned(i.id) && prereqMet(i) && (focus == null || i.level === focus))
       .sort((a, b) => a.level - b.level);
   }
   function dueReviews(t) {
@@ -96,8 +101,11 @@
       const unlocked = levelUnlocked(lvl);
       const passed = levelPassed(lvl);
       const status = passed ? '✓ passed' : unlocked ? 'in progress' : '🔒 locked';
+      const focused = Progress.settings().lessonLevel === lvl;
+      const action = !unlocked ? ''
+        : `<button type="button" class="level-focus-btn${focused ? ' active' : ''}" data-focus="${lvl}" aria-pressed="${focused}">${focused ? 'Focused' : 'Study'}</button>`;
       return `<div class="level-row">
-        <div class="level-row-head"><strong>Level ${lvl}</strong><span class="${unlocked ? '' : 'locked'}">${status}</span></div>
+        <div class="level-row-head"><strong>Level ${lvl}</strong><span class="level-row-status"><span class="${unlocked ? '' : 'locked'}">${status}</span>${action}</span></div>
         <div class="level-bars">
           <div class="level-bar">
             <div class="level-bar-track"><div class="level-bar-fill fill-kanji" style="width:${pct(kGuru, ks.length)}%"></div></div>
@@ -106,6 +114,13 @@
         </div>
       </div>`;
     }).join('');
+
+    // Lesson focus chip + jump control
+    const focusLvl = Progress.settings().lessonLevel;
+    $('lesson-focus').classList.toggle('hidden', focusLvl == null);
+    if (focusLvl != null) $('lesson-focus-label').textContent = `Lessons from Level ${focusLvl} only`;
+    const maxLvl = allLevels[allLevels.length - 1] || 1;
+    $('level-jump-input').max = maxLvl;
 
     // Next review hint
     if (reviews.length === 0) {
@@ -327,7 +342,16 @@
   // mistake to penalise, so the caller nudges instead of marking it wrong.
   function readingPrompt(item) {
     const all = item.acceptReadings || [];
-    if (item.type !== 'kanji') return { accept: all, others: [], note: () => '' };
+    if (item.type !== 'kanji') {
+      // Vocab: every listed reading, or just the primary one under Strict.
+      let accept = Progress.settings().strictReadings ? (item.primaryReadings || []) : all;
+      if (!accept.length) accept = all;
+      return {
+        accept,
+        others: all.filter(r => !accept.includes(r)),
+        note: (r) => `${r} is an accepted reading of ${item.glyph}, but this card is looking for ${accept.slice(0, 3).join('、')}.`,
+      };
+    }
     const ctx = item.context;
     if (ctx && ctx.targetReading) {
       return {
@@ -854,6 +878,39 @@
   }
 
   // ============================ WIRE UP ============================
+  function initLevelControls() {
+    // Delegated: the level rows are re-rendered on every dashboard refresh.
+    $('level-progress').addEventListener('click', e => {
+      const btn = e.target.closest('[data-focus]');
+      if (!btn) return;
+      const lvl = +btn.dataset.focus;
+      Progress.setSetting('lessonLevel', Progress.settings().lessonLevel === lvl ? null : lvl);
+      renderDashboard();
+    });
+    $('lesson-focus-clear').addEventListener('click', () => {
+      Progress.setSetting('lessonLevel', null);
+      renderDashboard();
+    });
+    $('level-jump-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const max = Data.levels().slice(-1)[0] || 1;
+      const lvl = Math.floor(+$('level-jump-input').value);
+      if (!Number.isFinite(lvl) || lvl < 1 || lvl > max) {
+        $('level-jump-msg').textContent = `Enter a level from 1 to ${max}.`;
+        return;
+      }
+      if (lvl <= Progress.settings().unlockedLevel || levelUnlocked(lvl)) {
+        $('level-jump-msg').textContent = `Level ${lvl} is already unlocked.`;
+        return;
+      }
+      if (!confirm(`Unlock levels up to ${lvl}? Skipped levels stay unlearned; they just stop blocking you.`)) return;
+      Progress.setSetting('unlockedLevel', lvl);
+      Progress.setSetting('lessonLevel', lvl);
+      $('level-jump-msg').textContent = `Unlocked up to level ${lvl}. Lessons now come from level ${lvl}.`;
+      renderDashboard();
+    });
+  }
+
   function initButtons() {
     $('btn-lessons').addEventListener('click', startLessons);
     $('btn-reviews').addEventListener('click', () => startQuiz(dueReviews(now()), 'review'));
@@ -891,6 +948,7 @@
     initSettings();
     initInput();
     initButtons();
+    initLevelControls();
     // Voice input is optional progressive enhancement — if js/speech.js
     // failed to load or execute for any reason, initMic() would throw on
     // the undefined `Speech` global. Isolate that from the rest of startup

@@ -59,6 +59,11 @@ ok('classify tolerates missing others', G.classifyReading('せい', ['せい']) 
 ok('classify empty input is wrong', G.classifyReading('', ['せい'], ['ただ']) === 'wrong');
 ok('classify strips okurigana dots', G.classifyReading('ただしい', ['ただ.しい'], []) === 'correct');
 
+// katakana in a stored vocab reading matches typed hiragana
+ok('reading folds katakana', G.gradeReading('ろーまじ', ['ローマじ']).correct === true);
+ok('reading katakana input too', G.gradeReading('バスてい', ['ばすてい']).correct === true);
+ok('reading katakana still exact', G.gradeReading('ろーまし', ['ローマじ']).correct === false);
+
 // --- levenshtein sanity ---
 ok('lev equal', G.levenshtein('abc', 'abc') === 0);
 ok('lev one sub', G.levenshtein('abc', 'abd') === 1);

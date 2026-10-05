@@ -9,6 +9,8 @@
     strictReadings: false, // grade readings only against the primary reading
     bypassSchedule: false, // treat all learned items as due (ignores SRS timing)
     batchSize: 5,         // items introduced per lesson batch
+    unlockedLevel: 1,     // levels up to this one are open without passing the previous
+    lessonLevel: null,    // when set, lessons are drawn only from this level
   };
 
   function load() {

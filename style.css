@@ -172,7 +172,17 @@ kbd { font-family: var(--font-mono); background: var(--bg); border: 1px solid va
 .srs-burned { background: var(--fill-burned); }
 
 /* Level progress */
-.level-progress { display: flex; flex-direction: column; gap: 0.6rem; }
+.level-progress { display: flex; flex-direction: column; gap: 0.6rem; max-height: 26rem; overflow-y: auto; }
+.level-row-status { display: flex; align-items: center; gap: 0.5rem; }
+.level-focus-btn { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: var(--radius-full); padding: 0.1rem 0.6rem; font-size: 0.72rem; cursor: pointer; }
+.level-focus-btn:hover, .level-focus-btn:focus-visible { border-color: var(--accent); color: var(--accent); }
+.level-focus-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.level-jump { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.4rem; font-size: 0.85rem; }
+.level-jump label span { margin-left: 0.4rem; color: var(--muted); }
+.level-jump input { width: 5rem; padding: 0.4rem 0.5rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); color: var(--fg); font: inherit; }
+.level-jump .secondary-btn { padding: 0.4rem 0.9rem; }
+.level-jump-msg { color: var(--muted); font-size: 0.8rem; margin: 0 0 0.6rem; min-height: 1em; }
+.lesson-focus { display: flex; align-items: center; justify-content: center; gap: 0.3rem; color: var(--accent); font-size: 0.85rem; margin: 0.5rem 0; }
 .level-row { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 0.6rem 0.8rem; }
 .level-row-head { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem; }
 .level-row-head strong { font-family: var(--font-headline); }

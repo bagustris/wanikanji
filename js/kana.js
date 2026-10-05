@@ -70,6 +70,8 @@
       if (ch !== 'n' && next === ch && /[a-z]/.test(ch) && !/[aiueo]/.test(ch)) {
         out += 'っ'; i += 1; continue;
       }
+      // "tch" -> っch (matcha -> まっちゃ)
+      if (ch === 't' && next === 'c' && s[i + 2] === 'h') { out += 'っ'; i += 1; continue; }
       // greedy match length 3,2,1
       let matched = false;
       for (let len = 3; len >= 1; len--) {

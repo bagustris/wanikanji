@@ -29,6 +29,7 @@ eq('ra-men', 'らーめん');
 eq('ひと', 'ひと'); eq('あka', 'あか');
 // full word examples from data
 eq('ichi', 'いち'); eq('hitotsu', 'ひとつ'); eq('yon', 'よん'); eq('mizu', 'みず');
+eq('matcha', 'まっちゃ'); eq('kitchin', 'きっちん');
 
 console.log(`kana: ${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
